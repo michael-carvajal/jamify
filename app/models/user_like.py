@@ -7,8 +7,8 @@ class UserLike(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     setlist_id = db.Column(db.Integer, db.ForeignKey('setlists.id'))
-    demo_id = db.Column(db.Integer, db.ForeignKey('demo.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    demo_id = db.Column(db.Integer, db.ForeignKey('demos.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
 
