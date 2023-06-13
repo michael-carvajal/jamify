@@ -7,7 +7,7 @@ class Setlist(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
-    author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     description = db.Column(db.String(100))
     public = db.Column(db.Boolean, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
