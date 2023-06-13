@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from .follows import Follow
+# from .follows import Follow
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -21,8 +21,8 @@ class User(db.Model, UserMixin):
 
     ratings = db.relationship("Rating", backref="author", cascade="all, delete-orphan")
     demos = db.relationship("Demo", backref="author", cascade="all, delete-orphan")
-    follows_following = db.relationship("Follow", foreign_keys=[Follow.following_user_id], backref="following_user", cascade="all, delete-orphan")
-    follows_followed = db.relationship("Follow", foreign_keys=[Follow.followed_user_id], backref="followed_user", cascade="all, delete-orphan")
+    # follows_following = db.relationship("Follow", foreign_keys=[Follow.following_user_id], backref="following_user", cascade="all, delete-orphan")
+    # follows_followed = db.relationship("Follow", foreign_keys=[Follow.followed_user_id], backref="followed_user", cascade="all, delete-orphan")
 
 
     @property
