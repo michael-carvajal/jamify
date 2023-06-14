@@ -2,6 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
 
+
 class Artist(db.Model):
     __tablename__ = 'artists'
 
@@ -10,7 +11,7 @@ class Artist(db.Model):
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
 
-    albums = db.relationship("Album", backref="artist", cascade="all, delete-orphan")
+    albums = db.relationship("Album", back_populates="artist")
 
     def to_dict(self):
         return {

@@ -13,7 +13,8 @@ class Rating(db.Model):
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
 
-    author = db.relationship("User")
+    rating_user = db.relationship("User", backref="ratings_given")
+
     songsheet = db.relationship("Songsheet")
 
     def to_dict(self):

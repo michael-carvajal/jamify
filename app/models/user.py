@@ -11,16 +11,16 @@ class User(db.Model, UserMixin):
 
 
     id = db.Column(db.Integer, primary_key=True)
-    firstName = db.Column(db.String(20), nullable=False)
-    lastName = db.Column(db.String(20), nullable=False)
+    first_name = db.Column(db.String(20), nullable=False)
+    last_name = db.Column(db.String(20), nullable=False)
     username = db.Column(db.String(20), nullable=False, unique=True, index=True)
     email = db.Column(db.String(50), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(255), nullable=False)
+    password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
 
-    ratings = db.relationship("Rating", backref="author", cascade="all, delete-orphan")
-    demos = db.relationship("Demo", backref="author", cascade="all, delete-orphan")
+    # ratings_given = db.relationship("Rating", backref="rating_user", cascade="all, delete-orphan")
+    # demos = db.relationship("Demo", backref="author", cascade="all, delete-orphan")
     # follows_following = db.relationship("Follow", foreign_keys=[Follow.following_user_id], backref="following_user", cascade="all, delete-orphan")
     # follows_followed = db.relationship("Follow", foreign_keys=[Follow.followed_user_id], backref="followed_user", cascade="all, delete-orphan")
 
