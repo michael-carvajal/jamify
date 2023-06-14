@@ -24,6 +24,7 @@ class Album(db.Model):
         return {
             'id': self.id,
             'artist_id': self.artist_id,
+            'name': self.name,
             'year_released': self.year_released,
             'created_at': self.created_at,
             'updated_at': self.updated_at
