@@ -44,6 +44,32 @@ def songsheets():
         "Albums": normalized_albums
         }
 
+@songsheet_routes.route('/artists', methods = ["GET", "POST"])
+@login_required
+def artists():
+    if request.method == "POST":
+        data = request.get_json()
+        new_artist = Artist(name=data['name'],
+                            created_at=datetime.now(),
+                            updated_at=datetime.now())
+        db.session.add(new_artist)
+        db.session.commit()
+        return new_artist.to_dict()
+
+@songsheet_routes.route('/albums', methods = ["GET", "POST"])
+@login_required
+def albums():
+    if request.method == "POST":
+        data = request.get_json()
+        new_album = Album(name=data['name'],
+                            artist_id=data['artist_id'],
+                            year_released=data['year_released'],
+                            created_at=datetime.now(),
+                            updated_at=datetime.now())
+        db.session.add(new_album)
+        db.session.commit()
+        return new_album.to_dict()
+
 
 @songsheet_routes.route('/<int:id>', methods = ["GET", "PUT", "DELETE"])
 def single_songsheet(id):
