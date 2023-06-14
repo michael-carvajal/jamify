@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import Songsheet, db
 from datetime import datetime
 
@@ -8,16 +8,15 @@ songsheet_routes = Blueprint('songsheets', __name__)
 
 @songsheet_routes.route('', methods = ["GET", "POST"])
 def songsheets():
-    print("Helllloeooeoee 111111111111111111111111111")
+    user_id = current_user.id
     if request.method == "POST":
-        print("Helllloeooeoee ====================================================")
         # print(request.get_json())
         data = request.get_json()
         new_songsheet = Songsheet(
             title=data['title'],
             body= data['body'],
             artist_id=data['artist_id'],
-            author_id=data['author_id'],
+            author_id=user_id,
             album_id=data['album_id'],
             song_name=data['song_name'],
             key=data['key'],
@@ -29,15 +28,42 @@ def songsheets():
         db.session.commit()
         return new_songsheet.to_dict()
 
-    print("Helllloeooeoee 222222222222222222222222222222")
     songsheets = Songsheet.query.all()
     return {"songsheets" : [songsheet.to_dict() for songsheet in songsheets]}
 
 
-@songsheet_routes.route('/<int:id>')
+@songsheet_routes.route('/<int:id>', methods = ["GET", "PUT", "DELETE"])
 def single_songsheet(id):
-
-
-
     songsheet = Songsheet.query.get(id)
+    songsheet_json = songsheet.to_dict()
+    user_id = current_user.id
+
+    # print('thisssss is sss songsheeet objetxct ========================>', songsheet_json)
+
+    if request.method == "DELETE":
+        if user_id != songsheet_json['author_id']:
+            return {"error" : "Unathorized/Forbidden"}
+
+        db.session.delete(songsheet)
+        db.session.commit()
+        return {"deleted" : songsheet.to_dict()}
+
+    if request.method == "PUT":
+        if user_id != songsheet_json['author_id']:
+            return {"error" : "Unathorized/Forbidden"}
+        data = request.get_json()
+
+        songsheet.title = data['title']
+        songsheet.body = data['body']
+        songsheet.artist_id = data['artist_id']
+        songsheet.album_id = data['album_id']
+        songsheet.song_name = data['song_name']
+        songsheet.key = data['key']
+        songsheet.version = data['version']
+        songsheet.updated_at = datetime.now()
+
+        db.session.commit()
+        return {"updated" : songsheet.to_dict()}
+
+
     return songsheet.to_dict()
