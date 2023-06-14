@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: c4657ed92d4d
+Revision ID: 228d705cd4d0
 Revises: 
-Create Date: 2023-06-14 12:38:52.967572
+Create Date: 2023-06-14 13:08:35.237990
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c4657ed92d4d'
+revision = '228d705cd4d0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -53,7 +53,7 @@ def upgrade():
     op.create_table('songsheets',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=50), nullable=False),
-    sa.Column('body', sa.String(length=1000), nullable=False),
+    sa.Column('body', sa.String(length=10000), nullable=False),
     sa.Column('artist_id', sa.Integer(), nullable=False),
     sa.Column('author_id', sa.Integer(), nullable=False),
     sa.Column('album_id', sa.Integer(), nullable=False),

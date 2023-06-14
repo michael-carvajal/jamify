@@ -7,7 +7,7 @@ class Songsheet(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50), nullable=False)
-    body = db.Column(db.String(1000), nullable=False)
+    body = db.Column(db.String(10000), nullable=False)
     artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'), nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     album_id = db.Column(db.Integer, db.ForeignKey('albums.id'), nullable=False)
