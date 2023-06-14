@@ -5,12 +5,17 @@ from flask_login import UserMixin, login_required
 class Songsheet(db.Model):
     __tablename__ = 'songsheets'
 
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50), nullable=False)
     body = db.Column(db.String(10000), nullable=False)
-    artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'), nullable=False)
-    author_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    album_id = db.Column(db.Integer, db.ForeignKey('albums.id'), nullable=False)
+    artist_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('artists.id')), nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    album_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('albums.id')), nullable=False)
     song_name = db.Column(db.String(50), nullable=False)
     key = db.Column(db.String(20), nullable=False)
     version = db.Column(db.Integer, nullable=False)
