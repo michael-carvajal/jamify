@@ -28,6 +28,9 @@ def upgrade():
     sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE artists SET SCHEMA {SCHEMA};")
+
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(length=20), nullable=False),
@@ -40,8 +43,11 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
-    with op.batch_alter_table('users', schema=None) as batch_op:
+    with op.batch_alter_table('users', schema=SCHEMA) as batch_op:
         batch_op.create_index(batch_op.f('ix_users_username'), ['username'], unique=True)
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
 
     op.create_table('albums',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -53,6 +59,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['artist_id'], ['artists.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE albums SET SCHEMA {SCHEMA};")
+
     op.create_table('songsheets',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=50), nullable=False),
@@ -70,9 +79,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['author_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE songsheets SET SCHEMA {SCHEMA};")
+
     # ### end Alembic commands ###
 
 
