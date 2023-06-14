@@ -37,7 +37,8 @@ def single_songsheet(id):
     songsheet = Songsheet.query.get(id)
     songsheet_json = songsheet.to_dict()
     user_id = current_user.id
-    print('thisssss is sss songsheeet objetxct ========================>', songsheet_json)
+
+    # print('thisssss is sss songsheeet objetxct ========================>', songsheet_json)
 
     if request.method == "DELETE":
         if user_id != songsheet_json['author_id']:
@@ -46,6 +47,23 @@ def single_songsheet(id):
         db.session.delete(songsheet)
         db.session.commit()
         return {"deleted" : songsheet.to_dict()}
+
+    if request.method == "PUT":
+        if user_id != songsheet_json['author_id']:
+            return {"error" : "Unathorized/Forbidden"}
+        data = request.get_json()
+
+        songsheet.title = data['title']
+        songsheet.body = data['body']
+        songsheet.artist_id = data['artist_id']
+        songsheet.album_id = data['album_id']
+        songsheet.song_name = data['song_name']
+        songsheet.key = data['key']
+        songsheet.version = data['version']
+        songsheet.updated_at = datetime.now()
+
+        db.session.commit()
+        return {"updated" : songsheet.to_dict()}
 
 
     return songsheet.to_dict()
