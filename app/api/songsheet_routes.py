@@ -9,3 +9,9 @@ songsheet_routes = Blueprint('songsheets', __name__)
 def songsheets():
     songsheets = Songsheet.query.all()
     return {"songsheets" : [songsheet.to_dict() for songsheet in songsheets]}
+
+
+@songsheet_routes.route('/<int:id>', methods = ["GET", "POST"])
+def single_songsheet(id):
+    songsheet = Songsheet.query.get(id)
+    return songsheet.to_dict()
