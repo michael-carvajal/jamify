@@ -17,7 +17,7 @@ class Songsheet(db.Model):
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
 
-    author = db.relationship("User")
+    album = db.relationship("Album", back_populates="songsheets")
     artist = db.relationship("Artist")
     album = db.relationship("Album")
 

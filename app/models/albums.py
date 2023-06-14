@@ -1,7 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
-
 class Album(db.Model):
     __tablename__ = 'albums'
 
@@ -11,8 +10,11 @@ class Album(db.Model):
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
 
-    artist = db.relationship("Artist")
-    songsheets = db.relationship("Songsheet", backref="album", cascade="all, delete-orphan")
+    artist = db.relationship("Artist", back_populates="albums")
+    songsheets = db.relationship("Songsheet", back_populates="album", cascade="all, delete-orphan")
+
+
+
 
     def to_dict(self):
         return {
