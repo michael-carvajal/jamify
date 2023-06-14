@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(20), nullable=False)
     username = db.Column(db.String(20), nullable=False, unique=True, index=True)
     email = db.Column(db.String(50), nullable=False, unique=True)
-    password = db.Column(db.String(255), nullable=False)
+    hashed_password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
 
