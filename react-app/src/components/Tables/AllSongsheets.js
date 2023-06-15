@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux"
 import './Tables.css'
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min"
+import OpenModalButton from "../OpenModalButton"
+import DeleteSongsheetModal from "../User/DeleteSongsheetModal"
 export default function AllSongsheets({ type, userSongsheets }) {
     const { songsheets } = useSelector(state => state)
     const { Songsheets, Artists, Albums } = songsheets
@@ -42,7 +44,9 @@ export default function AllSongsheets({ type, userSongsheets }) {
                                         <i className="fa fa-star"></i>
                                     </td>
                                     <td>50</td>
-                                    {type === "user" ? <td className="delete-stock"><i className="fa fa-trash"></i></td>
+                                    {type === "user" ? <td className="delete-stock">
+                                        <OpenModalButton type="delete-songsheet" modalComponent={<DeleteSongsheetModal />}/>
+                                    <i className="fa fa-pen"></i></td>
                                         : ""}
                                 </tr>
                             )
