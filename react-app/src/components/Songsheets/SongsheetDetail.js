@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom/cjs/react-router-dom.min"
-
+import './songsheets.css'
 export default function SongsheetDetail() {
     const { songsheets } = useSelector(state => state)
     const { songId } = useParams()
@@ -14,7 +14,7 @@ export default function SongsheetDetail() {
     const artist = Artists[songsheet.artist_id]
     console.log("this is the bdy  =========>", songsheet.body);
     return (
-        <div className="songsheet-detail">
+        <div id="songsheet-detail">
             <h1>{songsheet.title} by {artist.name}</h1>
             <p>Added to 15 Setlists</p>
             <p>Key {songsheet.key}</p>
