@@ -1,7 +1,9 @@
 import { useSelector } from "react-redux"
 import './Tables.css'
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min"
-export default function AllSongsheets() {
+import OpenModalButton from "../OpenModalButton"
+import DeleteSongsheetModal from "../User/DeleteSongsheetModal"
+export default function AllSongsheets({ type, userSongsheets }) {
     const { songsheets } = useSelector(state => state)
     const { Songsheets, Artists, Albums } = songsheets
     if (!Songsheets) {
@@ -11,6 +13,7 @@ export default function AllSongsheets() {
     const songsheetsArray = Object.values(Songsheets)
 
     // console.log("this is in all sheets ", songsheetsArray);
+    const songMapper = type === "user" ? userSongsheets : songsheetsArray
     return (
         <div id="table-container">
 
@@ -26,7 +29,7 @@ export default function AllSongsheets() {
                 </thead>
                 <tbody>
                     {
-                        songsheetsArray.map((song, index) => {
+                        songMapper.map((song, index) => {
                             const artistId = song.artist_id
                             return (
                                 <tr className="table-row" key={`song-list-${index}`}>
@@ -41,6 +44,10 @@ export default function AllSongsheets() {
                                         <i className="fa fa-star"></i>
                                     </td>
                                     <td>50</td>
+                                    {type === "user" ? <td className="delete-stock">
+                                        <OpenModalButton type="delete-songsheet" modalComponent={<DeleteSongsheetModal sheetId={song.id} />}/>
+                                    <i className="fa fa-pen"></i></td>
+                                        : ""}
                                 </tr>
                             )
                         })

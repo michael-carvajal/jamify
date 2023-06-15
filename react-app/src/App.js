@@ -9,6 +9,7 @@ import Sidebar from "./components/Sidebar";
 import LandingPage from "./components/LandingPage";
 import Songsheets from "./components/Songsheets";
 import SongsheetDetail from "./components/Songsheets/SongsheetDetail";
+import UserSongsheets from "./components/User/UserSongsheets";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route  path="/songsheet-detail/:songId">
             <SongsheetDetail />
+          </Route>
+          <Route  path="/user/songsheets">
+            <UserSongsheets />
           </Route>
 
         </Switch>
