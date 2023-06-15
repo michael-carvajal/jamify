@@ -10,6 +10,7 @@ import LandingPage from "./components/LandingPage";
 import Songsheets from "./components/Songsheets";
 import SongsheetDetail from "./components/Songsheets/SongsheetDetail";
 import UserSongsheets from "./components/User/UserSongsheets";
+import PublishSongsheet from "./components/Songsheets/PublishSongsheet";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route  path="/user/songsheets">
             <UserSongsheets />
+          </Route>
+          <Route  path="/publish">
+            <PublishSongsheet />
           </Route>
 
         </Switch>

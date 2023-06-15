@@ -1,5 +1,18 @@
-#songsheet-detail{
+#songsheet-detail {
     color: black;
 
     background-color: var(--white-background) !important;
+}
+
+.publish-songsheet {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    flex-direction: column;
+}
+
+.songsheet-textarea {
+    width: 500px;
+    height: 800px;
+    padding: 9px;
 }
