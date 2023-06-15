@@ -29,25 +29,30 @@ export default function PublishSongsheet() {
         dispatch(postSongsheet(newSongsheet))
     }
     return (
-        <div className="publish-songsheet">
-            <form onSubmit={handleSubmit}>
-                <label>Album</label>
-                <input value={album_id} onChange={e => setAlbum_id(e.target.value)}/>
-                <label>Artist</label>
-                <input value={artist_id} onChange={e => setArtist_id(e.target.value)}/>
+        <form onSubmit={handleSubmit} className="publish-songsheet">
+            <label>Album
 
-                <label>body</label>
-                <textarea value={body} onChange={e => setBody(e.target.value)} />
-                <label>Key</label>
-                <input value={key} onChange={e => setKey(e.target.value)}/>
-                <label>Song name</label>
-                <input value={song_name} onChange={e => setSong_name(e.target.value)}/>
-                <label>Title</label>
-                <input value={title} onChange={e => setTitle(e.target.value)}/>
-                <label>Version</label>
-                <input value={version} onChange={e => setVersion(e.target.value)} type="number"/>
-                <button>Create Songsheet</button>
-            </form>
-        </div>
+            <input required value={album_id} onChange={e => setAlbum_id(e.target.value)} />
+            </label>
+            <label>Artist
+            <input required value={artist_id} onChange={e => setArtist_id(e.target.value)} />
+            </label>
+
+            <label>Key
+            <input required value={key} onChange={e => setKey(e.target.value)} />
+            </label>
+            <label>Song name
+            <input required value={song_name} onChange={e => setSong_name(e.target.value)} />
+            </label>
+            <label>Title
+            <input required value={title} onChange={e => setTitle(e.target.value)} />
+            </label>
+            <label>Version
+            <input required value={version} onChange={e => setVersion(e.target.value)} type="number" />
+            </label>
+            <label>body</label>
+            <textarea value={body} onChange={e => setBody(e.target.value)} className="songsheet-textarea" />
+            <button>Create Songsheet</button>
+        </form>
     )
 }
