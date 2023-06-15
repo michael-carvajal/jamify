@@ -36,7 +36,7 @@ function App() {
           <Route exact path="/">
             <LandingPage />
           </Route>
-          <Route  path="/user/songsheets">
+          <Route  path="/songsheets">
             <Songsheets />
           </Route>
 
