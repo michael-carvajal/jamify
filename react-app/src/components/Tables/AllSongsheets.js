@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import './Tables.css'
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min"
 export default function AllSongsheets() {
     const { songsheets } = useSelector(state => state)
     const { Songsheets, Artists, Albums } = songsheets
@@ -30,7 +31,9 @@ export default function AllSongsheets() {
                             return (
                                 <tr className="table-row" key={`song-list-${index}`}>
                                     <td>{Artists[artistId].name}</td>
-                                    <td>{song.title}</td>
+                                    <td>
+                                        <NavLink to={`/songsheet-detail/${song.id}`}>{song.title}</NavLink>
+                                    </td>
 
                                     <td>
                                         <i className="fa fa-star"></i>
