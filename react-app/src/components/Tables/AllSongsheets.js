@@ -45,7 +45,7 @@ export default function AllSongsheets({ type, userSongsheets }) {
                                     </td>
                                     <td>50</td>
                                     {type === "user" ? <td className="delete-stock">
-                                        <OpenModalButton type="delete-songsheet" modalComponent={<DeleteSongsheetModal />}/>
+                                        <OpenModalButton type="delete-songsheet" modalComponent={<DeleteSongsheetModal sheetId={song.id} />}/>
                                     <i className="fa fa-pen"></i></td>
                                         : ""}
                                 </tr>
