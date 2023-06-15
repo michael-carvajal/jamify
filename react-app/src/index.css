@@ -24,4 +24,11 @@ li{
     width: 90%;
     margin: 0px auto;
     border: solid 2px var(--ug-grey);
+    display: flex;
+    flex-direction: column;
+}
+
+.main{
+    display: flex;
+    width: 100%;
 }
