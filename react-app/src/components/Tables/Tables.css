@@ -1,0 +1,35 @@
+.fa-star{
+    color: var(--ug-red);
+}
+.table-row {
+    position: relative;
+}
+#table-container {
+    border-collapse: collapse;
+    width: 100%;
+
+
+}
+
+
+
+#table-container td,
+#table-container th {
+    border-bottom: 1px solid #ddd;
+    padding: 16px 0px;
+}
+
+#table-container .table-row:hover {
+    background-color: #898989;
+    cursor: pointer;
+}
+#table-container th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    color: #898989;
+}
+
+.all-songsheets{
+    width: 83%;
+}

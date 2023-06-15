@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import { fetchAllSongsheets } from '../../store/songsheets';
 
 function Navigation() {
 	const sessionUser = useSelector(state => state.session.user);
 	const [search, setSearch] = useState("")
+	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(fetchAllSongsheets())
+	}, [dispatch])
 	return (
 		<ul className='nav-bar'>
 			<li>

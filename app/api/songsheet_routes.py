@@ -8,8 +8,8 @@ songsheet_routes = Blueprint('songsheets', __name__)
 
 @songsheet_routes.route('', methods = ["GET", "POST"])
 def songsheets():
-    user_id = current_user.id
     if request.method == "POST":
+        user_id = current_user.id
         # print(request.get_json())
         data = request.get_json()
         new_songsheet = Songsheet(

@@ -4,4 +4,5 @@
         width: 17%;
         padding: 10px;
         gap: 20px;
+        border-right: 1px solid var(--ug-grey);
     }
