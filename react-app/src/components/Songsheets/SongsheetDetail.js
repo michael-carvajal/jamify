@@ -12,7 +12,7 @@ export default function SongsheetDetail() {
     // const songsheetsArray = Object.values(Songsheets)
     const songsheet = Songsheets[songId]
     const artist = Artists[songsheet.artist_id]
-    console.log("this is the bdy  =========>", songsheet.body);
+    // console.log("this is the bdy  =========>", songsheet.body);
     return (
         <div id="songsheet-detail">
             <h1>{songsheet.title} by {artist.name}</h1>

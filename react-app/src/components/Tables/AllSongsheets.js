@@ -5,6 +5,7 @@ import OpenModalButton from "../OpenModalButton"
 import DeleteSongsheetModal from "../User/DeleteSongsheetModal"
 export default function AllSongsheets({ type, userSongsheets }) {
     const { songsheets } = useSelector(state => state)
+    const sessionUser = useSelector(state => state.session.user);
     const { Songsheets, Artists, Albums } = songsheets
     if (!Songsheets) {
         // Show a loading screen or spinner while the data is being fetched
