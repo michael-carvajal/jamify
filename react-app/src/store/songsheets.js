@@ -36,7 +36,7 @@ export default function reducer(state = initialState, action) {
             return action.obj
         case DELETE_SONGSHEET:
             const { [action.sheetId]: removedSongsheet, ...newSongsheets } = state.Songsheets;
-            return {...state.Artists, ...state.Albums, Songsheets: newSongsheets}
+            return {...state, Songsheets: newSongsheets}
         default:
             return state;
     }
