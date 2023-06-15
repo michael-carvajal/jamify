@@ -5,3 +5,18 @@
 .hidden {
   display: none;
 }
+
+.nav-bar {
+   height: 73px;
+   display: flex;
+   width: 100%;
+   align-items: center;
+   justify-content: space-around;
+   border-bottom: var(--ug-grey) 1px solid;
+ }
+
+ .nav-links{
+    display: flex;
+    width: 35%;
+    justify-content: space-between;
+  }
