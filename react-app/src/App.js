@@ -17,7 +17,7 @@ function App() {
 
   return (
     <>
-      <Navigation  />
+      <Navigation />
       {isLoaded && (
         <Switch>
           <Route path="/login" >
@@ -31,7 +31,12 @@ function App() {
       <div className="main">
 
         <Sidebar isLoaded={isLoaded} />
-        <LandingPage />
+        <Switch>
+          <Route exact path="/">
+            <LandingPage />
+          </Route>
+          
+        </Switch>
       </div>
     </>
   );
