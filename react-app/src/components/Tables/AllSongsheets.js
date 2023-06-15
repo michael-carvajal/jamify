@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import './Tables.css'
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min"
-export default function AllSongsheets({type, userSongsheets}) {
+export default function AllSongsheets({ type, userSongsheets }) {
     const { songsheets } = useSelector(state => state)
     const { Songsheets, Artists, Albums } = songsheets
     if (!Songsheets) {
@@ -42,6 +42,8 @@ export default function AllSongsheets({type, userSongsheets}) {
                                         <i className="fa fa-star"></i>
                                     </td>
                                     <td>50</td>
+                                    {type === "user" ? <td className="delete-stock"><i className="fa fa-trash"></i></td>
+                                        : ""}
                                 </tr>
                             )
                         })

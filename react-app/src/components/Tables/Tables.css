@@ -33,3 +33,11 @@
 .all-songsheets{
     width: 83%;
 }
+
+.fa-trash:hover {
+    color: red;
+}
+.delete-stock {
+    position: absolute;
+    right: 10px;
+}
