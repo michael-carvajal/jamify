@@ -13,3 +13,12 @@ export const fetchAllSongsheets = () => async (dispatch) => {
     console.log(obj);
     dispatch(allSongsheets(obj))
 }
+const initialState = {}
+export default function reducer(state = initialState, action) {
+    switch (action.type) {
+        case ALL_SONGSHEETS:
+            return action.obj
+        default:
+            return state;
+    }
+}
