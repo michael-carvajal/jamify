@@ -1,22 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
-function Navigation({ isLoaded }){
+function Navigation() {
 	const sessionUser = useSelector(state => state.session.user);
-
+	const [search, setSearch] = useState("")
 	return (
-		<ul>
+		<ul className='nav-bar'>
 			<li>
 				<NavLink exact to="/">Home</NavLink>
 			</li>
-			{isLoaded && (
+			<div className='nav-links'>
+
 				<li>
-					<ProfileButton user={sessionUser} />
+					<NavLink to="/songsheets">Songsheets</NavLink>
 				</li>
-			)}
+				<li>
+					<NavLink to="/publish"><i className='fa fa-plus'></i>Publish</NavLink>
+				</li>
+				<li>
+					<NavLink to="/setlists">Setlists</NavLink>
+				</li>
+				<li>
+					<a href='#'>Pro</a>
+				</li>
+			</div>
+
+			<div className='search-container'>
+				<input
+					value={search}
+					onChange={e => setSearch(e.target.value)}
+					placeholder='Enter artists name or song title'
+				></input>
+				<button><i className='fa fa-search'></i></button>
+			</div>
+
 		</ul>
 	);
 }

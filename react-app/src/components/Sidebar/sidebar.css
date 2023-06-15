@@ -1,0 +1,7 @@
+.side-bar{
+        display: flex;
+        flex-direction: column;
+        width: 17%;
+        padding: 10px;
+        gap: 20px;
+    }
