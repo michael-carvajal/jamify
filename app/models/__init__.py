@@ -5,7 +5,8 @@ from .db import environment, SCHEMA
 from .artists import Artist
 from .albums import Album
 from .songsheets import Songsheet
-# from .ratings import Rating
+from .ratings import Rating
+from .genres import Genre
 from .setlists import Setlist
 
 from .setlistItems import SetlistItem

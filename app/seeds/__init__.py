@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .artists import seed_artists, undo_artists
 from .albums import seed_albums, undo_albums
 from .songsheets import seed_songsheets, undo_songsheets
+from .genres import seed_genres, undo_genres
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -19,12 +20,14 @@ def seed():
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
         undo_songsheets()
+        undo_genres()
         undo_albums()
         undo_users()
         undo_artists()
     seed_artists()
     seed_users()
     seed_albums()
+    seed_genres()
     seed_songsheets()
     # Add other seed functions here
 
@@ -33,6 +36,7 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_songsheets()
+    undo_genres()
     undo_albums()
     undo_users()
     undo_artists()

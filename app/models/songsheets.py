@@ -16,6 +16,7 @@ class Songsheet(db.Model):
     artist_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('artists.id')), nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     album_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('albums.id')), nullable=False)
+    genre_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('genres.id')), nullable=False)
     song_name = db.Column(db.String(50), nullable=False)
     key = db.Column(db.String(20), nullable=False)
     version = db.Column(db.Integer, nullable=False)
@@ -25,6 +26,7 @@ class Songsheet(db.Model):
     album = db.relationship("Album", back_populates="songsheets")
     artist = db.relationship("Artist")
     album = db.relationship("Album")
+    genre = db.relationship("Genre", back_populates="songsheets")
 
     def to_dict(self):
         return {
