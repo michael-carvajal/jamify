@@ -6,9 +6,10 @@ import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min
 export default function PublishSongsheet({ type }) {
     const { songsheets } = useSelector((state) => state);
     const sessionUser = useSelector((state) => state.session.user);
-    const { Songsheets, Artists, Albums } = songsheets || {};
+    const { Songsheets, Artists, Albums, Genres } = songsheets || {};
     const [album_id, setAlbum_id] = useState("");
     const [artist_id, setArtist_id] = useState("");
+    const [genre_id, setGenre_id] = useState("");
     const [body, setBody] = useState("");
     const [key, setKey] = useState("");
     const [title, setTitle] = useState("");
@@ -18,8 +19,9 @@ export default function PublishSongsheet({ type }) {
 
     const { sheetId } = useParams();
     const artistArr = Artists ? Object.values(Artists) : [];
+    const genreArr = Genres ? Object.values(Genres) : [];
     const AlbumsArr = Albums ? Object.values(Albums) : [];
-    console.log(AlbumsArr);
+    // console.log(genreArr);
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true); // Set loading to true before fetching data
@@ -42,10 +44,12 @@ export default function PublishSongsheet({ type }) {
         e.preventDefault();
         const albumId = AlbumsArr.find((album) => album.name === album_id)?.id;
         const artistId = artistArr.find((artist) => artist.name === artist_id)?.id;
+        const genreId = genreArr.find((genre) => genre.name === genre_id)?.id;
         const newSongsheet = {
             album_id: albumId,
             artist_id: artistId,
             author_id: sessionUser.id,
+            genre_id: genreId,
             body,
             key,
             song_name: title,
@@ -63,10 +67,12 @@ export default function PublishSongsheet({ type }) {
         e.preventDefault()
         const albumId = AlbumsArr.find((album) => album.name === album_id)?.id;
         const artistId = artistArr.find((artist) => artist.name === artist_id)?.id;
+        const genreId = genreArr.find((genre) => genre.name === genre_id)?.id;
         const updatedSongsheet = {
             album_id: albumId,
             artist_id: artistId,
             author_id: sessionUser.id,
+            genre_id: genreId,
             body,
             key,
             song_name: title,
@@ -97,6 +103,17 @@ export default function PublishSongsheet({ type }) {
                     {artistArr.map((artist, index) => (
                         <option value={artist.name} key={`artist-index-${index}`}>
                             {artist.name}
+                        </option>
+                    ))}
+                </select>
+            </label>
+            <label>
+                Genre
+                <input required value={genre_id} onChange={(e) => setGenre_id(e.target.value)} />
+                <select value={genre_id} onChange={(e) => setGenre_id(e.target.value)}>
+                    {genreArr.map((genre, index) => (
+                        <option value={genre.name} key={`genre-index-${index}`}>
+                            {genre.name}
                         </option>
                     ))}
                 </select>
