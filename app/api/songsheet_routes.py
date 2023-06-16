@@ -73,7 +73,7 @@ def albums():
         db.session.add(new_album)
         db.session.commit()
         return new_album.to_dict()
-    
+
 @songsheet_routes.route('/genres', methods = ["GET", "POST"])
 @login_required
 def genres():
@@ -111,6 +111,7 @@ def single_songsheet(id):
         songsheet.body = data['body']
         songsheet.artist_id = data['artist_id']
         songsheet.album_id = data['album_id']
+        songsheet.genre_id = data['genre_id']
         songsheet.song_name = data['song_name']
         songsheet.key = data['key']
         songsheet.version = data['version']
