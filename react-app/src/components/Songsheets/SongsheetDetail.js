@@ -6,7 +6,6 @@ export default function SongsheetDetail() {
     const { songId } = useParams()
     const { Songsheets, Artists, Albums } = songsheets
     if (!Songsheets) {
-        // Show a loading screen or spinner while the data is being fetched
         return <div>Loading...</div>
     }
     // const songsheetsArray = Object.values(Songsheets)
