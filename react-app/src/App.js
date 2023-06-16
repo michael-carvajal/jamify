@@ -12,6 +12,7 @@ import SongsheetDetail from "./components/Songsheets/SongsheetDetail";
 import UserSongsheets from "./components/User/UserSongsheets";
 import PublishSongsheet from "./components/Songsheets/PublishSongsheet";
 import AllSetlist from "./components/Tables/Setlists";
+import SetlistItems from "./components/Tables/SetlistItems";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +58,9 @@ function App() {
           </Route>
           <Route  path="/setlists">
             <AllSetlist />
+          </Route>
+          <Route  path="/setlist-detail/:listId">
+            <SetlistItems />
           </Route>
 
         </Switch>
