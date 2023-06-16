@@ -8,6 +8,6 @@ from .songsheets import Songsheet
 # from .ratings import Rating
 from .setlists import Setlist
 
-# from .setlistItems import SetlistItem
+from .setlistItems import SetlistItem
 # from .follows import Follow
-# from .user_like import UserLike
+from .user_like import UserLike
