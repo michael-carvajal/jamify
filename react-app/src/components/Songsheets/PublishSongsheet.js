@@ -1,58 +1,117 @@
-import { useState } from "react"
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postSongsheet } from "../../store/songsheets";
+import { postSongsheet, putSongsheet } from "../../store/songsheets";
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-export default function PublishSongsheet() {
-    const sessionUser = useSelector(state => state.session.user);
-    const [album_id, setAlbum_id] = useState(0)
-    const [artist_id, setArtist_id] = useState(0)
-    // const [author_id, setAuthor_id] = useState(0)
-    const [body, setBody] = useState("")
-    const [key, setKey] = useState("")
-    const [song_name, setSong_name] = useState("")
-    const [title, setTitle] = useState("")
-    const [version, setVersion] = useState(1)
-    const dispatch = useDispatch()
+export default function PublishSongsheet({ type }) {
+    const { songsheets } = useSelector((state) => state);
+    const sessionUser = useSelector((state) => state.session.user);
+    const { Songsheets, Artists, Albums } = songsheets || {};
+    const [album_id, setAlbum_id] = useState("");
+    const [artist_id, setArtist_id] = useState("");
+    const [body, setBody] = useState("");
+    const [key, setKey] = useState("");
+    const [title, setTitle] = useState("");
+    const [loading, setLoading] = useState(true); // Add loading state
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    const { sheetId } = useParams();
+    const artistArr = Artists ? Object.values(Artists) : [];
+    const AlbumsArr = Albums ? Object.values(Albums) : [];
+    console.log(AlbumsArr);
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true); // Set loading to true before fetching data
+            if (type === "update" && Songsheets && Artists && Albums) {
+                const sheetToUpdate = Songsheets[sheetId];
+                setAlbum_id(AlbumsArr.find((album) => album.id === sheetToUpdate.album_id)?.name);
+                setArtist_id(artistArr.find((artist) => artist.id === sheetToUpdate.artist_id)?.name);
+                setBody(sheetToUpdate.body);
+                setKey(sheetToUpdate.key);
+                setTitle(sheetToUpdate.title);
+            }
+            setLoading(false); // Set loading to false once data is fetched
+        };
+
+        fetchData();
+    }, [type, sheetId, Songsheets, Artists, Albums]); // Include Songsheets, Artists, and Albums as dependencies
+
+
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        const albumId = AlbumsArr.find((album) => album.name === album_id)?.id;
+        const artistId = artistArr.find((artist) => artist.name === artist_id)?.id;
         const newSongsheet = {
-            album_id,
-            artist_id,
+            album_id: albumId,
+            artist_id: artistId,
             author_id: sessionUser.id,
             body,
             key,
-            song_name,
+            song_name: title,
             title,
-            version
+            version: 1,
+        };
+        dispatch(postSongsheet(newSongsheet));
+        history.push("/user/songsheets");
+    };
 
-        }
-        dispatch(postSongsheet(newSongsheet))
+    if (loading) {
+        return <div>Loading...</div>; // Render a loading message or spinner
+    }
+    const handleUpdate = (e) => {
+        e.preventDefault()
+        const albumId = AlbumsArr.find((album) => album.name === album_id)?.id;
+        const artistId = artistArr.find((artist) => artist.name === artist_id)?.id;
+        const updatedSongsheet = {
+            album_id: albumId,
+            artist_id: artistId,
+            author_id: sessionUser.id,
+            body,
+            key,
+            song_name: title,
+            title,
+            version: 1,
+        };
+        dispatch(putSongsheet(updatedSongsheet, sheetId))
+        history.push("/user/songsheets");
+
     }
     return (
-        <form onSubmit={handleSubmit} className="publish-songsheet">
-            <label>Album
-
-            <input required value={album_id} onChange={e => setAlbum_id(e.target.value)} />
+        <form onSubmit={type === "update" ? handleUpdate : handleSubmit} className="publish-songsheet">
+            <label>
+                Album
+                <input required value={album_id} onChange={(e) => setAlbum_id(e.target.value)} />
+                <select value={album_id} onChange={(e) => setAlbum_id(e.target.value)}>
+                    {AlbumsArr.map((album, index) => (
+                        <option value={album.name} key={`album-index-${index}`}>
+                            {album.name}
+                        </option>
+                    ))}
+                </select>
             </label>
-            <label>Artist
-            <input required value={artist_id} onChange={e => setArtist_id(e.target.value)} />
+            <label>
+                Artist
+                <input required value={artist_id} onChange={(e) => setArtist_id(e.target.value)} />
+                <select value={artist_id} onChange={(e) => setArtist_id(e.target.value)}>
+                    {artistArr.map((artist, index) => (
+                        <option value={artist.name} key={`artist-index-${index}`}>
+                            {artist.name}
+                        </option>
+                    ))}
+                </select>
             </label>
-
-            <label>Key
-            <input required value={key} onChange={e => setKey(e.target.value)} />
+            <label>
+                Key
+                <input required value={key} onChange={(e) => setKey(e.target.value)} />
             </label>
-            <label>Song name
-            <input required value={song_name} onChange={e => setSong_name(e.target.value)} />
+            <label>
+                Title
+                <input required value={title} onChange={(e) => setTitle(e.target.value)} />
             </label>
-            <label>Title
-            <input required value={title} onChange={e => setTitle(e.target.value)} />
-            </label>
-            <label>Version
-            <input required value={version} onChange={e => setVersion(e.target.value)} type="number" />
-            </label>
-            <label>body</label>
-            <textarea value={body} onChange={e => setBody(e.target.value)} className="songsheet-textarea" />
-            <button>Create Songsheet</button>
+            <label>Body</label>
+            <textarea value={body} onChange={(e) => setBody(e.target.value)} className="songsheet-textarea" />
+            {type === "update" ? <button type="submit">Update Songsheet</button> : <button type="submit">Create Songsheet</button>}
         </form>
-    )
+    );
 }
