@@ -48,6 +48,9 @@ function App() {
           <Route  path="/user/songsheets">
             <UserSongsheets />
           </Route>
+          <Route  path={`/publish/:sheetId`}>
+            <PublishSongsheet type="update" />
+          </Route>
           <Route  path="/publish">
             <PublishSongsheet />
           </Route>

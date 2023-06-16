@@ -1,6 +1,7 @@
 const ALL_SONGSHEETS = "songsheets/ALL_SONGSHEETS"
 const DELETE_SONGSHEET = "songsheets/DELETE_SONGSHEET"
 const POST_SONGSHEET = "songsheets/POST_SONGSHEET"
+const PUT_SONGSHEET = "songsheets/PUT_SONGSHEET"
 
 const allSongsheets = obj => {
     return {
@@ -11,6 +12,12 @@ const allSongsheets = obj => {
 const addSongsheet = obj => {
     return {
         type: POST_SONGSHEET,
+        obj
+    }
+}
+const updateSongsheet = obj => {
+    return {
+        type: PUT_SONGSHEET,
         obj
     }
 }
@@ -46,6 +53,17 @@ export const postSongsheet = (newSongsheet) => async (dispatch) => {
     const songCreated = await response.json()
     console.log(songCreated);
     dispatch(addSongsheet(songCreated))
+}
+export const putSongsheet = (obj, id) => async (dispatch) => {
+    console.log(obj);
+    const response = await fetch(`/api/songsheets/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(obj)
+    })
+    const songUpdated = await response.json()
+    console.log(songUpdated);
+    dispatch(updateSongsheet(songUpdated))
 }
 const initialState = {}
 export default function reducer(state = initialState, action) {
