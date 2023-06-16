@@ -20,7 +20,7 @@ class Setlist(db.Model):
 
     author = db.relationship("User")
     setlist_items = db.relationship("SetlistItem", back_populates="setlist", cascade="all, delete-orphan")
-    # user_likes = db.relationship("UserLike", back_populates="setlist", cascade="all, delete-orphan")
+    user_likes = db.relationship("UserLike", back_populates="setlist", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
