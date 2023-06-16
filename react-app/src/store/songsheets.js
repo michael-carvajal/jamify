@@ -75,7 +75,11 @@ export default function reducer(state = initialState, action) {
             return { ...state, Songsheets: newSongsheets }
         case POST_SONGSHEET:
             const addSongsheet = { ...state.Songsheets, [action.obj.id]: action.obj }
-            return {...state, Songsheets: addSongsheet}
+            return { ...state, Songsheets: addSongsheet }
+            case PUT_SONGSHEET:
+                const updatedSongsheet = { ...state.Songsheets, [action.obj.updated.id]: action.obj.updated }
+                return { ...state, Songsheets: updatedSongsheet }
+
         default:
             return state;
     }
