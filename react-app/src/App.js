@@ -11,6 +11,7 @@ import Songsheets from "./components/Songsheets";
 import SongsheetDetail from "./components/Songsheets/SongsheetDetail";
 import UserSongsheets from "./components/User/UserSongsheets";
 import PublishSongsheet from "./components/Songsheets/PublishSongsheet";
+import AllSetlist from "./components/Tables/Setlists";
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +54,9 @@ function App() {
           </Route>
           <Route  path="/publish">
             <PublishSongsheet />
+          </Route>
+          <Route  path="/setlists">
+            <AllSetlist />
           </Route>
 
         </Switch>
