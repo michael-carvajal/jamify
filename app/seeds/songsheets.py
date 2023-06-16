@@ -15,6 +15,7 @@ def seed_songsheets():
         song_name="Lucy in the Sky with Diamonds",
         key="G Major",
         version=1,
+        genre_id=1,
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
@@ -27,6 +28,7 @@ def seed_songsheets():
         song_name="Eleanor Rigby",
         key="E Minor",
         version=1,
+        genre_id=1,
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
@@ -39,6 +41,7 @@ def seed_songsheets():
         song_name="Boyfriend",
         key="C# Minor",
         version=1,
+        genre_id=2,
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
@@ -52,6 +55,7 @@ def seed_songsheets():
         song_name="Sorry",
         key="Bb Major",
         version=1,
+        genre_id=2,
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
@@ -65,6 +69,7 @@ def seed_songsheets():
         song_name="Super Trouper",
         key="Bb Major",
         version=1,
+        genre_id=2,
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
@@ -78,6 +83,7 @@ def seed_songsheets():
         song_name="Dancing Queen",
         key="A Major",
         version=1,
+        genre_id=2,
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
