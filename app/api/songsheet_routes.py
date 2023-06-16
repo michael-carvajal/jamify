@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Songsheet, db, Album, Artist
+from app.models import Songsheet, db, Album, Artist, Genre
 from datetime import datetime
 
 songsheet_routes = Blueprint('songsheets', __name__)
@@ -18,6 +18,7 @@ def songsheets():
             artist_id=data['artist_id'],
             author_id=user_id,
             album_id=data['album_id'],
+            genre_id=data['genre_id'],
             song_name=data['song_name'],
             key=data['key'],
             version=data['version'],
@@ -28,20 +29,23 @@ def songsheets():
         db.session.commit()
         return new_songsheet.to_dict()
 
-    songsheets = Songsheet.query.order_by(Songsheet.id).all()
+    songsheets = Songsheet.query.order_by(Songsheet.title).all()
     artists = Artist.query.order_by(Artist.name).all()
     albums = Album.query.order_by(Album.year_released).all()
+    genres = Genre.query.order_by(Genre.name).all()
 
     normalized_songsheets = {songsheet.id: songsheet.to_dict() for songsheet in songsheets}
     normalized_artists = {artist.id: artist.to_dict() for artist in artists}
 
     normalized_albums = {album.id: album.to_dict() for album in albums}
+    normalized_genres = {genre.id : genre.to_dict() for genre in genres}
 
 
     return {
         "Songsheets":normalized_songsheets,
         "Artists": normalized_artists,
-        "Albums": normalized_albums
+        "Albums": normalized_albums,
+        "Genres" : normalized_genres
         }
 
 @songsheet_routes.route('/artists', methods = ["GET", "POST"])
@@ -69,6 +73,17 @@ def albums():
         db.session.add(new_album)
         db.session.commit()
         return new_album.to_dict()
+    
+@songsheet_routes.route('/genres', methods = ["GET", "POST"])
+@login_required
+def genres():
+    if request.method == "POST":
+        data = request.get_json()
+        new_genre = Genre(name=data['name'],
+                            created_at=datetime.now())
+        db.session.add(new_genre)
+        db.session.commit()
+        return new_genre.to_dict()
 
 
 @songsheet_routes.route('/<int:id>', methods = ["GET", "PUT", "DELETE"])

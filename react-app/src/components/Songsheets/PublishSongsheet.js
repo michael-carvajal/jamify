@@ -9,6 +9,7 @@ export default function PublishSongsheet({ type }) {
     const { Songsheets, Artists, Albums } = songsheets || {};
     const [album_id, setAlbum_id] = useState("");
     const [artist_id, setArtist_id] = useState("");
+    const [genre_id, setGenre_id] = useState("");
     const [body, setBody] = useState("");
     const [key, setKey] = useState("");
     const [title, setTitle] = useState("");
