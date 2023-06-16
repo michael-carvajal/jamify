@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import { fetchAllSongsheets } from '../../store/songsheets';
+import { fetchAllSetlists } from '../../store/setlists';
 
 function Navigation() {
 	const sessionUser = useSelector(state => state.session.user);
@@ -11,6 +12,7 @@ function Navigation() {
 	const dispatch = useDispatch()
 	useEffect(() => {
 		dispatch(fetchAllSongsheets())
+		dispatch(fetchAllSetlists())
 	}, [dispatch])
 	return (
 		<ul className='nav-bar'>

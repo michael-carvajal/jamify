@@ -23,5 +23,4 @@ class SetlistItem(db.Model):
             'songsheet_id': self.songsheet_id,
             'setlist_id': self.setlist_id,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
         }

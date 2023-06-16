@@ -14,14 +14,14 @@ def setlists():
         if not current_user.id:
             return {"error" : "Sign in to create a Setlist"}
         data = request.get_json()
-        newSetlist = {
-            "name" : data["name"],
-            "author_id" : data["author_id"],
-            "description" : data["description"],
-            "public" : data["public"],
-            "created_at" : data["created_at"],
-            "updated_at" : data["updated_at"]
-        }
+        newSetlist = Setlist(
+            name=data["name"],
+            author_id=data["author_id"],
+            description=data["description"],
+            public=data["public"],
+            created_at=data["created_at"],
+            updated_at=data["updated_at"]
+        )
         db.session.add(newSetlist)
         db.session.commit()
         return newSetlist.to_dict()
@@ -31,5 +31,5 @@ def setlists():
 
     return {
         "Setlists" :normalized_setlists,
-        "Setlist_itmes" :normalized_setlist_items
+        "Setlist_items" :normalized_setlist_items
     }
