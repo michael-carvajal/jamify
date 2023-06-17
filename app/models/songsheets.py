@@ -35,6 +35,7 @@ class Songsheet(db.Model):
             'body': self.body,
             'artist_id': self.artist_id,
             'author_id': self.author_id,
+            'genre_id': self.genre_id,
             'album_id': self.album_id,
             'song_name': self.song_name,
             'key': self.key,

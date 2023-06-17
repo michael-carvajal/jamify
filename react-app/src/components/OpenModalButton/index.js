@@ -18,6 +18,9 @@ function OpenModalButton({
   if (type === "delete-songsheet") {
     return (<i className="fa fa-trash" onClick={onClick}></i>)
   }
+  if (type === "delete-setlist") {
+    return (<i className="fa fa-trash" onClick={onClick}></i>)
+  }
 
   return (
     <button onClick={onClick}>{buttonText}</button>

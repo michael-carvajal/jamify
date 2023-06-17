@@ -9,7 +9,7 @@ export default function UserSongsheets() {
             <h1>Sign in to create Songsheets!</h1>
         )
     }
-    const { Songsheets, Artists, Albums } = songsheets
+    const { Songsheets} = songsheets
     if (!Songsheets) {
         // Show a loading screen or spinner while the data is being fetched
         return <div>Loading...</div>

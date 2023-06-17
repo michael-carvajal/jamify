@@ -31,7 +31,7 @@ const removeSongsheet = sheetId => {
 export const fetchAllSongsheets = () => async (dispatch) => {
     const response  = await fetch("/api/songsheets")
     const obj = await response.json()
-    console.log(obj);
+    // console.log("this is frim the dfetch all ===============>  ",obj);
     dispatch(allSongsheets(obj))
 }
 export const DeleteSongsheet = (sheetId) => async (dispatch) => {

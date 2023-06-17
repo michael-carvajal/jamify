@@ -33,3 +33,11 @@ def setlists():
         "Setlists" :normalized_setlists,
         "Setlist_items" :normalized_setlist_items
     }
+
+
+@setlist_routes.route('/<int:id>', methods=["DELETE"])
+def delete_setlist(id):
+    setlist = Setlist.query.get(id)
+    db.session.delete(setlist)
+    db.session.commit()
+    return setlist.to_dict()
