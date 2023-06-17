@@ -59,6 +59,11 @@ export default function PublishSongsheet({ type }) {
         dispatch(postSongsheet(newSongsheet));
         history.push("/user/songsheets");
     };
+    if (sessionUser?.id === undefined) {
+        return (
+            <h1>Sign in to publish your Songsheet!</h1>
+        )
+    }
 
     if (loading) {
         return <div>Loading...</div>; // Render a loading message or spinner
