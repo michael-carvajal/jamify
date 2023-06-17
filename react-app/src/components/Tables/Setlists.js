@@ -1,5 +1,8 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import OpenModalButton from "../OpenModalButton";
+import DeleteSongsheetModal from "../User/DeleteSongsheetModal";
+import DeleteSetlistModal from "../User/DeleteSetlistModal";
 
 export default function AllSetlist({ type, userSetlists }) {
     const { setlists } = useSelector(state => state)
@@ -12,6 +15,7 @@ export default function AllSetlist({ type, userSetlists }) {
     const listItems = Object.values(Setlist_items);
 
     const setlistMapper = type === "user" ? userSetlists : setlistsArray;
+
     return (
         <div id="table-container">
             <h1>Setlists</h1>
@@ -38,7 +42,15 @@ export default function AllSetlist({ type, userSetlists }) {
                                 <td>{setlist.description}</td>
                                 <td>{`${dateSplit[1]} ${dateSplit[2]} ${dateSplit[3]}`}</td>
                                 <td>{listLength}</td>
-
+                                {type === "user" ? (
+                                    <td className="delete-stock">
+                                        <OpenModalButton
+                                            type="delete-setlist"
+                                            modalComponent={<DeleteSetlistModal listId={setlist.id} />}
+                                        />
+                                        <NavLink to={`/publish/${setlist.id}`}><i className="fa fa-pen"></i></NavLink>
+                                    </td>
+                                ) : null}
                             </tr>
                         );
                     })}
