@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux"
 import { useModal } from "../../context/Modal"
-import { DeleteSongsheet } from "../../store/songsheets"
+import { DeleteSetlist } from "../../store/setlists"
 
 export default function DeleteSetlistModal({ listId }) {
     const { closeModal } = useModal()
@@ -8,7 +8,7 @@ export default function DeleteSetlistModal({ listId }) {
     const deleteSetlist = () => {
         // console.log(typeof listId);
         console.log(1);
-        dispatch(DeleteSongsheet(listId))
+        dispatch(DeleteSetlist(listId))
         console.log(2);
         closeModal()
         console.log(3);
