@@ -4,7 +4,8 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
-from .models import db, User
+from sqlalchemy import event
+from .models import db, User, Songsheet, SetlistItem
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.songsheet_routes import songsheet_routes
@@ -64,6 +65,9 @@ def inject_csrf_token(response):
         httponly=True)
     return response
 
+@event.listens_for(Songsheet, 'after_delete')
+def delete_associated_setlist_items(mapper, connection, target):
+    SetlistItem.query.filter_by(songsheet_id=target.id).delete()
 
 @app.route("/api/docs")
 def api_help():

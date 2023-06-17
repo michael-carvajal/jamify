@@ -10,7 +10,7 @@ class SetlistItem(db.Model):
 
 
     id = db.Column(db.Integer, primary_key=True)
-    songsheet_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('songsheets.id')), nullable=False)
+    songsheet_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('songsheets.id'), ondelete='CASCADE'), nullable=False)
     setlist_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('setlists.id')), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
 
