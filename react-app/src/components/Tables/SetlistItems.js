@@ -11,7 +11,7 @@ export default function SetlistItems() {
         // Show a loading screen or spinner while the data is being fetched
         return <div>Loading...</div>;
     }
-    const setlist = Setlists[listId]
+    // const setlist = Setlists[listId]
     const listItems = Object.values(Setlist_items);
     const items = listItems.filter(list => list.setlist_id === parseInt(listId))
     const songs = items.map(item => {

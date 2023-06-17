@@ -20,7 +20,7 @@ export default function AllSetlist({ type, userSetlists }) {
                     <tr>
                         <th>TITLE</th>
                         <th>DESCRIPTION</th>
-                        <th>LAST UPDATED</th>
+                        <th>DATE</th>
                         <th>SONGSHEETS</th>
                     </tr>
                 </thead>
