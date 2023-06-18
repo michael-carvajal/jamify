@@ -19,8 +19,8 @@ def setlists():
             author_id=data["author_id"],
             description=data["description"],
             public=data["public"],
-            created_at=data["created_at"],
-            updated_at=data["updated_at"]
+            created_at=datetime.now(),
+            updated_at=datetime.now()
         )
         db.session.add(newSetlist)
         db.session.commit()
