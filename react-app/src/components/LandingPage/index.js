@@ -16,7 +16,7 @@ export default function LandingPage({ isLoaded }) {
         <div className="landing-page">
             <h1>Welcome to Jamify</h1>
             <div className="recently-published">
-
+                <img src="https://jamify-aa.s3.us-east-2.amazonaws.com/Artists/ABBA.jpg" alt="band"></img>
             </div>
         </div>
     )
