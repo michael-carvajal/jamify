@@ -1,5 +1,7 @@
 const ALL_SETLISTS = "setlists/ALL_SETLISTS"
 const DELETE_SETLIST = "setlists/DELETE_SETLIST"
+const POST_SETLIST = "setlists/CREATE_SETLIST"
+const PUT_SETLIST = "setlists/PUT_SETLIST"
 
 const allSetlists = obj => {
     return {
@@ -13,6 +15,18 @@ const removeSetlist = id => {
         id
     }
 }
+const addSetlist = list => {
+    return {
+        type: POST_SETLIST,
+        list
+    }
+}
+// const updateSetlist = list => {
+//     return {
+//         type: PUT_SETLIST,
+//         list
+//     }
+// }
 
 export const fetchAllSetlists = () => async (dispatch) => {
     const response = await fetch("/api/setlists")
@@ -28,6 +42,27 @@ export const DeleteSetlist = (id) => async (dispatch) => {
     console.log(deletedSetlist);
     dispatch(removeSetlist(id))
 }
+export const postSetlist = (setlist) => async (dispatch) => {
+    const response = await fetch(`/api/setlists`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body : JSON.stringify(setlist)
+    })
+    const newSetlist = await response.json()
+    console.log(newSetlist);
+    dispatch(addSetlist(newSetlist))
+}
+
+export const putSetlist = (setlist, id) => async (dispatch) => {
+    const response = await fetch(`/api/setlists/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body : JSON.stringify(setlist)
+    })
+    const updatedSetlist = await response.json()
+    console.log(updatedSetlist);
+    dispatch(addSetlist(updatedSetlist))
+}
 
 
 const initialState = {}
@@ -37,7 +72,10 @@ export default function reducer(state = initialState, action) {
             return action.obj
         case DELETE_SETLIST:
             const { [action.id]: removedSetlist, ...newSetlist } = state.Setlists
-            return { ...state, Setlists : newSetlist}
+            return { ...state, Setlists: newSetlist }
+        case POST_SETLIST:
+            const addedList = {...state.Setlists, [action.list.id] : action.list}
+            return {...state , Setlists : addedList}
         default:
             return state;
     }

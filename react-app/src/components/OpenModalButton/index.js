@@ -21,7 +21,16 @@ function OpenModalButton({
   if (type === "delete-setlist") {
     return (<i className="fa fa-trash" onClick={onClick}></i>)
   }
-
+  if (type === "create-setlist") {
+    return (
+      <i className='fa fa-plus' onClick={onClick}>Create Setlist</i>
+    )
+  }
+  if (type === "edit-setlist") {
+    return (
+      <i className='fa fa-pen' onClick={onClick}></i>
+    )
+  }
   return (
     <button onClick={onClick}>{buttonText}</button>
   );

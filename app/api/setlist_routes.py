@@ -19,8 +19,8 @@ def setlists():
             author_id=data["author_id"],
             description=data["description"],
             public=data["public"],
-            created_at=data["created_at"],
-            updated_at=data["updated_at"]
+            created_at=datetime.now(),
+            updated_at=datetime.now()
         )
         db.session.add(newSetlist)
         db.session.commit()
@@ -35,9 +35,25 @@ def setlists():
     }
 
 
-@setlist_routes.route('/<int:id>', methods=["DELETE"])
-def delete_setlist(id):
+@setlist_routes.route('/<int:id>', methods=["DELETE", "PUT"])
+def single_setlist(id):
     setlist = Setlist.query.get(id)
-    db.session.delete(setlist)
-    db.session.commit()
-    return setlist.to_dict()
+    print("inside the single set list route=============================")
+    if request.method == "PUT":
+        print("inside the singl edittitititit route=============================")
+        data = request.get_json()
+        setlist.name=data["name"]
+        setlist.author_id=data["author_id"]
+        setlist.description=data["description"]
+        setlist.public=True
+        setlist.created_at=datetime.now()
+        setlist.updated_at=datetime.now()
+        db.session.commit()
+        return setlist.to_dict()
+
+    if setlist:
+            db.session.delete(setlist)
+            db.session.commit()
+            return setlist.to_dict()
+    else:
+        return {"error": "Setlist not found"}
