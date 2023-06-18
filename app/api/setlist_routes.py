@@ -45,7 +45,7 @@ def single_setlist(id):
         setlist.name=data["name"]
         setlist.author_id=data["author_id"]
         setlist.description=data["description"]
-        setlist.public=True
+        setlist.public=data["public"]
         setlist.created_at=datetime.now()
         setlist.updated_at=datetime.now()
         db.session.commit()

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
+import { useDispatch } from 'react-redux';
 import './Navigation.css';
 import { fetchAllSongsheets } from '../../store/songsheets';
 import { fetchAllSetlists } from '../../store/setlists';
 
 function Navigation() {
-	const sessionUser = useSelector(state => state.session.user);
 	const [search, setSearch] = useState("")
 	const dispatch = useDispatch()
 	useEffect(() => {
@@ -31,7 +29,7 @@ function Navigation() {
 					<NavLink to="/setlists">Setlists</NavLink>
 				</li>
 				<li>
-					<a href='#'>Pro</a>
+					<p href='#'>Pro</p>
 				</li>
 			</div>
 

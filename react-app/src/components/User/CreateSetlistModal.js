@@ -17,7 +17,6 @@ export default function CreateSetlistModal({type, id}) {
             public: true,
         }
         if (type === "edit") {
-            console.log('editititititit');
             dispatch(putSetlist(setlist, id))//edit
             closeModal()
             return
@@ -33,7 +32,7 @@ export default function CreateSetlistModal({type, id}) {
             </label>
             <label>
                 Description:
-                <textarea required  value={description} onChange={(e) => setDescription(e.target.value)} />
+                <input required  value={description} onChange={(e) => setDescription(e.target.value)} />
             </label>
 
             <button type="submit">{type === "edit" ? "Update" : "Create"} Setlist</button>

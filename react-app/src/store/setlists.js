@@ -1,7 +1,7 @@
 const ALL_SETLISTS = "setlists/ALL_SETLISTS"
 const DELETE_SETLIST = "setlists/DELETE_SETLIST"
 const POST_SETLIST = "setlists/CREATE_SETLIST"
-const PUT_SETLIST = "setlists/PUT_SETLIST"
+// const PUT_SETLIST = "setlists/PUT_SETLIST"
 
 const allSetlists = obj => {
     return {
