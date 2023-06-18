@@ -4,7 +4,7 @@ import './songsheets.css'
 export default function SongsheetDetail() {
     const { songsheets } = useSelector(state => state)
     const { songId } = useParams()
-    const { Songsheets, Artists, Albums } = songsheets
+    const { Songsheets, Artists } = songsheets
     if (!Songsheets) {
         return <div>Loading...</div>
     }
