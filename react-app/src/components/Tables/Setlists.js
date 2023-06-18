@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import OpenModalButton from "../OpenModalButton";
 import DeleteSongsheetModal from "../User/DeleteSongsheetModal";
 import DeleteSetlistModal from "../User/DeleteSetlistModal";
+import CreateSetlistModal from "../User/CreateSetlistModal";
 
 export default function AllSetlist({ type, userSetlists }) {
     const { setlists } = useSelector(state => state)
@@ -48,7 +49,7 @@ export default function AllSetlist({ type, userSetlists }) {
                                             type="delete-setlist"
                                             modalComponent={<DeleteSetlistModal listId={setlist.id} />}
                                         />
-                                        <NavLink to={`/publish/${setlist.id}`}><i className="fa fa-pen"></i></NavLink>
+                                        <OpenModalButton type="edit-setlist" modalComponent={<CreateSetlistModal type="edit" id={setlist.id} />}/>
                                     </td>
                                 ) : null}
                             </tr>

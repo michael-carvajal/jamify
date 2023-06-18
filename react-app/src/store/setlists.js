@@ -1,6 +1,7 @@
 const ALL_SETLISTS = "setlists/ALL_SETLISTS"
 const DELETE_SETLIST = "setlists/DELETE_SETLIST"
 const POST_SETLIST = "setlists/CREATE_SETLIST"
+const PUT_SETLIST = "setlists/PUT_SETLIST"
 
 const allSetlists = obj => {
     return {
@@ -20,6 +21,12 @@ const addSetlist = list => {
         list
     }
 }
+// const updateSetlist = list => {
+//     return {
+//         type: PUT_SETLIST,
+//         list
+//     }
+// }
 
 export const fetchAllSetlists = () => async (dispatch) => {
     const response = await fetch("/api/setlists")
@@ -44,6 +51,17 @@ export const postSetlist = (setlist) => async (dispatch) => {
     const newSetlist = await response.json()
     console.log(newSetlist);
     dispatch(addSetlist(newSetlist))
+}
+
+export const putSetlist = (setlist, id) => async (dispatch) => {
+    const response = await fetch(`/api/setlists/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body : JSON.stringify(setlist)
+    })
+    const updatedSetlist = await response.json()
+    console.log(updatedSetlist);
+    dispatch(addSetlist(updatedSetlist))
 }
 
 
