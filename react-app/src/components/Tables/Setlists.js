@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import OpenModalButton from "../OpenModalButton";
 import DeleteSetlistModal from "../User/DeleteSetlistModal";
 import CreateSetlistModal from "../User/CreateSetlistModal";
-import { postSetlistItem } from "../../store/setlists";
+import { DeleteItem, postSetlistItem } from "../../store/setlists";
 
 export default function AllSetlist({ type, songId}) {
     const { setlists } = useSelector(state => state)
@@ -35,6 +35,12 @@ export default function AllSetlist({ type, songId}) {
             songsheet_id : songId
         }
         dispatch(postSetlistItem(item))
+    }
+    const handleRemove = (setlist_id) => {
+        const list = Setlists[setlist_id]
+        const item = listItems.find(item => item.setlist_id === setlist_id && item.songsheet_id === songId)
+        // console.log(items);
+        dispatch(DeleteItem(item.id))
     }
     return (
         <div id="table-container">
@@ -78,7 +84,7 @@ export default function AllSetlist({ type, songId}) {
                                         <OpenModalButton type="edit-setlist" modalComponent={<CreateSetlistModal type="edit" id={setlist.id} />}/>
                                     </td>
                                 ) : null}
-                                <td>{isInList ? <i className="fa fa-check"></i> : <i className="fa fa-plus" onClick={() => handleAdd(setlist.id)}></i>}
+                                <td>{isInList ? <i className="fa fa-check" onClick={() => handleRemove(setlist.id)}></i> : <i className="fa fa-plus" onClick={() => handleAdd(setlist.id)}></i>}
                                 </td>
                             </tr>
                         );

@@ -6,6 +6,19 @@ from datetime import datetime
 setlist_routes = Blueprint('setlist', __name__)
 
 
+@setlist_routes.route('/items/<int:id>', methods=["DELETE"])
+def setlist_item(id):
+    print(11111111111111)
+    if not current_user.id:
+            return {"error" : "Sign in to add to a Setlist"}
+    print(222222222222222)
+    item = SetlistItem.query.get(id)
+    print(3333333333333)
+    db.session.delete(item)
+    print(444444444444444)
+    db.session.commit()
+    return item.to_dict()
+
 @setlist_routes.route('', methods=["GET", "POST"])
 def setlists():
     setlists = Setlist.query.order_by(Setlist.created_at).all()
@@ -60,7 +73,7 @@ def single_setlist(id):
 
 
 @setlist_routes.route('/items', methods=["POST"])
-def setlist_items():
+def setlist_item_post():
     if request.method == "POST":
         if not current_user.id:
             return {"error" : "Sign in to add to a Setlist"}
@@ -73,13 +86,3 @@ def setlist_items():
         db.session.add(newSetlist_item)
         db.session.commit()
         return newSetlist_item.to_dict()
-
-
-@setlist_routes.route('/items/<int:id>', methods=["DELETE"])
-def setlist_items(id):
-    if not current_user.id:
-            return {"error" : "Sign in to add to a Setlist"}
-    item = SetlistItem.query.get(id)
-    db.session.delete(item)
-    db.session.commit()
-    return item.to_dict()
