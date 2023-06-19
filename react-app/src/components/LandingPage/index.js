@@ -15,8 +15,8 @@ export default function LandingPage({ isLoaded }) {
 
     const topHits = songsheetsArray.filter(song => song.id % 2 !== 0 || song.id === 2)
     console.log(topHits);
-    const recentPublish = [];
-    
+    const recentPublish = songsheetsArray.slice(songsheetsArray.length - 4);
+
     const decades = ["1960's", "1970's", "1980's", "2000's", "2010's"]
     return (
         <div className="landing-page">
@@ -86,7 +86,7 @@ export default function LandingPage({ isLoaded }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {topHits.map(song => {
+                            {recentPublish.reverse().map(song => {
                                 const artistName = Artists[song.artist_id].name
                                 return (
                                     <tr>
