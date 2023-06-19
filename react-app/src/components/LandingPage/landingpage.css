@@ -1,0 +1,30 @@
+.landing-page{
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        gap: 20px;
+    }
+
+.top-hits{
+    width: 100%;
+}
+.top-hits-body{
+    width: 100%;
+    display: flex;
+}
+
+#top-hits-img{
+    object-fit: cover;
+}
+.categories-published{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .landing-page  h3 {
+        background-color: var(--ug-grey);
+        margin-bottom: 10px;
+        border-radius: 4px;
+        padding: 7px;
+    }
