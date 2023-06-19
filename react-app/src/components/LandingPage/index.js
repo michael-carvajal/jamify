@@ -91,7 +91,7 @@ export default function LandingPage({ isLoaded }) {
                                 return (
                                     <tr>
                                         <th>{artistName}</th>
-                                        <th>{song.title}</th>
+                                        <th><NavLink to={`/songsheet-detail/${song.id}`}>{song.title}</NavLink></th>
                                         <th>{Math.floor(Math.random() * 1000)} Likes</th>
                                     </tr>
                                 )

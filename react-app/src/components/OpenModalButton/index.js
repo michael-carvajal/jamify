@@ -41,6 +41,9 @@ function OpenModalButton({
         <p onClick={onClick} id="signup-btn">SIGN UP</p>
     )
   }
+  if (type === "add-to-setlist") {
+    return <i className='fa fa-plus' onClick={onClick}>Add Songsheet to your setlist</i>
+  }
   return (
     <button onClick={onClick}>{buttonText}</button>
   );
