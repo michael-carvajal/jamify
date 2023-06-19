@@ -57,3 +57,29 @@ def single_setlist(id):
             return setlist.to_dict()
     else:
         return {"error": "Setlist not found"}
+
+
+@setlist_routes.route('/items', methods=["POST"])
+def setlist_items():
+    if request.method == "POST":
+        if not current_user.id:
+            return {"error" : "Sign in to add to a Setlist"}
+        data = request.get_json()
+        newSetlist_item = SetlistItem(
+            setlist_id=data["setlist_id"],
+            songsheet_id=data["songsheet_id"],
+            created_at=datetime.now()
+        )
+        db.session.add(newSetlist_item)
+        db.session.commit()
+        return newSetlist_item.to_dict()
+
+
+@setlist_routes.route('/items/<int:id>', methods=["DELETE"])
+def setlist_items(id):
+    if not current_user.id:
+            return {"error" : "Sign in to add to a Setlist"}
+    item = SetlistItem.query.get(id)
+    db.session.delete(item)
+    db.session.commit()
+    return item.to_dict()

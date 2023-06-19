@@ -1,14 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import OpenModalButton from "../OpenModalButton";
 import DeleteSetlistModal from "../User/DeleteSetlistModal";
 import CreateSetlistModal from "../User/CreateSetlistModal";
+import { postSetlistItem } from "../../store/setlists";
 
 export default function AllSetlist({ type, songId}) {
     const { setlists } = useSelector(state => state)
     const { Setlists, Setlist_items } = setlists;
 
-
+    const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user);
     if (!sessionUser) {
         return (
@@ -28,6 +29,13 @@ export default function AllSetlist({ type, songId}) {
 
     const setlistMapper = type === "user" || type === 'add' ? userSetlists : setlistsArray;
     // console.log(userSetlists);
+    const handleAdd = (setlist_id) => {
+        const item = {
+            setlist_id,
+            songsheet_id : songId
+        }
+        dispatch(postSetlistItem(item))
+    }
     return (
         <div id="table-container">
             <h1>Setlists</h1>
@@ -70,8 +78,8 @@ export default function AllSetlist({ type, songId}) {
                                         <OpenModalButton type="edit-setlist" modalComponent={<CreateSetlistModal type="edit" id={setlist.id} />}/>
                                     </td>
                                 ) : null}
-                                {isInList ? <i className="fa fa-check"></i> : <i className="fa fa-plus"></i>}
-
+                                <td>{isInList ? <i className="fa fa-check"></i> : <i className="fa fa-plus" onClick={() => handleAdd(setlist.id)}></i>}
+                                </td>
                             </tr>
                         );
                     })}

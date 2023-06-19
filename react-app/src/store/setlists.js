@@ -1,12 +1,19 @@
 const ALL_SETLISTS = "setlists/ALL_SETLISTS"
 const DELETE_SETLIST = "setlists/DELETE_SETLIST"
 const POST_SETLIST = "setlists/CREATE_SETLIST"
+const ADD_SETLIST_ITEM = "setlists/ADD_SETLIST_ITEM"
 // const PUT_SETLIST = "setlists/PUT_SETLIST"
 
 const allSetlists = obj => {
     return {
         type: ALL_SETLISTS,
         obj
+    }
+}
+const addSetlistItem = item => {
+    return {
+        type: ADD_SETLIST_ITEM,
+        item
     }
 }
 const removeSetlist = id => {
@@ -52,6 +59,16 @@ export const postSetlist = (setlist) => async (dispatch) => {
     console.log(newSetlist);
     dispatch(addSetlist(newSetlist))
 }
+export const postSetlistItem = (item) => async (dispatch) => {
+    const response = await fetch(`/api/setlists/items`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body : JSON.stringify(item)
+    })
+    const newSetlistItem = await response.json()
+    console.log(newSetlistItem);
+    dispatch(addSetlistItem(newSetlistItem))
+}
 
 export const putSetlist = (setlist, id) => async (dispatch) => {
     const response = await fetch(`/api/setlists/${id}`, {
@@ -75,7 +92,11 @@ export default function reducer(state = initialState, action) {
             return { ...state, Setlists: newSetlist }
         case POST_SETLIST:
             const addedList = {...state.Setlists, [action.list.id] : action.list}
-            return {...state , Setlists : addedList}
+            return { ...state, Setlists: addedList }
+            case ADD_SETLIST_ITEM:
+                const addedItem = {...state.Setlist_items, [action.item.id] : action.item}
+                return { ...state, Setlist_items: addedItem }
+
         default:
             return state;
     }
