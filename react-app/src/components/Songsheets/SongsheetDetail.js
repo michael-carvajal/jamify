@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 import './songsheets.css'
 import OpenModalButton from "../OpenModalButton"
-import AddToSetlist from "../Setlists/AddToSetlist"
+import AllSetlist from "../Tables/Setlists"
 export default function SongsheetDetail() {
     const { songsheets } = useSelector(state => state)
     const { songId } = useParams()
@@ -18,9 +18,9 @@ export default function SongsheetDetail() {
         <div id="songsheet-detail">
             <h1>{songsheet.title} by {artist.name}</h1>
             <p>Added to 15 Setlists</p>
-            <OpenModalButton type="add-to-setlist" modalComponent={AddToSetlist}/>
+            <OpenModalButton type="add-to-setlist" modalComponent={<AllSetlist type="add" songId={songsheet.id} />} />
             <p>Key {songsheet.key}</p>
-            <p>Author (have to find the author) last edit on { songsheet.updated_at}</p>
+            <p>Author (have to find the author) last edit on {songsheet.updated_at}</p>
             <pre>{songsheet.body}</pre>
         </div>
     )
