@@ -9,17 +9,18 @@
 
 
 .user-login-signup p {
-    padding: 4px 0px;
 
     text-align: center;
     border-radius: 3px;
 }
 
 #signup-btn{
+    padding: 4px 0px;
     background-color: var(--ug-yellow);
     color: black;
     margin-bottom: 7px;
 }
 #login-btn{
+    padding: 4px 0px;
     border: 1px solid var(--ug-grey);
 }

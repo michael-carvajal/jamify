@@ -1,0 +1,25 @@
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+
+}
+.signup-form input {
+    height: 30px;
+    padding: 10px;
+    border: 1px solid var(--ug-grey);
+    border-radius: 2px;
+}
+.signup-modal{
+    padding: 15px;
+    width: 300px;
+}
+.signup-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.fa-times:hover{
+    cursor: pointer;
+}
