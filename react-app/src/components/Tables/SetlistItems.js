@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function SetlistItems() {
     const { listId } = useParams()
@@ -35,10 +35,12 @@ export default function SetlistItems() {
                 </thead>
                 <tbody>
                     {songs.map((song, index) => {
+                        console.log(song);
                         return (
                             <tr key={`list-item-list-${index}`}>
                                 <th>{song.artist.name}</th>
-                                <th>{song.song.title}</th>
+                                <th><NavLink to={`/songsheet-detail/${song.song.id}`}>{song.song.title}</NavLink></th>
+
                                 <th>{song.genre.name}</th>
                             </tr>
                         )
