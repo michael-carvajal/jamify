@@ -1,8 +1,29 @@
-.side-bar{
-        display: flex;
-        flex-direction: column;
-        width: 17%;
-        padding: 10px;
-        gap: 20px;
-        border-right: 1px solid var(--ug-grey);
-    }
+.side-bar {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    padding: 10px;
+    gap: 20px;
+    border-right: 1px solid var(--ug-grey);
+}
+
+
+.user-login-signup p {
+
+    text-align: center;
+    border-radius: 3px;
+}
+.user-login-signup p:hover {
+    cursor: pointer;
+}
+
+#signup-btn{
+    padding: 4px 0px;
+    background-color: var(--ug-yellow);
+    color: black;
+    margin-bottom: 7px;
+}
+#login-btn{
+    padding: 4px 0px;
+    border: 1px solid var(--ug-grey);
+}

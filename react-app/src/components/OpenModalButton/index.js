@@ -31,6 +31,16 @@ function OpenModalButton({
       <i className='fa fa-pen' onClick={onClick}></i>
     )
   }
+  if (type === "login") {
+    return (
+        <p onClick={onClick} id="login-btn">LOGIN</p>
+    )
+  }
+  if (type === "signup") {
+    return (
+        <p onClick={onClick} id="signup-btn">SIGN UP</p>
+    )
+  }
   return (
     <button onClick={onClick}>{buttonText}</button>
   );
