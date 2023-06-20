@@ -20,3 +20,17 @@
     width: 35%;
     justify-content: space-between;
   }
+
+.logo-container{
+  background-color: var(--ug-yellow) !important;
+  width: fit-content;
+  height: 73px;
+  padding: 6px 15px ;
+  border-radius: 5px;
+}
+
+#logo{
+  align-items: center;
+  width: 40px;
+  background-color: none;
+}

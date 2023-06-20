@@ -17,13 +17,13 @@ export default function AllSetlist({ type, songId}) {
         )
     }
 
-    const userSetlists = Object.values(Setlists).filter(list => list.author_id === sessionUser.id)
 
 
     if (!Setlists) {
         // Show a loading screen or spinner while the data is being fetched
         return <div>Loading...</div>;
     }
+    const userSetlists = Object.values(Setlists).filter(list => list.author_id === sessionUser.id) || []
     const setlistsArray = Object.values(Setlists);
     const listItems = Object.values(Setlist_items);
 
@@ -84,11 +84,17 @@ export default function AllSetlist({ type, songId}) {
                                         <OpenModalButton type="edit-setlist" modalComponent={<CreateSetlistModal type="edit" id={setlist.id} />}/>
                                     </td>
                                 ) : null}
-                                <td>{isInList ? <i className="fa fa-check" onClick={() => handleRemove(setlist.id)}></i> : <i className="fa fa-plus" onClick={() => handleAdd(setlist.id)}></i>}
-                                </td>
+                                {type === "add" && <td>{isInList ? <i className="fa fa-check" onClick={() => handleRemove(setlist.id)}></i> : <i className="fa fa-plus" onClick={() => handleAdd(setlist.id)}></i>}
+                                </td>}
                             </tr>
                         );
                     })}
+                    {type === "add" && (
+                        <div>
+                            <OpenModalButton type="create-setlist" modalComponent={<CreateSetlistModal addToSetlist={true} songId={songId} />}/>
+                            <p>DONE</p>
+                        </div>
+                    )}
                 </tbody>
             </table>
         </div>

@@ -15,7 +15,12 @@ function Navigation() {
 	return (
 		<ul className='nav-bar'>
 			<li>
-				<NavLink exact to="/">Home</NavLink>
+				<NavLink exact to="/">
+					<div className='logo-container'>
+
+					<img src='./logo2.png' alt='logo' id="logo"></img>
+					</div>
+				</NavLink>
 			</li>
 			<div className='nav-links'>
 

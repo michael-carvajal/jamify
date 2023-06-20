@@ -13,8 +13,6 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    color: var(--border-text-color);
-    background-color: var(--background-color);
 }
 
 li{
@@ -28,8 +26,17 @@ li{
     display: flex;
     flex-direction: column;
 }
+body{
+    color: var(--border-text-color);
+    background-color: var(--background-color);
 
+}
 .main{
     display: flex;
     width: 100%;
+}
+
+a {
+    color: var(--border-text-color);
+    text-decoration: none;
 }
