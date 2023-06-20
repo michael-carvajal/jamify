@@ -11,7 +11,7 @@ export default function AllSetlist({ type, songId}) {
 
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user);
-    if (!sessionUser) {
+    if (!sessionUser && type === "add") {
         return (
             <h1>Sign in to add Songsheet to Setlists!</h1>
         )
@@ -23,7 +23,7 @@ export default function AllSetlist({ type, songId}) {
         // Show a loading screen or spinner while the data is being fetched
         return <div>Loading...</div>;
     }
-    const userSetlists = Object.values(Setlists).filter(list => list.author_id === sessionUser.id) || []
+    const userSetlists = Object.values(Setlists).filter(list => list.author_id === sessionUser?.id) || []
     const setlistsArray = Object.values(Setlists);
     const listItems = Object.values(Setlist_items);
 
