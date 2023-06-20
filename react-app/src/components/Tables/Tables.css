@@ -38,6 +38,11 @@
 
 .fa-trash:hover {
     color: red;
+    padding-right: 15px;
+}
+
+.fa-trash {
+    padding-right: 15px;
 }
 .delete-stock {
     position: absolute;

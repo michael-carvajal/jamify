@@ -4,7 +4,7 @@ import OpenModalButton from "../OpenModalButton";
 import DeleteSetlistModal from "../User/DeleteSetlistModal";
 import CreateSetlistModal from "../User/CreateSetlistModal";
 import { DeleteItem, postSetlistItem } from "../../store/setlists";
-
+import "./setlists.css"
 export default function AllSetlist({ type, songId}) {
     const { setlists } = useSelector(state => state)
     const { Setlists, Setlist_items } = setlists;
