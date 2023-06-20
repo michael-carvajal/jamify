@@ -23,13 +23,14 @@
 
 .logo-container{
   background-color: var(--ug-yellow) !important;
-  width: 200px;
-  height: 300px;
+  width: fit-content;
+  height: 73px;
+  padding: 6px 15px ;
+  border-radius: 5px;
 }
 
 #logo{
-  width: 50%;
-  height: 200px;
-  object-fit: contain;
+  align-items: center;
+  width: 40px;
   background-color: none;
 }

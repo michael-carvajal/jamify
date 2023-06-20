@@ -17,13 +17,13 @@ export default function AllSetlist({ type, songId}) {
         )
     }
 
-    const userSetlists = Object.values(Setlists).filter(list => list.author_id === sessionUser.id)
 
 
     if (!Setlists) {
         // Show a loading screen or spinner while the data is being fetched
         return <div>Loading...</div>;
     }
+    const userSetlists = Object.values(Setlists).filter(list => list.author_id === sessionUser.id) || []
     const setlistsArray = Object.values(Setlists);
     const listItems = Object.values(Setlist_items);
 
