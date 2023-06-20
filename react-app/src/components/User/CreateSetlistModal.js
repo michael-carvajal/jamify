@@ -31,7 +31,10 @@ export default function CreateSetlistModal({ type, id, addToSetlist, songId }) {
     };
     return (
         <form onSubmit={handleSubmit} className='create-setlist-form'>
-            <h1>Create Setlist</h1>
+            <div className="signup-header">
+                <h1>{type === "create" ? "Create" : "Update" } Setlist</h1>
+                <i className="fa fa-times" onClick={closeModal}></i>
+            </div>
             <input placeholder='Name' required type="text" value={name} onChange={(e) => setName(e.target.value)} />
             <input placeholder='Description' required value={description} onChange={(e) => setDescription(e.target.value)} />
 
