@@ -1,3 +1,14 @@
 .user-setlists{
     padding: 14px;
 }
+.user-setlists-header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#create-setlist:hover{
+    color: var(--ug-yellow);
+    cursor: pointer;
+}

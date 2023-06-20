@@ -26,4 +26,13 @@
 
 .fa-plus:hover{
     cursor: pointer;
+    font-size: 10px;
+
+}
+.fa-plus{
+    position: relative;
+    bottom: 1px;
+    padding-right: 6px;
+    font-size: 12px;
+    color: var(--ug-yellow);
 }

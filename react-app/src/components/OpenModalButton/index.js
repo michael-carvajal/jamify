@@ -23,7 +23,11 @@ function OpenModalButton({
   }
   if (type === "create-setlist") {
     return (
-      <i className='fa fa-plus' onClick={onClick}>Create Setlist</i>
+      <div onClick={onClick}>
+
+        <i className='fa fa-plus' ></i>
+        <span id='create-setlist'>CREATE SETLIST</span>
+      </div>
     )
   }
   if (type === "edit-setlist") {

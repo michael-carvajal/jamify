@@ -44,7 +44,6 @@ export default function AllSetlist({ type, songId}) {
     }
     return (
         <div id="table-container">
-            <h1>Setlists</h1>
             <table>
                 <thead>
                     <tr>
