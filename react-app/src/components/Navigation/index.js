@@ -18,7 +18,7 @@ function Navigation() {
 				<NavLink exact to="/">
 					<div className='logo-container'>
 
-					<img src='./logo2.png' alt='logo' id="logo"></img>
+					<img src='/logo2.png' alt='logo' id="logo"></img>
 					</div>
 				</NavLink>
 			</li>

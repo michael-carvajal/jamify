@@ -11,8 +11,13 @@ function LoginFormModal() {
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, demo) => {
     e.preventDefault();
+    if (demo) {
+      const data = await dispatch(login("demo@aa.io", "password"));
+      closeModal()
+      return
+    }
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
@@ -53,6 +58,7 @@ function LoginFormModal() {
             required
           />
         <button type="submit" id="signup-btn" style={{ padding: "10px 0px" }}>LOG IN</button>
+        <p id="login-demo" onClick={(e) => handleSubmit(e, true)}>Log in as Demo User</p>
       </form>
     </div>
   );

@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import "./landingpage.css"
-export default function LandingPage({ isLoaded }) {
-    const sessionUser = useSelector(state => state.session.user);
+export default function LandingPage() {
+    // const sessionUser = useSelector(state => state.session.user);
     const { songsheets } = useSelector(state => state)
-    const { Songsheets, Artists, Albums, Genres } = songsheets
+    const { Songsheets, Artists, Genres } = songsheets
     if (!Songsheets) {
         // Show a loading screen or spinner while the data is being fetched
         return <div>Loading...</div>
@@ -27,11 +27,7 @@ export default function LandingPage({ isLoaded }) {
                     <img style={{ width: "30%" }} id="top-hits-img" src="https://jamify-aa.s3.us-east-2.amazonaws.com/Artists/ABBA.jpg" alt="band"></img>
                     <table>
                         <thead>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
+                      
                         </thead>
                         <tbody>
                             {topHits.map(song => {
@@ -39,7 +35,7 @@ export default function LandingPage({ isLoaded }) {
                                 return (
                                     <tr>
                                         <th>{artistName}</th>
-                                        <th><NavLink to={`/songsheet-detail/${song.id}`}>{song.title}</NavLink></th>
+                                        <th><NavLink to={`/songsheet-detail/${song.id}`} className="songsheet-link">{song.title}</NavLink></th>
                                         <th><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i></th>
                                     </tr>
                                 )
@@ -58,7 +54,7 @@ export default function LandingPage({ isLoaded }) {
                             <tr>
                                 <th>GENRE</th>
                                 <th>DECADE</th>
-                                <th>TYPE</th>
+                                <th>ARTISTS</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,11 +75,7 @@ export default function LandingPage({ isLoaded }) {
                     <h3>Recently Published</h3>
                     <table>
                         <thead>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
+
                         </thead>
                         <tbody>
                             {recentPublish.reverse().map(song => {
@@ -91,7 +83,7 @@ export default function LandingPage({ isLoaded }) {
                                 return (
                                     <tr>
                                         <th>{artistName}</th>
-                                        <th><NavLink to={`/songsheet-detail/${song.id}`}>{song.title}</NavLink></th>
+                                        <th><NavLink to={`/songsheet-detail/${song.id}`} className="songsheet-link">{song.title}</NavLink></th>
                                         <th>{Math.floor(Math.random() * 1000)} Likes</th>
                                     </tr>
                                 )

@@ -4,7 +4,7 @@ import OpenModalButton from "../OpenModalButton";
 import DeleteSetlistModal from "../User/DeleteSetlistModal";
 import CreateSetlistModal from "../User/CreateSetlistModal";
 import { DeleteItem, postSetlistItem } from "../../store/setlists";
-
+import "./setlists.css"
 export default function AllSetlist({ type, songId}) {
     const { setlists } = useSelector(state => state)
     const { Setlists, Setlist_items } = setlists;
@@ -37,14 +37,13 @@ export default function AllSetlist({ type, songId}) {
         dispatch(postSetlistItem(item))
     }
     const handleRemove = (setlist_id) => {
-        const list = Setlists[setlist_id]
+        // const list = Setlists[setlist_id]
         const item = listItems.find(item => item.setlist_id === setlist_id && item.songsheet_id === songId)
         // console.log(items);
         dispatch(DeleteItem(item.id))
     }
     return (
         <div id="table-container">
-            <h1>Setlists</h1>
             <table>
                 <thead>
                     <tr>
@@ -70,7 +69,7 @@ export default function AllSetlist({ type, songId}) {
                         return (
                             <tr className="table-row" key={`setlist-list-${index}`}>
                                 <td>
-                                    <NavLink to={`/setlist-detail/${setlist.id}`}>{setlist.name}</NavLink>
+                                    <NavLink to={`/setlist-detail/${setlist.id}`} className="select-link">{setlist.name}</NavLink>
                                 </td>
                                 <td>{setlist.description}</td>
                                {type ==="add" ? null : <td>{`${dateSplit[1]} ${dateSplit[2]} ${dateSplit[3]}`}</td>}
