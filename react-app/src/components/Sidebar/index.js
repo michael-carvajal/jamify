@@ -27,7 +27,8 @@ export default function Sidebar({ isLoaded }) {
                 )
             }
             <div className="about">
-                <i className="fa fa-github">github</i>
+                <a href="https://github.com/michael-carvajal"><i className="fa fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/michael-carvajal-326683203/"><i className="fa fa-linkedin"></i></a>
             </div>
         </div>
     )

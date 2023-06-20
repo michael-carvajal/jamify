@@ -3,8 +3,10 @@
     flex-direction: column;
     width: 25%;
     padding: 10px;
+    justify-content: flex-start;
     gap: 20px;
     border-right: 1px solid var(--ug-grey);
+    position: relative;
 }
 
 
@@ -26,4 +28,19 @@
 #login-btn{
     padding: 4px 0px;
     border: 1px solid var(--ug-grey);
+}
+
+.fa-github, .fa-linkedin {
+    font-size: 80px;
+    padding-right: 15px;
+}
+.fa-github:hover, .fa-linkedin:hover {
+    color: var(--ug-yellow);
+}
+
+.about {
+    position: absolute;
+    bottom: 0;
+    left: 16%;
+    width: 100%;
 }

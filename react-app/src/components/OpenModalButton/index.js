@@ -32,7 +32,7 @@ function OpenModalButton({
   }
   if (type === "edit-setlist") {
     return (
-      <i className='fa fa-pen' onClick={onClick}></i>
+      <i className='fa fa-pencil' onClick={onClick}></i>
     )
   }
   if (type === "login") {
