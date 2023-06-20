@@ -95,6 +95,7 @@ export default function PublishSongsheet({ type }) {
 
                 <input placeholder="Album" required value={album_id} onChange={(e) => setAlbum_id(e.target.value)} />
                 <select value={album_id} onChange={(e) => setAlbum_id(e.target.value)}>
+                    <option disabled selected value="">Choose Album</option>
                     {AlbumsArr.map((album, index) => (
                         <option value={album.name} key={`album-index-${index}`}>
                             {album.name}
@@ -107,6 +108,8 @@ export default function PublishSongsheet({ type }) {
 
                 <input placeholder="Artist" required value={artist_id} onChange={(e) => setArtist_id(e.target.value)} />
                 <select value={artist_id} onChange={(e) => setArtist_id(e.target.value)}>
+                    <option disabled selected value="">Choose Artist</option>
+
                     {artistArr.map((artist, index) => (
                         <option value={artist.name} key={`artist-index-${index}`}>
                             {artist.name}
@@ -119,6 +122,8 @@ export default function PublishSongsheet({ type }) {
 
                 <input placeholder="Genre" required value={genre_id} onChange={(e) => setGenre_id(e.target.value)} />
                 <select value={genre_id} onChange={(e) => setGenre_id(e.target.value)}>
+                    <option disabled selected value="">Choose Genre</option>
+
                     {genreArr.map((genre, index) => (
                         <option value={genre.name} key={`genre-index-${index}`}>
                             {genre.name}
