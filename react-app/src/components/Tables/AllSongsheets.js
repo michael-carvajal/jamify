@@ -17,7 +17,7 @@ export default function AllSongsheets({ type, userSongsheets }) {
     const songMapper = type === "user" ? userSongsheets : songsheetsArray;
     return (
         <div id="table-container">
-            <table>
+            <table className="songsheets-table">
                 <thead>
                     <tr>
                         <th>ARTISTS</th>
