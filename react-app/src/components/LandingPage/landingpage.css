@@ -3,6 +3,8 @@
         flex-direction: column;
         padding: 15px;
         gap: 20px;
+        font-size: 14px;
+            font-weight: 300;
     }
 
 .top-hits{
@@ -11,6 +13,7 @@
 .top-hits-body{
     width: 100%;
     display: flex;
+
 }
 
 #top-hits-img{
@@ -21,10 +24,27 @@
         width: 100%;
         justify-content: space-between;
     }
+.categories-published th{
+    padding-right: 7px !important;
+    font-size: 12px;
+    }
 
     .landing-page  h3 {
         background-color: var(--ug-grey);
         margin-bottom: 10px;
         border-radius: 4px;
         padding: 7px;
+
     }
+
+    .songsheet-link{
+        color: var(--ug-yellow);
+        text-decoration: underline;
+    }
+.landing-page th {
+    padding-top: 12px;
+        padding-bottom: 12px;
+        padding-right: 30px;
+        text-align: left;
+        color: #898989;
+}

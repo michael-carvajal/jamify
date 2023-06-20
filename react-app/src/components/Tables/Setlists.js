@@ -37,7 +37,7 @@ export default function AllSetlist({ type, songId}) {
         dispatch(postSetlistItem(item))
     }
     const handleRemove = (setlist_id) => {
-        const list = Setlists[setlist_id]
+        // const list = Setlists[setlist_id]
         const item = listItems.find(item => item.setlist_id === setlist_id && item.songsheet_id === songId)
         // console.log(items);
         dispatch(DeleteItem(item.id))
