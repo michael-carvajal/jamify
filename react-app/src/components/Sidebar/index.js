@@ -26,6 +26,9 @@ export default function Sidebar({ isLoaded }) {
                     </li>
                 )
             }
+            <div className="about">
+                <i className="fa fa-github">github</i>
+            </div>
         </div>
     )
 }
