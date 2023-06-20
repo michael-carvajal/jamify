@@ -12,3 +12,29 @@
     color: var(--ug-yellow);
     cursor: pointer;
 }
+
+.create-setlist-form{
+    background-color: #1f1f1f;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+}
+
+.create-setlist-form input {
+    height: 30px;
+    padding: 10px;
+    border: 1px solid var(--ug-grey);
+    border-radius: 2px;
+}
+
+.create-setlist-btn:hover{
+    cursor: pointer;
+}
+.select-link{
+    font-weight: 600;
+}
+.select-link:hover{
+    color: var(--ug-yellow);
+    text-decoration: underline;
+}

@@ -33,7 +33,7 @@ export default function AllSongsheets({ type, userSongsheets }) {
                             <tr className="table-row" key={`song-list-${index}`}>
                                 <td>{Artists[artistId].name}</td>
                                 <td>
-                                    <NavLink to={`/songsheet-detail/${song.id}`}>{song.title}</NavLink>
+                                    <NavLink to={`/songsheet-detail/${song.id}`} className="select-link">{song.title}</NavLink>
                                 </td>
                                 <td>
                                     <i className="fa fa-star"></i>

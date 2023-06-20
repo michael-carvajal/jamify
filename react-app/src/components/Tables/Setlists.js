@@ -69,7 +69,7 @@ export default function AllSetlist({ type, songId}) {
                         return (
                             <tr className="table-row" key={`setlist-list-${index}`}>
                                 <td>
-                                    <NavLink to={`/setlist-detail/${setlist.id}`}>{setlist.name}</NavLink>
+                                    <NavLink to={`/setlist-detail/${setlist.id}`} className="select-link">{setlist.name}</NavLink>
                                 </td>
                                 <td>{setlist.description}</td>
                                {type ==="add" ? null : <td>{`${dateSplit[1]} ${dateSplit[2]} ${dateSplit[3]}`}</td>}
