@@ -84,11 +84,17 @@ export default function AllSetlist({ type, songId}) {
                                         <OpenModalButton type="edit-setlist" modalComponent={<CreateSetlistModal type="edit" id={setlist.id} />}/>
                                     </td>
                                 ) : null}
-                                <td>{isInList ? <i className="fa fa-check" onClick={() => handleRemove(setlist.id)}></i> : <i className="fa fa-plus" onClick={() => handleAdd(setlist.id)}></i>}
-                                </td>
+                                {type === "add" && <td>{isInList ? <i className="fa fa-check" onClick={() => handleRemove(setlist.id)}></i> : <i className="fa fa-plus" onClick={() => handleAdd(setlist.id)}></i>}
+                                </td>}
                             </tr>
                         );
                     })}
+                    {type === "add" && (
+                        <div>
+                            <OpenModalButton type="create-setlist" modalComponent={<CreateSetlistModal addToSetlist={true} songId={songId} />}/>
+                            <p>DONE</p>
+                        </div>
+                    )}
                 </tbody>
             </table>
         </div>
