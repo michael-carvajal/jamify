@@ -1,0 +1,18 @@
+#login-demo{
+    color: var(--background-color);
+    width: fit-content;
+}
+#login-demo:hover{
+    color: var(--ug-yellow);
+    cursor: pointer;
+}
+
+.signup-header h1{
+    color: var(--background-color);
+
+}
+
+.fa-times{
+    font-size: 23px;
+    color: var(--background-color);
+}
