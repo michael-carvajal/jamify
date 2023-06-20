@@ -37,16 +37,30 @@ function OpenModalButton({
   }
   if (type === "login") {
     return (
-        <p onClick={onClick} id="login-btn">LOGIN</p>
+      <p onClick={onClick} id="login-btn">LOGIN</p>
     )
   }
   if (type === "signup") {
     return (
-        <p onClick={onClick} id="signup-btn">SIGN UP</p>
+      <p onClick={onClick} id="signup-btn">SIGN UP</p>
     )
   }
   if (type === "add-to-setlist") {
     return <i className='fa fa-plus' onClick={onClick}>Add Songsheet to your setlist</i>
+  }
+  switch (type) {
+    case 'Artist':
+
+      return <span onClick={onClick}><i className='fa fa-plus'></i> {type}</span>
+    case 'Genre':
+
+      return <span onClick={onClick}><i className='fa fa-plus'></i> {type}</span>
+    case 'Album':
+
+      return <span onClick={onClick}><i className='fa fa-plus'></i> {type}</span>
+
+    default:
+      break;
   }
   return (
     <button onClick={onClick}>{buttonText}</button>

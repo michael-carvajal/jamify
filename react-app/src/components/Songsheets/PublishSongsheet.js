@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postSongsheet, putSongsheet } from "../../store/songsheets";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import OpenModalButton from "../OpenModalButton";
+import AddAssociations from "./AddAsscociations";
 
 export default function PublishSongsheet({ type }) {
     const { songsheets } = useSelector((state) => state);
@@ -91,7 +93,7 @@ export default function PublishSongsheet({ type }) {
     return (
         <form onSubmit={type === "update" ? handleUpdate : handleSubmit} className="publish-songsheet">
             <label>
-                <p>Album</p>
+                <p>Album <OpenModalButton modalComponent={<AddAssociations type={"Album"}/>} type={"Album"}/></p>
 
                 <input placeholder="Album" required value={album_id} onChange={(e) => setAlbum_id(e.target.value)} />
                 <select value={album_id} onChange={(e) => setAlbum_id(e.target.value)}>
@@ -104,7 +106,7 @@ export default function PublishSongsheet({ type }) {
                 </select>
             </label>
             <label>
-                <p>Artist</p>
+                <p>Artist <OpenModalButton modalComponent={<AddAssociations type={"Artist"} />} type={"Artist"} /></p>
 
                 <input placeholder="Artist" required value={artist_id} onChange={(e) => setArtist_id(e.target.value)} />
                 <select value={artist_id} onChange={(e) => setArtist_id(e.target.value)}>
@@ -118,7 +120,7 @@ export default function PublishSongsheet({ type }) {
                 </select>
             </label>
             <label>
-                <p>Genre</p>
+                <p>Genre <OpenModalButton modalComponent={<AddAssociations type={"Genre"}/>} type={"Genre"} /> </p>
 
                 <input placeholder="Genre" required value={genre_id} onChange={(e) => setGenre_id(e.target.value)} />
                 <select value={genre_id} onChange={(e) => setGenre_id(e.target.value)}>
