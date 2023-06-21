@@ -5,7 +5,7 @@ import DeleteSetlistModal from "../User/DeleteSetlistModal";
 import CreateSetlistModal from "../User/CreateSetlistModal";
 import { DeleteItem, postSetlistItem } from "../../store/setlists";
 import "./setlists.css"
-export default function AllSetlist({ type, songId}) {
+export default function AllSetlist({ type, songId }) {
     const { setlists } = useSelector(state => state)
     const { Setlists, Setlist_items } = setlists;
 
@@ -32,7 +32,7 @@ export default function AllSetlist({ type, songId}) {
     const handleAdd = (setlist_id) => {
         const item = {
             setlist_id,
-            songsheet_id : songId
+            songsheet_id: songId
         }
         dispatch(postSetlistItem(item))
     }
@@ -44,13 +44,13 @@ export default function AllSetlist({ type, songId}) {
     }
     return (
         <div id="table-container" className="all-setlists">
-            <h1>All Public Setlists</h1>
-            <table>
+            <table className="table">
                 <thead>
+                    <h1>All Public Setlists</h1>
                     <tr>
                         <th>TITLE</th>
                         <th>DESCRIPTION</th>
-                       { type === "add" ? null : <th>DATE</th>}
+                        {type === "add" ? null : <th>DATE</th>}
                         <th>SONGSHEETS</th>
                     </tr>
                 </thead>
@@ -73,7 +73,7 @@ export default function AllSetlist({ type, songId}) {
                                     <NavLink to={`/setlist-detail/${setlist.id}`} className="select-link">{setlist.name}</NavLink>
                                 </td>
                                 <td>{setlist.description}</td>
-                               {type ==="add" ? null : <td>{`${dateSplit[1]} ${dateSplit[2]} ${dateSplit[3]}`}</td>}
+                                {type === "add" ? null : <td>{`${dateSplit[1]} ${dateSplit[2]} ${dateSplit[3]}`}</td>}
                                 <td>{listLength}</td>
                                 {type === "user" ? (
                                     <td className="delete-stock">
@@ -81,7 +81,7 @@ export default function AllSetlist({ type, songId}) {
                                             type="delete-setlist"
                                             modalComponent={<DeleteSetlistModal listId={setlist.id} />}
                                         />
-                                        <OpenModalButton type="edit-setlist" modalComponent={<CreateSetlistModal type="edit" id={setlist.id} />}/>
+                                        <OpenModalButton type="edit-setlist" modalComponent={<CreateSetlistModal type="edit" id={setlist.id} />} />
                                     </td>
                                 ) : null}
                                 {type === "add" && <td>{isInList ? <i className="fa fa-check" onClick={() => handleRemove(setlist.id)}></i> : <i className="fa fa-plus" onClick={() => handleAdd(setlist.id)}></i>}
@@ -91,7 +91,7 @@ export default function AllSetlist({ type, songId}) {
                     })}
                     {type === "add" && (
                         <div>
-                            <OpenModalButton type="create-setlist" modalComponent={<CreateSetlistModal addToSetlist={true} songId={songId} />}/>
+                            <OpenModalButton type="create-setlist" modalComponent={<CreateSetlistModal addToSetlist={true} songId={songId} />} />
                             <p>DONE</p>
                         </div>
                     )}

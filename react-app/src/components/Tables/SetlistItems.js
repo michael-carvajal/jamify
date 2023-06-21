@@ -6,30 +6,31 @@ export default function SetlistItems() {
     const { setlists } = useSelector(state => state)
     const { songsheets } = useSelector(state => state)
     const { Setlists, Setlist_items } = setlists;
-    const {Songsheets, Artists, Genres} = songsheets
+    const { Songsheets, Artists, Genres } = songsheets
     if (!Setlists || !Songsheets) {
         // Show a loading screen or spinner while the data is being fetched
         return <div>Loading...</div>;
     }
-    // const setlist = Setlists[listId]
+    const setlist = Setlists[listId]
     const listItems = Object.values(Setlist_items);
     const items = listItems.filter(list => list.setlist_id === parseInt(listId))
     const songs = items.map(item => {
         return {
             song: Songsheets[item.songsheet_id],
-            artist : Artists[Songsheets[item.songsheet_id].artist_id],
-            genre : Genres[Songsheets[item.songsheet_id].genre_id],
+            artist: Artists[Songsheets[item.songsheet_id].artist_id],
+            genre: Genres[Songsheets[item.songsheet_id].genre_id],
         }
     })
 
     console.log(songs);
     return (
-        <div>
-            <table>
+        <div id="table-container" className="all-setlists">
+            <table className="table">
                 <thead>
+                    <h1 >{setlist.name} Setlist Detials</h1>
                     <tr>
-                        <th>ARTIST</th>
                         <th>SONG</th>
+                        <th>ARTIST</th>
                         <th>GENRE</th>
                     </tr>
                 </thead>
@@ -38,10 +39,10 @@ export default function SetlistItems() {
                         console.log(song);
                         return (
                             <tr key={`list-item-list-${index}`}>
-                                <th>{song.artist.name}</th>
-                                <th><NavLink to={`/songsheet-detail/${song.song.id}`}>{song.song.title}</NavLink></th>
+                                <td><NavLink to={`/songsheet-detail/${song.song.id}`} className="select-link">{song.song.title}</NavLink></td>
+                                <td>{song.artist.name}</td>
 
-                                <th>{song.genre.name}</th>
+                                <td>{song.genre.name}</td>
                             </tr>
                         )
                     })}
