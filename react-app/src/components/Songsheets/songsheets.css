@@ -48,3 +48,11 @@
 .user-songsheets{
     width: 100%;
 }
+.delete-songsheet {
+     background-color: black;
+     padding: 15px;
+     width: 400px;
+     display: flex;
+     flex-direction: column;
+     gap: 23px;
+ }

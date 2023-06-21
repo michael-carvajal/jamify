@@ -9,7 +9,6 @@
 }
 .all-setlists{
     width: 90%;
-    overflow-x: auto;
     display: flex;
     flex-direction: column;
 }
