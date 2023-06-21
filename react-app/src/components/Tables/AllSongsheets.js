@@ -46,7 +46,7 @@ export default function AllSongsheets({ type, userSongsheets }) {
                                     <td className="delete-stock">
                                         <OpenModalButton
                                             type="delete-songsheet"
-                                            modalComponent={<DeleteSongsheetModal sheetId={song.id} />}
+                                            modalComponent={<DeleteSongsheetModal sheetId={song.id} songName={song.title}/>}
                                         />
                                         <NavLink to={`/publish/${song.id}`}><i className="fa fa-pencil"></i></NavLink>
                                     </td>
