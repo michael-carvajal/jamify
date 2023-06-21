@@ -18,11 +18,14 @@ export default function SongsheetDetail() {
     console.log("this is the bdy  =========>", songSetlists);
     return (
         <div id="songsheet-detail">
-            <h1>{songsheet.title} by {artist.name}</h1>
+            <div className="songsheet-header">
+
+                <p id="title-artist">{songsheet.title} by <span style={{fontWeight: "600"}}>{artist.name}</span></p>
             <p>Added to {songSetlists.length} Setlists</p>
+            </div>
             <OpenModalButton type="add-to-setlist" modalComponent={<AllSetlist type="add" songId={songsheet.id} />} />
+            <p>Created by demo_user, last editted on {songsheet.updated_at.split(" ").slice(0, 3).join(" ")}</p>
             <p>Key {songsheet.key}</p>
-            <p>Author (have to find the author) last edit on {songsheet.updated_at}</p>
             <pre>{songsheet.body}</pre>
         </div>
     )
