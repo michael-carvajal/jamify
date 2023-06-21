@@ -26,6 +26,11 @@
     padding: 10px;
     border: 1px solid var(--ug-grey);
     border-radius: 2px;
+    background-color: var(--background-color);
+    width: 300px;
+}
+.create-setlist-form > .signup-header {
+    color: white;
 }
 
 .create-setlist-btn:hover{

@@ -22,7 +22,7 @@ export default function UserSetlists() {
         <div className="user-setlists">
             <div className="user-setlists-header">
             <h1>My Setlists</h1>
-            <OpenModalButton modalComponent={<CreateSetlistModal />} type="create-setlist"/>
+            <OpenModalButton modalComponent={<CreateSetlistModal type="create"/>} type="create-setlist"/>
 
             </div>
             <AllSetlist userSetlists={userSetlists} type="user" />

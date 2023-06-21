@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postSongsheet, putSongsheet } from "../../store/songsheets";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import OpenModalButton from "../OpenModalButton";
+import AddAssociations from "./AddAsscociations";
 
 export default function PublishSongsheet({ type }) {
     const { songsheets } = useSelector((state) => state);
@@ -91,9 +93,11 @@ export default function PublishSongsheet({ type }) {
     return (
         <form onSubmit={type === "update" ? handleUpdate : handleSubmit} className="publish-songsheet">
             <label>
-                Album
-                <input required value={album_id} onChange={(e) => setAlbum_id(e.target.value)} />
+                <p>Album <OpenModalButton modalComponent={<AddAssociations type={"Album"} artistArr={artistArr} />} type={"Album"}/></p>
+
+                <input placeholder="Album" required value={album_id} onChange={(e) => setAlbum_id(e.target.value)} />
                 <select value={album_id} onChange={(e) => setAlbum_id(e.target.value)}>
+                    <option disabled selected value="">Choose Album</option>
                     {AlbumsArr.map((album, index) => (
                         <option value={album.name} key={`album-index-${index}`}>
                             {album.name}
@@ -102,9 +106,12 @@ export default function PublishSongsheet({ type }) {
                 </select>
             </label>
             <label>
-                Artist
-                <input required value={artist_id} onChange={(e) => setArtist_id(e.target.value)} />
+                <p>Artist <OpenModalButton modalComponent={<AddAssociations type={"Artist"} />} type={"Artist"} /></p>
+
+                <input placeholder="Artist" required value={artist_id} onChange={(e) => setArtist_id(e.target.value)} />
                 <select value={artist_id} onChange={(e) => setArtist_id(e.target.value)}>
+                    <option disabled selected value="">Choose Artist</option>
+
                     {artistArr.map((artist, index) => (
                         <option value={artist.name} key={`artist-index-${index}`}>
                             {artist.name}
@@ -113,9 +120,12 @@ export default function PublishSongsheet({ type }) {
                 </select>
             </label>
             <label>
-                Genre
-                <input required value={genre_id} onChange={(e) => setGenre_id(e.target.value)} />
+                <p>Genre <OpenModalButton modalComponent={<AddAssociations type={"Genre"}/>} type={"Genre"} /> </p>
+
+                <input placeholder="Genre" required value={genre_id} onChange={(e) => setGenre_id(e.target.value)} />
                 <select value={genre_id} onChange={(e) => setGenre_id(e.target.value)}>
+                    <option disabled selected value="">Choose Genre</option>
+
                     {genreArr.map((genre, index) => (
                         <option value={genre.name} key={`genre-index-${index}`}>
                             {genre.name}
@@ -123,13 +133,20 @@ export default function PublishSongsheet({ type }) {
                     ))}
                 </select>
             </label>
-            <label>
-                Key
-                <input required value={key} onChange={(e) => setKey(e.target.value)} />
+            <label className="key-title">
+                <label style={{ width: "60%" }}>
+                <p>Title</p>
+                    <input placeholder="Title" style={{ width: "100%" }}  required value={title} onChange={(e) => setTitle(e.target.value)} />
+
+                </label>
+                <label>
+                <p>Key</p>
+                <input placeholder="Key" required value={key} onChange={(e) => setKey(e.target.value)} />
+
+                </label>
             </label>
             <label>
-                Title
-                <input required value={title} onChange={(e) => setTitle(e.target.value)} />
+
             </label>
             <label>Body</label>
             <textarea value={body} onChange={(e) => setBody(e.target.value)} className="songsheet-textarea" />
