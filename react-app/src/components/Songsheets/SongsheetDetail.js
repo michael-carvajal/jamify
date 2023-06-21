@@ -17,15 +17,15 @@ export default function SongsheetDetail() {
         dispatch(fetchAllUsers())
         console.log('right after dispatch===========>');
     }, [dispatch])
-    if (!Songsheets || !setlists || !session) {
+    if (!Songsheets || !setlists.Setlist_items || !session) {
         return <div>Loading...</div>
     }
     // const songsheetsArray = Object.values(Songsheets)
     const songsheet = Songsheets[songId]
-    const authorName = session.allUsers.users.find(user => user.id === songsheet.author_id).username
+    const authorName = session?.allUsers?.users.find(user => user.id === songsheet.author_id).username || null
     console.log(authorName);
     const artist = Artists[songsheet.artist_id]
-    const songSetlists = Object.values(setlists?.Setlist_items).filter(list => list.songsheet_id === parseInt(songId) )
+    const songSetlists = Object.values(setlists?.Setlist_items).filter(list => list.songsheet_id === parseInt(songId)) || [];
     // console.log("this is the bdy  =========>", songSetlists);
     return (
         <div id="songsheet-detail">
