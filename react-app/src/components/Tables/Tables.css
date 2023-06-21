@@ -45,8 +45,17 @@
     padding-right: 15px;
 }
 .delete-stock {
-    position: absolute;
-    right: 10px;
+   display: flex;
+   font-size: 28px;
+   align-items: center;
+   position: absolute;
+   border: none !important;
+}
+.delete-stock > * {
+    align-self: center;
+    position: relative;
+    bottom: 5px;
+    right: 70px;
 }
 
 .fa-pencil:hover{
