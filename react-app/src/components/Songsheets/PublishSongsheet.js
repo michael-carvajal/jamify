@@ -31,6 +31,7 @@ export default function PublishSongsheet({ type }) {
                 const sheetToUpdate = Songsheets[sheetId];
                 setAlbum_id(AlbumsArr.find((album) => album.id === sheetToUpdate.album_id)?.name);
                 setArtist_id(artistArr.find((artist) => artist.id === sheetToUpdate.artist_id)?.name);
+                setGenre_id(genreArr.find((genre) => genre.id === sheetToUpdate.genre_id)?.name);
                 setBody(sheetToUpdate.body);
                 setKey(sheetToUpdate.key);
                 setTitle(sheetToUpdate.title);
@@ -93,19 +94,6 @@ export default function PublishSongsheet({ type }) {
     return (
         <form onSubmit={type === "update" ? handleUpdate : handleSubmit} className="publish-songsheet">
             <label>
-                <p>Album <OpenModalButton modalComponent={<AddAssociations type={"Album"} artistArr={artistArr} />} type={"Album"}/></p>
-
-                <input placeholder="Album" required value={album_id} onChange={(e) => setAlbum_id(e.target.value)} />
-                <select value={album_id} onChange={(e) => setAlbum_id(e.target.value)}>
-                    <option disabled selected value="">Choose Album</option>
-                    {AlbumsArr.map((album, index) => (
-                        <option value={album.name} key={`album-index-${index}`}>
-                            {album.name}
-                        </option>
-                    ))}
-                </select>
-            </label>
-            <label>
                 <p>Artist <OpenModalButton modalComponent={<AddAssociations type={"Artist"} />} type={"Artist"} /></p>
 
                 <input placeholder="Artist" required value={artist_id} onChange={(e) => setArtist_id(e.target.value)} />
@@ -115,6 +103,19 @@ export default function PublishSongsheet({ type }) {
                     {artistArr.map((artist, index) => (
                         <option value={artist.name} key={`artist-index-${index}`}>
                             {artist.name}
+                        </option>
+                    ))}
+                </select>
+            </label>
+            <label>
+                <p>Album <OpenModalButton modalComponent={<AddAssociations type={"Album"} artistArr={artistArr} />} type={"Album"}/></p>
+
+                <input placeholder="Album" required value={album_id} onChange={(e) => setAlbum_id(e.target.value)} />
+                <select value={album_id} onChange={(e) => setAlbum_id(e.target.value)}>
+                    <option disabled selected value="">Choose Album</option>
+                    {AlbumsArr.map((album, index) => (
+                        <option value={album.name} key={`album-index-${index}`}>
+                            {album.name}
                         </option>
                     ))}
                 </select>

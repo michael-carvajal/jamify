@@ -17,9 +17,9 @@ export default function DeleteSetlistModal({ listId,listName }) {
     return (
         <div className="delete-songsheet">
 
-            <h2>Are you sure you want to delete { listName}?</h2>
+            <h2>Are you sure you want to delete "{ listName}"?</h2>
             <div className="user-login-signup">
-                <p onClick={deleteSetlist} id="signup-btn">Yes (Delete Setlist)</p>
+                <p onClick={deleteSetlist} id="signup-btn" style={{backgroundColor: "var(--ug-red)"}}>Yes (Delete Setlist)</p>
                 <p onClick={closeModal} id="login-btn">No (Keep Setlist)</p>
             </div>
         </div>

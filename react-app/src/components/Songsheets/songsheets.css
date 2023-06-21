@@ -36,6 +36,9 @@
     margin-bottom: 10px;
 }
 
+.songsheet-textarea::-webkit-scrollbar {
+    display: none;
+}
 .songsheet-textarea {
     width: 500px;
     height: 800px;
@@ -43,6 +46,8 @@
     font-size: 18px;
     background-color: var(--background-color);
     color: var(--border-text-color);
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .key-title {
@@ -83,21 +88,23 @@ select {
     border-radius: 2px;
     width: fit-content;
 }
+
 .add-to-setlist:hover {
- cursor: pointer;
+    cursor: pointer;
 }
-.songsheet-header{
+
+.songsheet-header {
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
 }
 
-#title-artist  {
+#title-artist {
     font-size: 24px;
 }
 
-#songsheet-detail{
+#songsheet-detail {
     display: flex;
     flex-direction: column;
     gap: 15px;

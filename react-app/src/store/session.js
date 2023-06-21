@@ -1,10 +1,15 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const GET_ALL_USERS = "session/GET_ALL_USERS";
 
 const setUser = (user) => ({
 	type: SET_USER,
 	payload: user,
+});
+const getAllUsers = (users) => ({
+	type: GET_ALL_USERS,
+	users
 });
 
 const removeUser = () => ({
@@ -26,6 +31,17 @@ export const authenticate = () => async (dispatch) => {
 		}
 
 		dispatch(setUser(data));
+	}
+};
+export const fetchAllUsers = () => async (dispatch) => {
+	const response = await fetch("/api/users/");
+	if (response.ok) {
+		const data = await response.json();
+		if (data.errors) {
+			return;
+		}
+
+		dispatch(getAllUsers(data));
 	}
 };
 
@@ -99,9 +115,11 @@ export const signUp = (username, email, password, first_name, last_name) => asyn
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:
-			return { user: action.payload };
+			return { ...state, user: action.payload };
 		case REMOVE_USER:
-			return { user: null };
+			return { ...state, user: null };
+		case GET_ALL_USERS:
+			return {...state, allUsers : action.users}
 		default:
 			return state;
 	}
