@@ -93,7 +93,7 @@ export default function PublishSongsheet({ type }) {
     return (
         <form onSubmit={type === "update" ? handleUpdate : handleSubmit} className="publish-songsheet">
             <label>
-                <p>Album <OpenModalButton modalComponent={<AddAssociations type={"Album"}/>} type={"Album"}/></p>
+                <p>Album <OpenModalButton modalComponent={<AddAssociations type={"Album"} artistArr={artistArr} />} type={"Album"}/></p>
 
                 <input placeholder="Album" required value={album_id} onChange={(e) => setAlbum_id(e.target.value)} />
                 <select value={album_id} onChange={(e) => setAlbum_id(e.target.value)}>

@@ -1,18 +1,38 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
+import { postAssociations } from "../../store/songsheets"
+import { useModal } from "../../context/Modal"
 
-export default function AddAssociations({ type }) {
-    const [val, setVal] = useState()
+export default function AddAssociations({ type, artistArr }) {
+    const [name, setName] = useState("")
+    const [year_released, setYear_released] = useState("")
+    const [artist_id, setArtist_id] = useState("");
+
     const dispatch = useDispatch()
-    const handleSubmit = () => {
+    const { closeModal } = useModal()
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const artistId = artistArr.find((artist) => artist.name === artist_id)?.id;
+
+        const obj = {
+            name,
+            year_released :parseInt(year_released),
+            type,
+            artist_id :artistId
+        }
         switch (type) {
             case 'Artist':
-
+                dispatch(postAssociations(obj))
+                closeModal()
                 break;
             case 'Genre':
+                dispatch(postAssociations(obj))
+                closeModal()
 
                 break;
             case 'Album':
+                dispatch(postAssociations(obj))
+                closeModal()
 
                 break;
 
@@ -24,7 +44,20 @@ export default function AddAssociations({ type }) {
         <div className="signup-modal">
             <form onSubmit={handleSubmit}>
                 <h1>Add {type}</h1>
-                <input value={val} onChange={(e) => setVal(e.target.value)} type="text"></input>
+                <input value={name} onChange={(e) => setName(e.target.value)} type="text"></input>
+                {type === "Album" && <input value={year_released} onChange={(e) => setYear_released(e.target.value)} type="number"
+                    max={2050}
+                    min={500}
+                ></input>}
+                {type === "Album" && <select value={artist_id} onChange={(e) => setArtist_id(e.target.value)}>
+                    <option disabled selected value="">Choose Artist</option>
+
+                    {artistArr.map((artist, index) => (
+                        <option value={artist.name} key={`artist-index-${index}`}>
+                            {artist.name}
+                        </option>
+                    ))}
+                </select>}
                 <button type="submit">Add</button>
             </form>
         </div>

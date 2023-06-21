@@ -48,7 +48,7 @@ def songsheets():
         "Genres" : normalized_genres
         }
 
-@songsheet_routes.route('/artists', methods = ["GET", "POST"])
+@songsheet_routes.route('/Artist', methods = ["GET", "POST"])
 @login_required
 def artists():
     if request.method == "POST":
@@ -60,7 +60,7 @@ def artists():
         db.session.commit()
         return new_artist.to_dict()
 
-@songsheet_routes.route('/albums', methods = ["GET", "POST"])
+@songsheet_routes.route('/Album', methods = ["GET", "POST"])
 @login_required
 def albums():
     if request.method == "POST":
@@ -74,7 +74,7 @@ def albums():
         db.session.commit()
         return new_album.to_dict()
 
-@songsheet_routes.route('/genres', methods = ["GET", "POST"])
+@songsheet_routes.route('/Genre', methods = ["GET", "POST"])
 @login_required
 def genres():
     if request.method == "POST":

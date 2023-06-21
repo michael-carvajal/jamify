@@ -2,6 +2,9 @@ const ALL_SONGSHEETS = "songsheets/ALL_SONGSHEETS"
 const DELETE_SONGSHEET = "songsheets/DELETE_SONGSHEET"
 const POST_SONGSHEET = "songsheets/POST_SONGSHEET"
 const PUT_SONGSHEET = "songsheets/PUT_SONGSHEET"
+const ADD_ALBUM = "songsheets/ADD_ALBUM"
+const ADD_ARTIST = "songsheets/ADD_ARTIST"
+const ADD_GENRE = "songsheets/ADD_GENRE"
 
 const allSongsheets = obj => {
     return {
@@ -12,6 +15,24 @@ const allSongsheets = obj => {
 const addSongsheet = obj => {
     return {
         type: POST_SONGSHEET,
+        obj
+    }
+}
+const addAlbum = obj => {
+    return {
+        type: ADD_ALBUM,
+        obj
+    }
+}
+const addArtist = obj => {
+    return {
+        type: ADD_ARTIST,
+        obj
+    }
+}
+const addGenre = obj => {
+    return {
+        type: ADD_GENRE,
         obj
     }
 }
@@ -49,6 +70,17 @@ export const postSongsheet = (newSongsheet) => async (dispatch) => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newSongsheet)
+    })
+    const songCreated = await response.json()
+    console.log(songCreated);
+    dispatch(addSongsheet(songCreated))
+}
+export const postAssociations = (obj) => async (dispatch) => {
+    console.log(obj);
+    const response = await fetch(`/api/songsheets/${obj.type}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(obj)
     })
     const songCreated = await response.json()
     console.log(songCreated);
