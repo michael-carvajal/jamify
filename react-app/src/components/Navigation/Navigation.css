@@ -13,8 +13,14 @@
    align-items: center;
    justify-content: space-around;
    border-bottom: var(--ug-grey) 1px solid;
+   font-weight: 600;
  }
-
+.nav-bar p{
+  color: var(--ug-red)
+}
+.nav-bar p:hover{
+  cursor: pointer;
+}
  .nav-links{
     display: flex;
     width: 35%;
@@ -33,4 +39,14 @@
   align-items: center;
   width: 40px;
   background-color: none;
+}
+.search-container button{
+      padding: 0px 10px;
+}
+ button{
+      padding: 0px 10px;
+}
+button:hover{
+      cursor: pointer;
+      background-color: var(--modal-background);
 }

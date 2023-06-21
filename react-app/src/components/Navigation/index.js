@@ -12,6 +12,9 @@ function Navigation() {
 		dispatch(fetchAllSongsheets())
 		dispatch(fetchAllSetlists())
 	}, [dispatch])
+	const proFeature = () => {
+		alert("Pro feature coming soon!")
+	}
 	return (
 		<ul className='nav-bar'>
 			<li>
@@ -34,7 +37,7 @@ function Navigation() {
 					<NavLink to="/setlists">Setlists</NavLink>
 				</li>
 				<li>
-					<p href='#'>Pro</p>
+					<p onClick={proFeature}>Pro</p>
 				</li>
 			</div>
 
