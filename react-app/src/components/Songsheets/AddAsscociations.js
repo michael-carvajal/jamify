@@ -12,7 +12,11 @@ export default function AddAssociations({ type, artistArr }) {
     const { closeModal } = useModal()
     const handleSubmit = (e) => {
         e.preventDefault()
-        const artistId = artistArr.find((artist) => artist.name === artist_id)?.id;
+
+        let artistId = null;
+        if (type === "Album") {
+            artistId = artistArr.find((artist) => artist.name === artist_id)?.id;
+        }
 
         const obj = {
             name,
