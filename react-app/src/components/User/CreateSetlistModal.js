@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { postSetlist, putSetlist } from '../../store/setlists';
 import { useModal } from '../../context/Modal';
 import AllSetlist from '../Tables/Setlists';
-export default function CreateSetlistModal({ type, id, addToSetlist, songId }) {
+export default function CreateSetlistModal({ type, id, addToSetlist, songId, setlist }) {
     const session = useSelector(state => state.session)
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
+    const [name, setName] = useState(setlist?.name || "");
+    const [description, setDescription] = useState(setlist?.description || "");
     const dispatch = useDispatch()
     const { setModalContent, closeModal } = useModal();
 
