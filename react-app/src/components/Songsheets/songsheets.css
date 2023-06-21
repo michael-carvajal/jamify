@@ -72,6 +72,17 @@
     color: white;
     padding: 10px;
 }
-select{
+
+select {
     padding: 0 !important;
+}
+
+.add-to-setlist {
+    background-color: grey;
+    padding: 5px 10px 5px 5px;
+    border-radius: 2px;
+    width: fit-content;
+}
+.add-to-setlist:hover {
+ cursor: pointer;
 }

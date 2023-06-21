@@ -46,7 +46,9 @@ function OpenModalButton({
     )
   }
   if (type === "add-to-setlist") {
-    return <i className='fa fa-plus' onClick={onClick}>Add Songsheet to your setlist</i>
+    return (
+      <div className='add-to-setlist' onClick={onClick}><i className='fa fa-plus' ></i><span>Add to Setlist</span></div>
+    )
   }
   switch (type) {
     case 'Artist':

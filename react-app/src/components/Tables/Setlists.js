@@ -95,7 +95,7 @@ export default function AllSetlist({ type, songId }) {
                     })}
                     {type === "add" && (
                         <div>
-                            <OpenModalButton type="create-setlist" modalComponent={<CreateSetlistModal addToSetlist={true} songId={songId} />} />
+                            <OpenModalButton type="create-setlist" modalComponent={<CreateSetlistModal type="create" addToSetlist={true} songId={songId} />} />
                             <p>DONE</p>
                         </div>
                     )}
