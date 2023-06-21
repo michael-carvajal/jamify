@@ -20,11 +20,7 @@ export default function UserSetlists() {
     // console.log("this is the sessionUser ========> ", userSetlists);
     return (
         <div className="user-setlists">
-            <div className="user-setlists-header">
-            <h1>My Setlists</h1>
-            <OpenModalButton modalComponent={<CreateSetlistModal type="create"/>} type="create-setlist"/>
-
-            </div>
+           
             <AllSetlist userSetlists={userSetlists} type="user" />
         </div>
 

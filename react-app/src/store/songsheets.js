@@ -50,7 +50,7 @@ const removeSongsheet = sheetId => {
 }
 
 export const fetchAllSongsheets = () => async (dispatch) => {
-    const response  = await fetch("/api/songsheets")
+    const response = await fetch("/api/songsheets")
     const obj = await response.json()
     // console.log("this is frim the dfetch all ===============>  ",obj);
     dispatch(allSongsheets(obj))
@@ -58,7 +58,7 @@ export const fetchAllSongsheets = () => async (dispatch) => {
 export const DeleteSongsheet = (sheetId) => async (dispatch) => {
     const response = await fetch(`/api/songsheets/${sheetId}`, {
         method: "DELETE",
-        headers: {"Content-Type" : "application/json"}
+        headers: { "Content-Type": "application/json" }
     })
     const songDeleted = await response.json()
     console.log(songDeleted);
@@ -82,9 +82,24 @@ export const postAssociations = (obj) => async (dispatch) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(obj)
     })
-    const songCreated = await response.json()
-    console.log(songCreated);
-    dispatch(addSongsheet(songCreated))
+    const AssociationCreated = await response.json()
+    console.log(AssociationCreated);
+    switch (obj.type) {
+        case 'Artist':
+            dispatch(addArtist(AssociationCreated))
+            break;
+        case 'Genre':
+            dispatch(addGenre(AssociationCreated))
+
+            break;
+        case 'Album':
+            dispatch(addAlbum(AssociationCreated))
+
+            break;
+
+        default:
+            break;
+    }
 }
 export const putSongsheet = (obj, id) => async (dispatch) => {
     console.log(obj);
@@ -102,16 +117,24 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case ALL_SONGSHEETS:
             return action.obj
-        case DELETE_SONGSHEET:
-            const { [action.sheetId]: removedSongsheet, ...newSongsheets } = state.Songsheets;
+            case DELETE_SONGSHEET:
+                const { [action.sheetId]: removedSongsheet, ...newSongsheets } = state.Songsheets;
             return { ...state, Songsheets: newSongsheets }
         case POST_SONGSHEET:
             const addSongsheet = { ...state.Songsheets, [action.obj.id]: action.obj }
             return { ...state, Songsheets: addSongsheet }
-            case PUT_SONGSHEET:
-                const updatedSongsheet = { ...state.Songsheets, [action.obj.updated.id]: action.obj.updated }
-                return { ...state, Songsheets: updatedSongsheet }
-
+        case PUT_SONGSHEET:
+            const updatedSongsheet = { ...state.Songsheets, [action.obj.updated.id]: action.obj.updated }
+            return { ...state, Songsheets: updatedSongsheet }
+        case ADD_ARTIST:
+            const addArtist = { ...state.Artists, [action.obj.id]: action.obj }
+            return {...state, Artists: addArtist}
+        case ADD_GENRE:
+            const addGenre = { ...state.Genres, [action.obj.id]: action.obj }
+            return {...state, Genres: addGenre}
+        case ADD_ALBUM:
+            const addAlbum = { ...state.Albums, [action.obj.id]: action.obj }
+            return {...state, Albums: addAlbum}
         default:
             return state;
     }

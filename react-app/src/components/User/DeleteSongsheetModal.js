@@ -16,9 +16,12 @@ export default function DeleteSongsheetModal({sheetId}) {
     return (
         <div className="delete-songsheet">
 
-        <h2>Are you sure you want to delete Songsheet?</h2>
-        <p onClick={closeModal}>No (Keep Songsheet)</p>
-        <p onClick={deleteSongsheet}>Yes (Delete Songsheet)</p>
+            <h2>Are you sure you want to delete Songsheet?</h2>
+            <div className="user-login-signup">
+                <p onClick={deleteSongsheet} id="signup-btn">Yes (Delete Songsheet)</p>
+                <p onClick={closeModal}  id="login-btn">No (Keep Songsheet)</p>
+
+            </div>
         </div>
     )
 }

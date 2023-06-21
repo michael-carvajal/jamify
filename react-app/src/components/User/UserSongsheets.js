@@ -18,7 +18,7 @@ export default function UserSongsheets() {
     console.log("this is the sessionUser ========> ", userSongsheets);
     return (
         <div className="user-songsheets">
-            <h1>My Songsheets</h1>
+            
             <AllSongsheets userSongsheets={userSongsheets} type="user" />
         </div>
 

@@ -1,5 +1,5 @@
 .user-setlists{
-    padding: 14px;
+   width: 100%;
 }
 .user-setlists-header{
     display: flex;
@@ -7,7 +7,23 @@
     justify-content: space-between;
     align-items: center;
 }
-
+.all-setlists{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+.table{
+    margin: 0px auto;
+    width: 90%;
+    table-layout: auto;
+}
+/* .all-setlists{
+    padding: 3px 0px 0px 15px;
+    margin-bottom: 7px;
+}
+.all-setlists th{
+    padding-right: 30px;
+} */
 #create-setlist:hover{
     color: var(--ug-yellow);
     cursor: pointer;
