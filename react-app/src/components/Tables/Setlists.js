@@ -46,7 +46,11 @@ export default function AllSetlist({ type, songId }) {
         <div id="table-container" className="all-setlists">
             <table className="table">
                 <thead>
-                    <h1>All Public Setlists</h1>
+                    {type === 'user' ? <div className="user-setlists-header">
+                        <h1>My Setlists</h1>
+                        <OpenModalButton modalComponent={<CreateSetlistModal type="create" />} type="create-setlist" />
+                    </div> :
+                    <h1>All Public Setlists</h1>}
                     <tr>
                         <th>TITLE</th>
                         <th>DESCRIPTION</th>
