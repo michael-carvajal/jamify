@@ -43,7 +43,8 @@ export default function AllSetlist({ type, songId}) {
         dispatch(DeleteItem(item.id))
     }
     return (
-        <div id="table-container">
+        <div id="table-container" className="all-setlists">
+            <h1>All Public Setlists</h1>
             <table>
                 <thead>
                     <tr>
