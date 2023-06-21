@@ -13,14 +13,17 @@
     border-radius: 2px;
     background-color: var(--background-color);
 }
-.publish-songsheet span{
-        background-color: grey;
-        padding: 5px 10px;
-        border-radius: 2px;
-    }
-.publish-songsheet span:hover{
-        cursor: pointer;
-    }
+
+.publish-songsheet span {
+    background-color: grey;
+    padding: 5px 10px;
+    border-radius: 2px;
+}
+
+.publish-songsheet span:hover {
+    cursor: pointer;
+}
+
 .publish-songsheet select {
     height: 30px;
     border: 1px solid var(--ug-grey);
@@ -28,6 +31,7 @@
     background-color: var(--background-color);
     color: white;
 }
+
 .publish-songsheet p {
     margin-bottom: 10px;
 }
@@ -40,19 +44,34 @@
     background-color: var(--background-color);
     color: var(--border-text-color);
 }
-.key-title{
+
+.key-title {
     display: flex;
     width: 100%;
     gap: 20px;
 }
-.user-songsheets{
+
+.user-songsheets {
     width: 100%;
 }
+
 .delete-songsheet {
-     background-color: black;
-     padding: 15px;
-     width: 400px;
-     display: flex;
-     flex-direction: column;
-     gap: 23px;
- }
+    background-color: var(--modal-background);
+    padding: 15px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+}
+
+.input-shape {
+    height: 30px;
+    border: 1px solid var(--ug-grey);
+    border-radius: 2px;
+    background-color: var(--background-color);
+    color: white;
+    padding: 10px;
+}
+select{
+    padding: 0 !important;
+}

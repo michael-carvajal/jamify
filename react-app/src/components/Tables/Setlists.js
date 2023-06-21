@@ -83,7 +83,7 @@ export default function AllSetlist({ type, songId }) {
                                     <td className="delete-stock">
                                         <OpenModalButton
                                             type="delete-setlist"
-                                            modalComponent={<DeleteSetlistModal listId={setlist.id} />}
+                                            modalComponent={<DeleteSetlistModal listId={setlist.id} listName={setlist.name}/>}
                                         />
                                         <OpenModalButton type="edit-setlist" modalComponent={<CreateSetlistModal type="edit" id={setlist.id} />} />
                                     </td>

@@ -48,12 +48,12 @@ export default function AddAssociations({ type, artistArr }) {
         <div className="signup-modal">
             <form onSubmit={handleSubmit}>
                 <h1>Add {type}</h1>
-                <input value={name} onChange={(e) => setName(e.target.value)} type="text"></input>
-                {type === "Album" && <input value={year_released} onChange={(e) => setYear_released(e.target.value)} type="number"
+                <input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} type="text" className="input-shape"></input>
+                {type === "Album" && <input placeholder="Year" value={year_released} className="input-shape" onChange={(e) => setYear_released(e.target.value)} type="number"
                     max={2050}
                     min={500}
                 ></input>}
-                {type === "Album" && <select value={artist_id} onChange={(e) => setArtist_id(e.target.value)}>
+                {type === "Album" && <select value={artist_id} className="input-shape" onChange={(e) => setArtist_id(e.target.value)}>
                     <option disabled selected value="">Choose Artist</option>
 
                     {artistArr.map((artist, index) => (
@@ -62,7 +62,7 @@ export default function AddAssociations({ type, artistArr }) {
                         </option>
                     ))}
                 </select>}
-                <button type="submit">Add</button>
+                <button type="submit" id="signup-btn">Add</button>
             </form>
         </div>
     )
