@@ -5,10 +5,11 @@ import DeleteSetlistModal from "../User/DeleteSetlistModal";
 import CreateSetlistModal from "../User/CreateSetlistModal";
 import { DeleteItem, postSetlistItem } from "../../store/setlists";
 import "./setlists.css"
+import { useModal } from "../../context/Modal";
 export default function AllSetlist({ type, songId }) {
     const { setlists } = useSelector(state => state)
     const { Setlists, Setlist_items } = setlists;
-
+    const {closeModal} = useModal()
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user);
     if (!sessionUser && type === "add") {
@@ -46,7 +47,7 @@ export default function AllSetlist({ type, songId }) {
         <div id="table-container" className="all-setlists">
             <table className="table">
                 <thead>
-                    {type === 'user' ? <div className="user-setlists-header">
+                    {type === 'user' || type === "add" ? <div className="user-setlists-header">
                         <h1>My Setlists</h1>
                         <OpenModalButton modalComponent={<CreateSetlistModal type="create" />} type="create-setlist" />
                     </div> :
@@ -93,18 +94,18 @@ export default function AllSetlist({ type, songId }) {
                             </tr>
                         );
                     })}
-                    {type === "add" && (
-                        <div>
-                            <OpenModalButton type="create-setlist" modalComponent={<CreateSetlistModal type="create" addToSetlist={true} songId={songId} />} />
-                            <p>DONE</p>
-                        </div>
-                    )}
                 </tbody>
+            {type === "add" && (<p onClick={closeModal} id="signup-btn" className="setlist-done" style={{width: "fit-content", padding: "5px 10px", textAlign: "right"}}>DONE</p>)}
             </table>
         </div>
     );
 }
 
+//     <div>
+//         <OpenModalButton type="create-setlist" modalComponent={<CreateSetlistModal type="create" addToSetlist={true} songId={songId} />} />
+//         <p>DONE</p>
+//     </div>
+// )}
 // {
 //     type === "user" ? (
 //         <td className="delete-stock">
