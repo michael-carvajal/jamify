@@ -72,6 +72,35 @@
     color: white;
     padding: 10px;
 }
-select{
+
+select {
     padding: 0 !important;
+}
+
+.add-to-setlist {
+    background-color: grey;
+    padding: 5px 10px 5px 5px;
+    border-radius: 2px;
+    width: fit-content;
+}
+.add-to-setlist:hover {
+ cursor: pointer;
+}
+.songsheet-header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#title-artist  {
+    font-size: 24px;
+}
+
+#songsheet-detail{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 90%;
+    padding: 10px 15px 15px 15px;
 }

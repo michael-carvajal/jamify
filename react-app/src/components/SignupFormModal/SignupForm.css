@@ -4,16 +4,15 @@
     gap: 16px;
     width: 100%;
 }
-.signup-form input {
+ input, button {
     height: 30px;
     padding: 10px;
     border: 1px solid var(--ug-grey);
     border-radius: 2px;
     background-color: var(--background-color);
-}
-input{
     color: var(--border-text-color);
 }
+
 .signup-modal{
     padding: 15px;
     width: 300px;

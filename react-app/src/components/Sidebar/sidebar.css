@@ -8,6 +8,7 @@
     border-right: 1px solid var(--ug-grey);
     position: relative;
     max-width: 230px;
+    min-height: 50vh;
 }
 
 

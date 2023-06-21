@@ -59,3 +59,12 @@
     color: var(--ug-yellow);
     text-decoration: underline;
 }
+
+.setlist-done{
+    position: relative;
+    left: 573px;
+    top: 10px;
+}
+.setlist-done:hover{
+    cursor: pointer;
+}
