@@ -7,7 +7,7 @@ export default function LandingPage() {
     const { Songsheets, Artists, Genres } = songsheets
     if (!Songsheets) {
         // Show a loading screen or spinner while the data is being fetched
-        return <div>Loading...</div>
+        return <div></div>
     }
     const songsheetsArray = Object.values(Songsheets)
     // const artistsArr = Object.values(Artists)
@@ -27,7 +27,7 @@ export default function LandingPage() {
                     <img style={{ width: "30%" }} id="top-hits-img" src="https://jamify-aa.s3.us-east-2.amazonaws.com/Artists/ABBA.jpg" alt="band"></img>
                     <table>
                         <thead>
-                      
+
                         </thead>
                         <tbody>
                             {topHits.map(song => {

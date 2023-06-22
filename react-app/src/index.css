@@ -71,3 +71,7 @@ a {
     align-items: center;
     position: relative;
 }
+
+#sidebar-loader{
+    width: 180px;
+}
