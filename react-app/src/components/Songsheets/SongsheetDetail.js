@@ -18,7 +18,10 @@ export default function SongsheetDetail() {
         console.log('right after dispatch===========>');
     }, [dispatch])
     if (!Songsheets || !setlists.Setlist_items || !session) {
-        return <div>Loading...</div>
+        return <div>Loading...
+            <img src="/les-paul.svg" alt="SVG Image" id="guitar-spin"/>
+
+        </div>
     }
     // const songsheetsArray = Object.values(Songsheets)
     const songsheet = Songsheets[songId]
