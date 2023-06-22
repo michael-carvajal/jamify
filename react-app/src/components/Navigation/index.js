@@ -15,6 +15,9 @@ function Navigation() {
 	const proFeature = () => {
 		alert("Pro feature coming soon!")
 	}
+	const searchFeature = () => {
+		alert("Search Bar feature coming soon!")
+	}
 	return (
 		<ul className='nav-bar'>
 			<li>
@@ -47,7 +50,7 @@ function Navigation() {
 					onChange={e => setSearch(e.target.value)}
 					placeholder='Enter artists name or song title'
 				></input>
-				<button><i className='fa fa-search'></i></button>
+				<button onClick={searchFeature}><i className='fa fa-search'></i></button>
 			</div>
 
 		</ul>
