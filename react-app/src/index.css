@@ -56,6 +56,18 @@ a {
 }
 
 #guitar-spin {
-    animation: spin 1s linear infinite;
-    width: 500px;
+    animation: spin 1.3s linear infinite;
+    margin: 0px auto;
+    width: 40%;
+    position: absolute;
+    top: 100px;
+    z-index: 100;
+}
+
+.loading-container{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }

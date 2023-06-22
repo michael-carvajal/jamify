@@ -6,27 +6,44 @@ import { fetchAllSongsheets } from '../../store/songsheets';
 import { fetchAllSetlists } from '../../store/setlists';
 
 function Navigation() {
-	const [search, setSearch] = useState("")
-	const dispatch = useDispatch()
+	const [search, setSearch] = useState("");
+	const [isLoading, setIsLoading] = useState(true); // State to track loading status
+	const dispatch = useDispatch();
+
 	useEffect(() => {
-		dispatch(fetchAllSongsheets())
-		dispatch(fetchAllSetlists())
-	}, [dispatch])
+		const loadingTimeout = setTimeout(() => {
+			setIsLoading(false); // Set loading status to false after one second
+		}, 1000);
+
+		dispatch(fetchAllSongsheets());
+		dispatch(fetchAllSetlists());
+
+		return () => clearTimeout(loadingTimeout); // Clear the timeout on unmounting
+	}, [dispatch]);
+
 	const proFeature = () => {
-		alert("Pro feature coming soon!")
+		alert("Pro feature coming soon!");
+	};
+
+	if (isLoading) {
+		return (
+			<div className='loading-container'>
+
+				<img src="/les-paul.svg" alt="SVG Image" id="guitar-spin" />
+			</div>
+		);
 	}
+
 	return (
 		<ul className='nav-bar'>
 			<li>
 				<NavLink exact to="/">
 					<div className='logo-container'>
-
-					<img src='/logo2.png' alt='logo' id="logo"></img>
+						<img src='/logo2.png' alt='logo' id="logo"></img>
 					</div>
 				</NavLink>
 			</li>
 			<div className='nav-links'>
-
 				<li>
 					<NavLink to="/songsheets">Songsheets</NavLink>
 				</li>
@@ -45,11 +62,10 @@ function Navigation() {
 				<input
 					value={search}
 					onChange={e => setSearch(e.target.value)}
-					placeholder='Enter artists name or song title'
+					placeholder='Enter artist name or song title'
 				></input>
 				<button><i className='fa fa-search'></i></button>
 			</div>
-
 		</ul>
 	);
 }
