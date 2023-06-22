@@ -51,7 +51,7 @@ export default function SongsheetDetail() {
                 <p id="title-artist">
                     {songsheet.title} by <span style={{ fontWeight: "600" }}>{artist.name}</span>
                 </p>
-                <p>Added to {songSetlists.length} Setlists</p>
+                <p>Added to {songSetlists.length} { songSetlists.length === 1 ? "Setlist" : "Setlists"}</p>
             </div>
             <OpenModalButton
                 type="add-to-setlist"
