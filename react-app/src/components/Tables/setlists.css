@@ -68,3 +68,7 @@
 .setlist-done:hover{
     cursor: pointer;
 }
+
+.fa-check{
+    color: green;
+}
