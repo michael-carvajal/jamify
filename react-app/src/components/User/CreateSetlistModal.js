@@ -28,7 +28,9 @@ export default function CreateSetlistModal({ type, id, addToSetlist, songId, set
         console.log(addToSetlist);
         if (addToSetlist) {
             setModalContent(<AllSetlist type="add" songId={songId} />)
+            return
         }
+        closeModal()
     };
     return (
         <form onSubmit={handleSubmit} className='create-setlist-form'>

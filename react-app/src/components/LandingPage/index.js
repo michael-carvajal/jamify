@@ -16,7 +16,7 @@ export default function LandingPage() {
     const topHits = songsheetsArray.filter(song => song.id % 2 !== 0 || song.id === 2)
     console.log(topHits);
     const recentPublish = songsheetsArray.slice(songsheetsArray.length - 4);
-
+    const imgUrl = ["https://jamify-aa.s3.us-east-2.amazonaws.com/Artists/jb.jpg","https://jamify-aa.s3.us-east-2.amazonaws.com/Artists/the_beatles.jpg", "https://jamify-aa.s3.us-east-2.amazonaws.com/Artists/ABBA.jpg",]
     const decades = ["1960's", "1970's", "1980's", "2000's", "2010's"]
     return (
         <div className="landing-page">
