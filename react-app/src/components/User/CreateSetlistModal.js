@@ -24,7 +24,8 @@ export default function CreateSetlistModal({ type, id, addToSetlist, songId, set
             return
         }
         dispatch(postSetlist(setlist))
-        closeModal()
+        // closeModal()
+        console.log(addToSetlist);
         if (addToSetlist) {
             setModalContent(<AllSetlist type="add" songId={songId} />)
         }

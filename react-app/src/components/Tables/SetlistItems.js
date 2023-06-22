@@ -9,7 +9,10 @@ export default function SetlistItems() {
     const { Songsheets, Artists, Genres } = songsheets
     if (!Setlists || !Songsheets) {
         // Show a loading screen or spinner while the data is being fetched
-        return <div>Loading...</div>;
+        return <div>
+
+            
+        </div>;
     }
     const setlist = Setlists[listId]
     const listItems = Object.values(Setlist_items);

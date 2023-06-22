@@ -33,7 +33,7 @@
 }
 
 .fa-github, .fa-linkedin {
-    font-size: 80px;
+    font-size: 60px;
     padding-right: 15px;
 }
 .fa-github:hover, .fa-linkedin:hover {
@@ -41,8 +41,10 @@
 }
 
 .about {
-    position: absolute;
-    bottom: 0;
-    left: 16%;
+  display: flex;
     width: 100%;
+    margin: 0px auto;
+    align-content: center;
+    flex-wrap:  wrap;
+    justify-content: space-between;
 }

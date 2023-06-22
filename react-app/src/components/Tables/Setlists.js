@@ -35,6 +35,7 @@ export default function AllSetlist({ type, songId }) {
             setlist_id,
             songsheet_id: songId
         }
+        console.log(item);
         dispatch(postSetlistItem(item))
     }
     const handleRemove = (setlist_id) => {
@@ -49,7 +50,7 @@ export default function AllSetlist({ type, songId }) {
                 <thead>
                     {type === 'user' || type === "add" ? <div className="user-setlists-header">
                         <h1>My Setlists</h1>
-                        <OpenModalButton modalComponent={<CreateSetlistModal type="create" />} type="create-setlist" />
+                        <OpenModalButton modalComponent={<CreateSetlistModal songId={songId} type="create" addToSetlist={type === "add" ? true : false} />} type="create-setlist" />
                     </div> :
                     <h1>All Public Setlists</h1>}
                     <tr>
