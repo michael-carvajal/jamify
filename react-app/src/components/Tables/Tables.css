@@ -22,7 +22,6 @@
 
 #table-container .table-row:hover {
     background-color: #898989;
-    cursor: pointer;
 }
 #table-container th {
     padding-top: 12px;
