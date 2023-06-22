@@ -47,4 +47,9 @@
     align-content: center;
     flex-wrap:  wrap;
     justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+}
+.side-bar a:hover {
+    color: white;
 }

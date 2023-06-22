@@ -27,6 +27,7 @@ li {
     border: solid 2px var(--ug-grey);
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 body {
@@ -38,6 +39,7 @@ body {
 .main {
     display: flex;
     width: 100%;
+    position: relative;
 }
 
 a {
@@ -74,4 +76,49 @@ a {
 
 #sidebar-loader{
     width: 180px;
+}
+
+.custom-shape-divider-bottom-1687452667 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+    z-index: -10;
+}
+
+.custom-shape-divider-bottom-1687452667 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 85px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1687452667 .shape-fill {
+    fill: var(--modal-background);
+}
+
+.custom-shape-divider-top-1687453054 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -10;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1687453054 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 93px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1687453054 .shape-fill {
+fill: var(--modal-background);
 }
