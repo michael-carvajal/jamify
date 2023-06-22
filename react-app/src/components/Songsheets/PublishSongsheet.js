@@ -96,7 +96,6 @@ export default function PublishSongsheet({ type }) {
             <label>
                 <p>Artist <OpenModalButton modalComponent={<AddAssociations type={"Artist"} />} type={"Artist"} /></p>
 
-                <input placeholder="Artist" required value={artist_id} onChange={(e) => setArtist_id(e.target.value)} />
                 <select value={artist_id} onChange={(e) => setArtist_id(e.target.value)}>
                     <option disabled selected value="">Choose Artist</option>
 
@@ -110,7 +109,6 @@ export default function PublishSongsheet({ type }) {
             <label>
                 <p>Album <OpenModalButton modalComponent={<AddAssociations type={"Album"} artistArr={artistArr} />} type={"Album"}/></p>
 
-                <input placeholder="Album" required value={album_id} onChange={(e) => setAlbum_id(e.target.value)} />
                 <select value={album_id} onChange={(e) => setAlbum_id(e.target.value)}>
                     <option disabled selected value="">Choose Album</option>
                     {AlbumsArr.map((album, index) => (
@@ -123,7 +121,6 @@ export default function PublishSongsheet({ type }) {
             <label>
                 <p>Genre <OpenModalButton modalComponent={<AddAssociations type={"Genre"}/>} type={"Genre"} /> </p>
 
-                <input placeholder="Genre" required value={genre_id} onChange={(e) => setGenre_id(e.target.value)} />
                 <select value={genre_id} onChange={(e) => setGenre_id(e.target.value)}>
                     <option disabled selected value="">Choose Genre</option>
 

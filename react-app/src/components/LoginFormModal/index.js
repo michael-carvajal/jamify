@@ -33,14 +33,10 @@ function LoginFormModal() {
         <i className="fa fa-times" onClick={closeModal}></i>
       </div>
       <form onSubmit={handleSubmit} className="signup-form">
+
         <ul>
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <li key={idx} className="errors">{error}</li>
           ))}
         </ul>
           <input
