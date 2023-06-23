@@ -15,6 +15,7 @@ export default function PublishSongsheet({ type }) {
     const [body, setBody] = useState("");
     const [key, setKey] = useState("");
     const [title, setTitle] = useState("");
+    const [errors, setErrors] = useState({})
     const [loading, setLoading] = useState(true); // Add loading state
     const history = useHistory();
     const dispatch = useDispatch();
@@ -48,6 +49,24 @@ export default function PublishSongsheet({ type }) {
         const albumId = AlbumsArr.find((album) => album.name === album_id)?.id;
         const artistId = artistArr.find((artist) => artist.name === artist_id)?.id;
         const genreId = genreArr.find((genre) => genre.name === genre_id)?.id;
+        const newErrors = {}
+        if (!albumId) {
+            newErrors.album = "Must choose an Album"
+        }
+        if (!artistId) {
+            newErrors.artist = "Must choose an Artist"
+        }
+        if (!genreId) {
+            newErrors.genre = "Must choose a Genre"
+        }
+        if (!body) {
+            newErrors.body = "Body cannot be empty"
+
+        }
+        if (Object.values(newErrors).length > 0) {
+            setErrors(newErrors)
+            return
+        }
         const newSongsheet = {
             album_id: albumId,
             artist_id: artistId,
@@ -73,9 +92,27 @@ export default function PublishSongsheet({ type }) {
     }
     const handleUpdate = (e) => {
         e.preventDefault()
+        const newErrors = {}
         const albumId = AlbumsArr.find((album) => album.name === album_id)?.id;
         const artistId = artistArr.find((artist) => artist.name === artist_id)?.id;
         const genreId = genreArr.find((genre) => genre.name === genre_id)?.id;
+        if (!albumId) {
+            newErrors.album = "Must choose an Album"
+        }
+        if (!artistId) {
+            newErrors.artist = "Must choose an Artist"
+        }
+        if (!genreId) {
+            newErrors.genre = "Must choose a Genre"
+        }
+        if (!body) {
+            newErrors.body = "Body cannot be empty"
+
+        }
+        if (Object.values(newErrors).length > 0) {
+            setErrors(newErrors)
+            return
+        }
         const updatedSongsheet = {
             album_id: albumId,
             artist_id: artistId,
@@ -94,6 +131,9 @@ export default function PublishSongsheet({ type }) {
     return (
         <form onSubmit={type === "update" ? handleUpdate : handleSubmit} className="publish-songsheet">
             <label>
+                {Object.values(errors).map(error => {
+                    return (<p className="errors">{error}</p>)
+                })}
                 <p>Artist <OpenModalButton modalComponent={<AddAssociations type={"Artist"} />} type={"Artist"} /></p>
 
                 <select value={artist_id} onChange={(e) => setArtist_id(e.target.value)}>
@@ -147,7 +187,7 @@ export default function PublishSongsheet({ type }) {
 
             </label>
             <label>Body</label>
-            <textarea value={body} onChange={(e) => setBody(e.target.value)} className="songsheet-textarea" />
+            <textarea value={body} onChange={(e) => setBody(e.target.value) } className="songsheet-textarea" />
             {type === "update" ? <button type="submit">Update Songsheet</button> : <button type="submit">Create Songsheet</button>}
         </form>
     );
