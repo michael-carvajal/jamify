@@ -27,3 +27,8 @@ six==1.16.0
 sqlalchemy==1.4.46
 werkzeug==2.2.2
 wtforms==3.0.1
+beautifulsoup4==4.12.2
+boto3==1.26.160
+chromedriver==2.24.1
+selenium==4.10.0
+requests==2.31.0
