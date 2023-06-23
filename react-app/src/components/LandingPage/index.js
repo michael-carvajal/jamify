@@ -30,7 +30,10 @@ export default function LandingPage() {
 
                         </thead>
                         <tbody>
-                            {topHits.map(song => {
+                            {topHits.map((song, index) => {
+                                if (index > 3) {
+                                    return
+                                }
                                 const artistName = Artists[song.artist_id].name
                                 return (
                                     <tr>

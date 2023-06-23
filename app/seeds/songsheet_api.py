@@ -52,15 +52,18 @@ for url in urls:
     soup = BeautifulSoup(html_source_code, 'html.parser')
     links = soup.findAll("pre", class_="tK8GG Ty_RP")
     artists = soup.findAll("a", class_="aPPf7 fcGj5")
+    titles = soup.findAll("h1", class_="dUjZr")
     # print()
-    # print("artists ================---------0----------------------->",artists)
+    print("titles ================---------0----------------------->",titles)
 
     chordsString = ""
     artist = artists[0].text
+    title = titles[0].text
     for item in links:
         chordsString += f'\n{item.text}'
     print(chordsString)
     print(artist)
+    print(title)
 
 
 driver.quit()
