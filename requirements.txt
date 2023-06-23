@@ -32,3 +32,4 @@ boto3==1.26.160
 chromedriver==2.24.1
 selenium==4.10.0
 requests==2.31.0
+chromedriver-binary==114.0.5735.90

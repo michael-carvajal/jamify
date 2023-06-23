@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-
+import chromedriver_binary
 urls = [
     'https://tabs.ultimate-guitar.com/tab/acdc/back-in-black-chords-18953',
     'https://tabs.ultimate-guitar.com/tab/the-beatles/hey-jude-chords-17275',
@@ -39,7 +39,7 @@ chrome_options.add_argument("--disable-dev-shm-usage")
 print(5)
 chrome_options.add_argument("--disable-gpu")  # Add this line for WSL
 
-chrome_options.binary_location = '/usr/bin/google-chrome'  # Update with the correct Chrome binary location in WSL
+# chrome_options.binary_location = '/usr/bin/google-chrome'  # Update with the correct Chrome binary location in WSL
 driver = webdriver.Chrome(options=chrome_options)
 print(6)
 
