@@ -1,4 +1,4 @@
-from app.models import db, Songsheet, environment, SCHEMA
+from app.models import db, Songsheet, environment, SCHEMA, Artist
 from sqlalchemy.sql import text
 from datetime import datetime
 from .lyrics import lucy_lyrics,  eleanor_lyrics, lyrics_boyfriend, lyrics_sorry, lyrics_dancing, super_trouper_lyrics
@@ -159,10 +159,18 @@ def seed_songsheets():
         print(chordsString)
         print(artist)
         print(title)
+        newArtist = Artist(
+            name=artist,
+            created_at=datetime.now(),
+            updated_at=datetime.now()
+
+        )
+        db.session.add(newArtist)
+        db.session.commit()
         newSongsheet = Songsheet(
             title=title,
             body= chordsString,
-            artist_id=3,
+            artist_id=newArtist.to_dict()["id"],
             author_id=2,
             album_id=7,
             song_name=title,

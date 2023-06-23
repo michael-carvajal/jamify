@@ -53,17 +53,21 @@ for url in urls:
     links = soup.findAll("pre", class_="tK8GG Ty_RP")
     artists = soup.findAll("a", class_="aPPf7 fcGj5")
     titles = soup.findAll("h1", class_="dUjZr")
+    keys= soup.findAll("td", class_="IcoWj")
+
     # print()
-    print("titles ================---------0----------------------->",titles)
+    print("keys ================---------0----------------------->",keys[2].text)
 
     chordsString = ""
     artist = artists[0].text
     title = titles[0].text
+    key = keys[2].text
     for item in links:
         chordsString += f'\n{item.text}'
     print(chordsString)
     print(artist)
     print(title)
+    print(key)
 
 
 driver.quit()
