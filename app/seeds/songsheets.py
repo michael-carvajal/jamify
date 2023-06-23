@@ -148,17 +148,23 @@ def seed_songsheets():
         links = soup.findAll("pre", class_="tK8GG Ty_RP")
         artists = soup.findAll("a", class_="aPPf7 fcGj5")
         titles = soup.findAll("h1", class_="dUjZr")
+        keys= soup.findAll("td", class_="IcoWj")
+
         # print()
         # print("artists ================---------0----------------------->",artists)
 
         chordsString = ""
         artist = artists[0].text
         title = titles[0].text
+        key = keys[2].text
+
         for item in links:
             chordsString += f'\n{item.text}'
         print(chordsString)
         print(artist)
         print(title)
+        print(key)
+
         newArtist = Artist(
             name=artist,
             created_at=datetime.now(),
@@ -172,9 +178,8 @@ def seed_songsheets():
             body= chordsString,
             artist_id=newArtist.to_dict()["id"],
             author_id=2,
-            album_id=7,
             song_name=title,
-            key="A Major",
+            key=key,
             version=1,
             genre_id=2,
             created_at=datetime.now(),
