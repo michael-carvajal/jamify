@@ -26,6 +26,10 @@ sqlalchemy = "==1.4.46"
 werkzeug = "==2.2.2"
 wtforms = "==3.0.1"
 boto3 = "*"
+requests = "*"
+beautifulsoup4 = "*"
+selenium = "*"
+chromedriver = "*"
 
 [dev-packages]
 
