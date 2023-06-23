@@ -5,6 +5,7 @@ from .lyrics import lucy_lyrics,  eleanor_lyrics, lyrics_boyfriend, lyrics_sorry
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+import chromedriver_binary
 
 
 # Adds a demo Songsheet, you can add other Songsheets here if you want
@@ -132,7 +133,7 @@ def seed_songsheets():
     print(5)
     chrome_options.add_argument("--disable-gpu")  # Add this line for WSL
 
-    chrome_options.binary_location = '/usr/bin/google-chrome'  # Update with the correct Chrome binary location in WSL
+    # chrome_options.binary_location = '/usr/bin/google-chrome'  # Update with the correct Chrome binary location in WSL
     driver = webdriver.Chrome(options=chrome_options)
     print(6)
 
