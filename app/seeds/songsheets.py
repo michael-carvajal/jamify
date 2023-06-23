@@ -99,13 +99,11 @@ def seed_songsheets():
     db.session.add(dancing)
     urls = [
         'https://tabs.ultimate-guitar.com/tab/acdc/back-in-black-chords-18953',
-        'https://tabs.ultimate-guitar.com/tab/the-beatles/hey-jude-chords-17275',
         'https://tabs.ultimate-guitar.com/tab/nirvana/smells-like-teen-spirit-chords-807883',
         'https://tabs.ultimate-guitar.com/tab/eagles/hotel-california-chords-46190',
         'https://tabs.ultimate-guitar.com/tab/coldplay/yellow-chords-114080',
         "https://tabs.ultimate-guitar.com/tab/the-animals/house-of-the-rising-sun-chords-18688",
         "https://tabs.ultimate-guitar.com/tab/pink-floyd/wish-you-were-here-chords-44555",
-        "https://tabs.ultimate-guitar.com/tab/the-beatles/yesterday-chords-17450",
         "https://tabs.ultimate-guitar.com/tab/grover-washington-jr-/just-the-two-of-us-chords-663141",
         "https://tabs.ultimate-guitar.com/tab/john-lennon/imagine-chords-9306",
         "https://tabs.ultimate-guitar.com/tab/david-bowie/space-oddity-chords-105869",
