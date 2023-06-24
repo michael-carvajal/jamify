@@ -5,6 +5,7 @@ from .lyrics import lucy_lyrics,  eleanor_lyrics, lyrics_boyfriend, lyrics_sorry
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+import os
 import chromedriver_binary
 
 
@@ -133,7 +134,12 @@ def seed_songsheets():
     print(5)
     chrome_options.add_argument("--disable-gpu")  # Add this line for WSL
 
-    chrome_options.binary_location = '/opt/render/project/.render/chrome/chromedriver'  # Update with the correct Chrome binary location in WSL
+
+    if(os.environ.get("FLASK_ENV") == "production"):
+        chrome_options.binary_location = '/opt/render/project/.render/chrome/chromedriver'  # Update with the correct Chrome binary location in WSL
+    else:
+        chrome_options.binary_location = '/usr/bin/google-chrome-stable'  # Update with the correct Chrome binary location in WSL
+
     driver = webdriver.Chrome(options=chrome_options)
     print(6)
 
