@@ -137,10 +137,11 @@ def seed_songsheets():
 
     if(os.environ.get("FLASK_ENV") == "production"):
         chrome_options.binary_location = '/opt/render/project/.render/chrome/usr/bin/google-chrome-stable'  # Update with the correct Chrome binary location in WSL
+        driver = webdriver.Chrome(options=chrome_options, executable_path="/opt/render/project/.render/chrome/chromedriver")
     else:
         chrome_options.binary_location = '/usr/bin/google-chrome-stable'  # Update with the correct Chrome binary location in WSL
+        driver = webdriver.Chrome(options=chrome_options)
 
-    driver = webdriver.Chrome(options=chrome_options)
     print(6)
 
     for url in urls:
