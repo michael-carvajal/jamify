@@ -94,7 +94,7 @@ def seed_songsheets():
     db.session.add(sorry)
     db.session.add(trouper)
     db.session.add(dancing)
-    
+
 
     db.session.commit()
 

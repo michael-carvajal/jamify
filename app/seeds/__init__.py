@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .artists import seed_artists, undo_artists
 from .albums import seed_albums, undo_albums
 from .songsheets import seed_songsheets, undo_songsheets
+from .songsheets_seeds import seed_songsheets_selenium, undo_songsheets_selenium
 from .setlists import seed_setlists, undo_setlists
 from .setlist_items import seed_setlist_items, undo_setlist_items
 from .genres import seed_genres, undo_genres
@@ -23,6 +24,7 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_setlist_items()
         undo_setlists()
+        undo_songsheets_selenium()
         undo_songsheets()
         undo_genres()
         undo_albums()
@@ -33,6 +35,7 @@ def seed():
     seed_albums()
     seed_genres()
     seed_songsheets()
+    seed_songsheets_selenium()
     seed_setlists()
     seed_setlist_items()
     # Add other seed functions here
@@ -43,6 +46,7 @@ def seed():
 def undo():
     undo_setlist_items()
     undo_setlists()
+    undo_songsheets_selenium()
     undo_songsheets()
     undo_genres()
     undo_albums()
