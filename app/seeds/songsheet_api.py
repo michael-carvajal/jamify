@@ -1,16 +1,17 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from bs4 import BeautifulSoup
 import chromedriver_binary
+from datetime import datetime
+
 urls = [
     'https://tabs.ultimate-guitar.com/tab/acdc/back-in-black-chords-18953',
-    'https://tabs.ultimate-guitar.com/tab/the-beatles/hey-jude-chords-17275',
     'https://tabs.ultimate-guitar.com/tab/nirvana/smells-like-teen-spirit-chords-807883',
     'https://tabs.ultimate-guitar.com/tab/eagles/hotel-california-chords-46190',
     'https://tabs.ultimate-guitar.com/tab/coldplay/yellow-chords-114080',
     "https://tabs.ultimate-guitar.com/tab/the-animals/house-of-the-rising-sun-chords-18688",
     "https://tabs.ultimate-guitar.com/tab/pink-floyd/wish-you-were-here-chords-44555",
-    "https://tabs.ultimate-guitar.com/tab/the-beatles/yesterday-chords-17450",
     "https://tabs.ultimate-guitar.com/tab/grover-washington-jr-/just-the-two-of-us-chords-663141",
     "https://tabs.ultimate-guitar.com/tab/john-lennon/imagine-chords-9306",
     "https://tabs.ultimate-guitar.com/tab/david-bowie/space-oddity-chords-105869",
@@ -28,46 +29,89 @@ urls = [
     "https://tabs.ultimate-guitar.com/tab/arctic-monkeys/do-i-wanna-know-chords-1418189",
     "https://tabs.ultimate-guitar.com/tab/bob-dylan/blowin-in-the-wind-chords-14835"
 ]
-print(1)
-chrome_options = Options()
-print(2)
-chrome_options.add_argument("--headless")
-print(3)
-chrome_options.add_argument("--no-sandbox")
-print(4)
-chrome_options.add_argument("--disable-dev-shm-usage")
-print(5)
-chrome_options.add_argument("--disable-gpu")  # Add this line for WSL
+# Create the Python file
+file_content = '''from app.models import db, Songsheet, environment, SCHEMA, Artist
+from sqlalchemy.sql import text
+from datetime import datetime
 
-# chrome_options.binary_location = '/usr/bin/google-chrome'  # Update with the correct Chrome binary location in WSL
-driver = webdriver.Chrome(options=chrome_options)
-print(6)
+def seed_songsheets_selenium():
+    # Adds a demo Songsheet, you can add other Songsheets here if you want\n'''
 
+file_content += f'''
+    songs_list = []
+
+    '''
+
+# Iterate over the URLs
 for url in urls:
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.binary_location = "/usr/bin/google-chrome-stable"
+    driver = webdriver.Chrome(options=chrome_options)
 
     driver.get(url)
-
     html_source_code = driver.execute_script("return document.body.innerHTML;")
-    # print(html_source_code)
     soup = BeautifulSoup(html_source_code, 'html.parser')
     links = soup.findAll("pre", class_="tK8GG Ty_RP")
     artists = soup.findAll("a", class_="aPPf7 fcGj5")
     titles = soup.findAll("h1", class_="dUjZr")
-    keys= soup.findAll("td", class_="IcoWj")
-
-    # print()
-    print("keys ================---------0----------------------->",keys[2].text)
+    keys = soup.findAll("td", class_="IcoWj")
 
     chordsString = ""
     artist = artists[0].text
-    title = titles[0].text
+    title = titles[0].text.split()
+    title = (" ").join(title[0:-1])
     key = keys[2].text
     for item in links:
-        chordsString += f'\n{item.text}'
-    print(chordsString)
-    print(artist)
-    print(title)
-    print(key)
+        chordsString += f'\\n{item.text}'
+
+    # Append instance creation to the file content
+    file_content += f'''
+    newArtist = Artist(
+        name="{artist}",
+        created_at=datetime.now(),
+        updated_at=datetime.now()
+    )
+    db.session.add(newArtist)
+    db.session.commit()
+    '''
+    file_content += f'''
+    {title.lower().replace(' ', '_')} = Songsheet(
+        title="{title}",
+        body="""{chordsString}""",
+        artist_id=newArtist.id,
+        author_id=1,
+        song_name="{title}",
+        key="{key}",
+        version=1,
+        genre_id=1,
+        created_at=datetime.now(),
+        updated_at=datetime.now()
+    )
+    songs_list.append({title.lower().replace(' ', '_')})
+    '''
+    print('song sheet complete')
+    driver.quit()
+
+# Append the closing statements to the file content
+file_content += '''
+
+    db.session.add_all(songs_list)
+    db.session.commit()
 
 
-driver.quit()
+def undo_songsheets_selenium():
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.songsheets RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM songsheets"))
+
+    db.session.commit()
+'''
+
+# Write the content to the Python file
+with open("songsheets_seeds.py", "w") as file:
+    file.write(file_content)
