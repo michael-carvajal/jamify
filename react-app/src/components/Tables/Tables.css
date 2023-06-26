@@ -38,6 +38,7 @@
 .fa-trash:hover {
     color: red;
     padding-right: 15px;
+    cursor: pointer;
 }
 
 .fa-trash {
