@@ -19,7 +19,10 @@ const keyboardShortcuts = KeyboardShortcuts.create({
     keyboardConfig: KeyboardShortcuts.HOME_ROW,
 });
 
-export default function Keyboard({displayPiano}) {
+export default function Keyboard({ displayPiano }) {
+    if (displayPiano !== "display") {
+        return null
+    }
     return (
         <div className={`keyboard-container ${displayPiano}`} >
             <div className="mt-5">
