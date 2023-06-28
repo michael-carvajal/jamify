@@ -16,3 +16,14 @@
 .PianoDarkTheme .ReactPiano__Key--active.ReactPiano__Key--natural {
     background: #0396ca;
 }
+.keyboard-container{
+    position: absolute;
+    display: none;
+    right: 0;
+    top: 72px;
+    z-index: 1;
+}
+
+.display{
+    display: block;
+}
