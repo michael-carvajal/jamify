@@ -19,9 +19,9 @@ const keyboardShortcuts = KeyboardShortcuts.create({
     keyboardConfig: KeyboardShortcuts.HOME_ROW,
 });
 
-export default function Keyboard() {
+export default function Keyboard({displayPiano}) {
     return (
-        <div>
+        <div className='keyboard-conatiner'>
             <h1>react-piano demos</h1>
             <div className="mt-5">
                 <p>Basic piano with hardcoded width</p>
