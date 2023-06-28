@@ -4,16 +4,22 @@ import { useDispatch } from 'react-redux';
 import './Navigation.css';
 import { fetchAllSongsheets } from '../../store/songsheets';
 import { fetchAllSetlists } from '../../store/setlists';
+import Keyboard from '../Keyboard';
 
 function Navigation() {
 	const [search, setSearch] = useState("")
+	const [displayPiano, setDisplayPiano] = useState("")
 	const dispatch = useDispatch()
 	useEffect(() => {
 		dispatch(fetchAllSongsheets())
 		dispatch(fetchAllSetlists())
 	}, [dispatch])
-	const proFeature = () => {
-		alert("Pro feature coming soon!")
+	const pianoFeature = () => {
+		if (!displayPiano) {
+			setDisplayPiano("display")
+			return
+		}
+		setDisplayPiano("")
 	}
 	const searchFeature = () => {
 		alert("Search Bar feature coming soon!")
@@ -40,7 +46,7 @@ function Navigation() {
 					<NavLink to="/setlists">Setlists</NavLink>
 				</li>
 				<li>
-					<p onClick={proFeature}>Pro</p>
+					<p onClick={pianoFeature}>Piano</p>
 				</li>
 			</div>
 
@@ -52,7 +58,7 @@ function Navigation() {
 				></input>
 				<button onClick={searchFeature}><i className='fa fa-search'></i></button>
 			</div>
-
+			<Keyboard displayPiano={displayPiano} />
 		</ul>
 	);
 }
