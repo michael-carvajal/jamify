@@ -1,19 +1,16 @@
 """empty message
 
-Revision ID: ac932654e623
-Revises:
-Create Date: 2023-06-29 22:03:15.179808
+Revision ID: 32133824a413
+Revises: 
+Create Date: 2023-06-29 22:17:12.729104
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = 'ac932654e623'
+revision = '32133824a413'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,17 +25,12 @@ def upgrade():
     sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE artists SET SCHEMA {SCHEMA};")
     op.create_table('genres',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE genres SET SCHEMA {SCHEMA};")
-
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(length=20), nullable=False),
@@ -53,8 +45,6 @@ def upgrade():
     )
     with op.batch_alter_table('users', schema=None) as batch_op:
         batch_op.create_index(batch_op.f('ix_users_username'), ['username'], unique=True)
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
     op.create_table('albums',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -66,20 +56,16 @@ def upgrade():
     sa.ForeignKeyConstraint(['artist_id'], ['artists.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE albums SET SCHEMA {SCHEMA};")
     op.create_table('demos',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('author_id', sa.Integer(), nullable=False),
-    sa.Column('file_link', sa.String(length=255), nullable=False),
+    sa.Column('file_link', sa.String(length=1000), nullable=False),
     sa.Column('name', sa.String(length=255), nullable=False),
     sa.Column('public', sa.Boolean(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['author_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE demos SET SCHEMA {SCHEMA};")
     op.create_table('setlists',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
@@ -91,8 +77,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['author_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE setlists SET SCHEMA {SCHEMA};")
     op.create_table('songsheets',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=50), nullable=False),
@@ -112,8 +96,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['genre_id'], ['genres.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE songsheets SET SCHEMA {SCHEMA};")
     op.create_table('user_likes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('setlist_id', sa.Integer(), nullable=True),
@@ -124,8 +106,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE user_likes SET SCHEMA {SCHEMA};")
     op.create_table('ratings',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('author_id', sa.Integer(), nullable=False),
@@ -138,8 +118,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['songsheet_id'], ['songsheets.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE ratings SET SCHEMA {SCHEMA};")
     op.create_table('setlist_items',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('songsheet_id', sa.Integer(), nullable=False),
@@ -149,8 +127,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['songsheet_id'], ['songsheets.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE setlist_items SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
