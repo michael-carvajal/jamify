@@ -4,7 +4,7 @@ const GET_DEMOS = "session/GET_DEMOS";
 
 const getDemos = (demos) => ({
     type: GET_DEMOS,
-    payload: demos,
+    demos
 });
 
 
@@ -13,7 +13,7 @@ export const fetchDemos = () => async (dispatch) => {
     const response = await fetch('/api/demos')
     const demos = await response.json()
 
-    getDemos(demos)
+    dispatch(getDemos(demos))
 }
 
 

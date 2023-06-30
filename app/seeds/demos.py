@@ -17,7 +17,15 @@ def seed_demos():
         public=True,
         created_at=datetime.now()
     )
+    mikes_first = Demo(
+        author_id=1,
+        file_link='https://jamify-aa.s3.us-east-2.amazonaws.com/Moonunitt+-+What+Happens+Next/Moonunitt+-+What+Happens+Next-+-+01+Mike"s+First.mp3',
+        name="Mike's First",
+        public=True,
+        created_at=datetime.now()
+    )
     db.session.add(young_dave)
+    db.session.add(mikes_first)
     db.session.commit()
 
 
