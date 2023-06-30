@@ -22,7 +22,7 @@ export default function Sidebar({ isLoaded }) {
     if (isLoading) {
         return (
             <div className="loading-container" id="sidebar-loader">
-                <img src="/les-paul.svg" alt="SVG Image" id="guitar-spin" />
+                <img src="/les-paul.svg" alt="guitar spinning" id="guitar-spin" />
             </div>
         );
     }
