@@ -14,6 +14,7 @@ import PublishSongsheet from "./components/Songsheets/PublishSongsheet";
 import AllSetlist from "./components/Tables/Setlists";
 import SetlistItems from "./components/Tables/SetlistItems";
 import UserSetlists from "./components/User/UserSetlists";
+import Demos from "./components/Demos";
 
 
 function App() {
@@ -63,6 +64,9 @@ function App() {
           </Route>
           <Route  path="/user/setlists">
             <UserSetlists />
+          </Route>
+          <Route  path="/user/demos">
+            <Demos />
           </Route>
           <Route  path={`/publish/:sheetId`}>
             <PublishSongsheet type="update" />

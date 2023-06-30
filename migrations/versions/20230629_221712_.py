@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: df0271933967
-Revises:
-Create Date: 2023-06-16 19:31:09.792810
+Revision ID: 32133824a413
+Revises: 
+Create Date: 2023-06-29 22:17:12.729104
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'df0271933967'
+revision = '32133824a413'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -54,6 +54,16 @@ def upgrade():
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['artist_id'], ['artists.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('demos',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('author_id', sa.Integer(), nullable=False),
+    sa.Column('file_link', sa.String(length=1000), nullable=False),
+    sa.Column('name', sa.String(length=255), nullable=False),
+    sa.Column('public', sa.Boolean(), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
+    sa.ForeignKeyConstraint(['author_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('setlists',
@@ -127,6 +137,7 @@ def downgrade():
     op.drop_table('user_likes')
     op.drop_table('songsheets')
     op.drop_table('setlists')
+    op.drop_table('demos')
     op.drop_table('albums')
     with op.batch_alter_table('users', schema=None) as batch_op:
         batch_op.drop_index(batch_op.f('ix_users_username'))

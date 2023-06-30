@@ -9,6 +9,7 @@ from .models import db, User, Songsheet, SetlistItem
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.songsheet_routes import songsheet_routes
+from .api.demos_routes import demos_routes
 from .api.setlist_routes import setlist_routes
 from .seeds import seed_commands
 from .config import Config
@@ -33,6 +34,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(songsheet_routes, url_prefix='/api/songsheets')
 app.register_blueprint(setlist_routes, url_prefix='/api/setlists')
+app.register_blueprint(demos_routes, url_prefix='/api/demos')
 db.init_app(app)
 Migrate(app, db)
 

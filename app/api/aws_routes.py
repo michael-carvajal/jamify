@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, redirect
 from app.models import db, Image
 from flask_login import current_user, login_required
 from app.api.aws_helpers import (

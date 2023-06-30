@@ -22,7 +22,7 @@ export default function Sidebar({ isLoaded }) {
     if (isLoading) {
         return (
             <div className="loading-container" id="sidebar-loader">
-                <img src="/les-paul.svg" alt="SVG Image" id="guitar-spin" />
+                <img src="/les-paul.svg" alt="guitar spinning" id="guitar-spin" />
             </div>
         );
     }
@@ -37,6 +37,8 @@ export default function Sidebar({ isLoaded }) {
             )}
             <NavLink to="/user/songsheets">My Songsheets</NavLink>
             <NavLink to="/user/setlists">My Setlists</NavLink>
+            <NavLink to="/user/demos">My Demos</NavLink>
+
             {isLoaded && (
                 <li>
                     <ProfileButton user={sessionUser} />
