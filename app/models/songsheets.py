@@ -15,7 +15,7 @@ class Songsheet(db.Model):
     body = db.Column(db.String(10000), nullable=False)
     artist_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('artists.id')), nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    album_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('albums.id')), nullable=False)
+    album_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('albums.id')))
     genre_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('genres.id')), nullable=False)
     song_name = db.Column(db.String(50), nullable=False)
     key = db.Column(db.String(20), nullable=False)
