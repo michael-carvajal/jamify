@@ -29,7 +29,7 @@ export const postDemo = (demo) => async (dispatch) => {
     })
     const newDemo = await response.json()
 
-    dispatch(addDemo(newDemo))
+    await dispatch(addDemo(newDemo))
 }
 
 
@@ -41,8 +41,8 @@ export default function reducer(state = initialState, action) {
         case GET_DEMOS:
             return { ...state, ...action.demos };
         case POST_DEMO:
-            const addedDemo = { ...state.demos, [action.demo.id]: action.demo }
-            return { ...state, addedDemo}
+            const addedDemo = { ...state, [action.demo.id]: action.demo }
+            return addedDemo
         default:
             return state;
     }
