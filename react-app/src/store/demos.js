@@ -7,9 +7,9 @@ const getDemos = (demos) => ({
     type: GET_DEMOS,
     demos
 });
-const addDemo = (demos) => ({
+const addDemo = (demo) => ({
     type: POST_DEMO,
-    demos
+    demo
 });
 
 
@@ -22,9 +22,9 @@ export const fetchDemos = () => async (dispatch) => {
     dispatch(getDemos(demos))
 }
 export const postDemo = (demo) => async (dispatch) => {
+    console.log('logging form data in reducer ==========>',demo);
     const response = await fetch('/api/aws/demo', {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body : demo
     })
     const newDemo = await response.json()

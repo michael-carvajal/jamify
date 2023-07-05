@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDemos, postDemo } from '../../store/demos';
 
+
 const Demos = () => {
     const [audioFile, setAudioFile] = useState(null);
     const [name, setName] = useState('');
@@ -33,26 +34,20 @@ const Demos = () => {
         formData.append('name', name);
         formData.append('public', true);
         formData.append('author_id', authorId);
-        console.log('here is the form dataaa ===================>', typeof formData);
+
+
+        // log
+        console.log('here is the form dataaa ===================>',  formData);
         await dispatch(postDemo(formData))
-        // Send the form data to your Flask backend using fetch or Axios
-        // fetch('/upload-audio', {
-        //     method: 'POST',
-        //     body: formData,
-        // })
-        //     .then((response) => {
-        //         // Handle the response from the backend
-        //         // e.g., display success message or handle errors
-        //     })
-        //     .catch((error) => {
-        //         // Handle any errors that occur during the request
-        //     });
     };
 
     return (
         <div>
 
-            <form onSubmit={handleSubmit}>
+            <form
+                onSubmit={handleSubmit}
+                encType="multipart/form-data"
+            >
                 <div>
                     <label htmlFor="audio">Audio File:</label>
                     <input type="file" id="audio" accept="audio/*" onChange={handleFileChange} />

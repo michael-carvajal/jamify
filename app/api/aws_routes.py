@@ -11,30 +11,40 @@ aws_routes = Blueprint("aws", __name__)
 @aws_routes.route("/demo", methods=["POST"])
 @login_required
 def upload_image():
+    print("inside post demo form!!!!!!!!!!!!!!!!!!!!!!!")
+    # data = request.get_json()
+
+    print("here is the data ========================>",request)
     form = DemoForm()
-
+    form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
-
+        (print("Form has validatrd =================================================>"))
         demo = form.data["demo"]
+        print(1111111111111111)
         demo.filename = get_unique_filename(demo.filename)
+        print(222222222222222)
+        print(demo.filename)
         upload = upload_file_to_s3(demo)
-
+        print(333333333333333)
+        print(upload)
+        name = form.data['name']
+        author_id = form.data['author_id']
+        public = form.data['public']
         if "url" not in upload:
         # if the dictionary doesn't have a url key
         # it means that there was an error when we tried to upload
         # so we send back that error message
-            return render_template("post_form.html", form=form, errors=[upload])
-        data = request.json
-        print("here is the data ========================>",data)
+            return {upload}   #render_template("post_form.html", form=form, errors=[upload])
         url = upload["url"]
-        new_demo = Demo(file_link= url, author_id=data.get('author_id'), public=data.get('public'), name=data.get('name'),
+        new_demo = Demo(file_link= url, author_id=author_id, public=public, name=name,
                         created_at=datetime.now())
         db.session.add(new_demo)
         db.session.commit()
         return new_demo.to_dict()
 
     if form.errors:
+        print("errors in the form ++++++++++>")
         print(form.errors)
-        return render_template("post_form.html", form=form, errors=form.errors)
+        return form.errors
 
-    return render_template("post_form.html", form=form, errors=None)
+    return {"error"}
