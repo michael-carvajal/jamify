@@ -2,7 +2,7 @@ from flask import Blueprint, request, render_template, redirect
 from app.models import db, Demo
 from flask_login import current_user, login_required
 from app.api.aws_helpers import (
-    upload_file_to_s3, get_unique_filename)
+    upload_file_to_s3, get_unique_filename, remove_file_from_s3)
 from app.forms.aws_form import DemoForm
 from datetime import datetime
 
@@ -48,3 +48,15 @@ def upload_image():
         return form.errors
 
     return {"error"}
+
+@aws_routes.route("/demo/<int:id>", methods=["DELETE"])
+@login_required
+def deleteDemo(id):
+    if request.method == "DELETE":
+        data = request.get_json()
+        print(data)
+        link = data['file_link']
+        print(link)
+        demo_to_delete = Demo.query.get(id)
+        print(demo_to_delete)
+        

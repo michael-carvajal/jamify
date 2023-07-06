@@ -19,7 +19,7 @@ const Demos = () => {
         return <h2>Loading...</h2>
     }
     const userDemos = Object.values(demos).filter(demo => demo.author_id === session.user?.id)
-    console.log(userDemos);
+    // console.log(userDemos);
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -40,6 +40,10 @@ const Demos = () => {
         console.log('here is the form dataaa ===================>',  formData);
         await dispatch(postDemo(formData))
     };
+
+    const handleDelete = () => {
+        console.log('delete beginning');
+    }
 
     return (
         <div>
@@ -69,6 +73,7 @@ const Demos = () => {
                             <source src={demo.file_link} type="audio/mp3" />
                             Your browser does not support the audio element.
                         </audio>
+                        <i onClick={handleDelete} className='fa fa-trash'></i>
                     </div>
                 )
             })}
