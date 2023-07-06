@@ -45,8 +45,11 @@ const Demos = () => {
         console.log('delete beginning');
         console.log(demo);
         dispatch(deleteDemo(demo))
+        // setAudioFile(null)
+        // setName('')
+        // setAuthorId('')
     }
-
+    console.log(userDemos);
     return (
         <div>
 
@@ -68,9 +71,9 @@ const Demos = () => {
                 </div>
                 <button type="submit">Submit</button>
             </form>
-            {userDemos.map(demo => {
+            {userDemos.map((demo, idx) => {
                 return (
-                    <div>
+                    <div key={`index-to-demos-${idx}`}>
                         <audio controls>
                             <source src={demo.file_link} type="audio/mp3" />
                             Your browser does not support the audio element.

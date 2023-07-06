@@ -27,10 +27,10 @@ export const fetchDemos = () => async (dispatch) => {
     dispatch(getDemos(demos))
 }
 export const postDemo = (demo) => async (dispatch) => {
-    console.log('logging form data in reducer ==========>',demo);
+    console.log('logging form data in reducer ==========>', demo);
     const response = await fetch('/api/aws/demo', {
         method: "POST",
-        body : demo
+        body: demo
     })
     const newDemo = await response.json()
 
@@ -40,8 +40,8 @@ export const deleteDemo = (demo) => async (dispatch) => {
     // console.log('logging form data in reducer ==========>',demo);
     const response = await fetch(`/api/aws/demo/${demo.id}`, {
         method: "DELETE",
-        headers : {'Content-Type' : 'application/json'},
-        body : JSON.stringify(demo)
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(demo)
     })
     const deletedDemo = await response.json()
     console.log(deletedDemo);
@@ -51,7 +51,7 @@ export const deleteDemo = (demo) => async (dispatch) => {
 
 
 
-const initialState = { };
+const initialState = {};
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -61,8 +61,10 @@ export default function reducer(state = initialState, action) {
             const addedDemo = { ...state, [action.demo.id]: action.demo }
             return addedDemo
         case DELETE_DEMO:
-            const { [action.demo.id]: removedDemo, ...newState } = state
-            return {newState}
+            const { [action.demo.id]: deletedDemo, ...newState } = state;
+            return newState;
+
+
         default:
             return state;
     }
