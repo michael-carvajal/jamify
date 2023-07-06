@@ -8,6 +8,7 @@ from .setlists import seed_setlists, undo_setlists
 from .setlist_items import seed_setlist_items, undo_setlist_items
 from .genres import seed_genres, undo_genres
 from .demos import seed_demos, undo_demos
+from .ratings import seed_ratings, undo_ratings
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -23,6 +24,7 @@ def seed():
         # command, which will  truncate all tables prefixed with
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
+        undo_ratings()
         undo_demos()
         undo_setlist_items()
         undo_setlists()
@@ -41,12 +43,14 @@ def seed():
     seed_setlists()
     seed_setlist_items()
     seed_demos()
+    seed_ratings()
     # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_ratings()
     undo_demos()
     undo_setlist_items()
     undo_setlists()
