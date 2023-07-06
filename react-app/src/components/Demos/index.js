@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDemos, postDemo } from '../../store/demos';
+import { deleteDemo, fetchDemos, postDemo } from '../../store/demos';
 
 
 const Demos = () => {
@@ -41,8 +41,10 @@ const Demos = () => {
         await dispatch(postDemo(formData))
     };
 
-    const handleDelete = () => {
+    const handleDelete = (demo) => {
         console.log('delete beginning');
+        console.log(demo);
+        dispatch(deleteDemo(demo))
     }
 
     return (
@@ -73,7 +75,7 @@ const Demos = () => {
                             <source src={demo.file_link} type="audio/mp3" />
                             Your browser does not support the audio element.
                         </audio>
-                        <i onClick={handleDelete} className='fa fa-trash'></i>
+                        <i onClick={() => handleDelete(demo)} className='fa fa-trash'></i>
                     </div>
                 )
             })}

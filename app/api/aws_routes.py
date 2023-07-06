@@ -59,4 +59,7 @@ def deleteDemo(id):
         print(link)
         demo_to_delete = Demo.query.get(id)
         print(demo_to_delete)
-        
+        remove_file_from_s3(link)
+        db.session.delete(demo_to_delete)
+        db.session.commit()
+        return demo_to_delete.to_dict()
