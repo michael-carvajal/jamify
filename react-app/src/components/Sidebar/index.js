@@ -38,6 +38,7 @@ export default function Sidebar({ isLoaded }) {
             <NavLink to="/user/songsheets">My Songsheets</NavLink>
             <NavLink to="/user/setlists">My Setlists</NavLink>
             <NavLink to="/user/demos">My Demos</NavLink>
+            <NavLink to="/user/reviews">My Reviews</NavLink>
 
             {isLoaded && (
                 <li>
