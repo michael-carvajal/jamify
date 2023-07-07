@@ -27,3 +27,8 @@
 .display{
     display: block;
 }
+
+.mt-5{
+    position: fixed;
+    right: 49px;
+}
