@@ -23,7 +23,6 @@ export default function PublishSongsheet({ type }) {
     const artistArr = Artists ? Object.values(Artists) : [];
     const genreArr = Genres ? Object.values(Genres) : [];
     const AlbumsArr = Albums ? Object.values(Albums) : [];
-    // console.log(genreArr);
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true); // Set loading to true before fetching data

@@ -15,10 +15,9 @@ export default function UserSongsheets() {
         return <div>Loading...</div>
     }
     const userSongsheets = Object.values(Songsheets).filter(song => song.author_id === sessionUser.id)
-    console.log("this is the sessionUser ========> ", userSongsheets);
     return (
         <div className="user-songsheets">
-            
+
             <AllSongsheets userSongsheets={userSongsheets} type="user" />
         </div>
 

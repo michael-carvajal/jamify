@@ -27,7 +27,6 @@ export const fetchDemos = () => async (dispatch) => {
     dispatch(getDemos(demos))
 }
 export const postDemo = (demo) => async (dispatch) => {
-    console.log('logging form data in reducer ==========>', demo);
     const response = await fetch('/api/aws/demo', {
         method: "POST",
         body: demo
@@ -37,14 +36,12 @@ export const postDemo = (demo) => async (dispatch) => {
     await dispatch(addDemo(newDemo))
 }
 export const deleteDemo = (demo) => async (dispatch) => {
-    // console.log('logging form data in reducer ==========>',demo);
     const response = await fetch(`/api/aws/demo/${demo.id}`, {
         method: "DELETE",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(demo)
     })
     const deletedDemo = await response.json()
-    console.log(deletedDemo);
 
     await dispatch(removeDemo(deletedDemo))
 }

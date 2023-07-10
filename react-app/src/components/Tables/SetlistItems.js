@@ -11,7 +11,7 @@ export default function SetlistItems() {
         // Show a loading screen or spinner while the data is being fetched
         return <div>
 
-            
+
         </div>;
     }
     const setlist = Setlists[listId]
@@ -25,7 +25,6 @@ export default function SetlistItems() {
         }
     })
 
-    console.log(songs);
     return (
         <div id="table-container" className="all-setlists">
             <table className="table">
@@ -39,7 +38,6 @@ export default function SetlistItems() {
                 </thead>
                 <tbody>
                     {songs.map((song, index) => {
-                        console.log(song);
                         return (
                             <tr key={`list-item-list-${index}`}>
                                 <td><NavLink to={`/songsheet-detail/${song.song.id}`} className="select-link">{song.song.title}</NavLink></td>
