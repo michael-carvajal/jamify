@@ -52,7 +52,6 @@ const removeSongsheet = sheetId => {
 export const fetchAllSongsheets = () => async (dispatch) => {
     const response = await fetch("/api/songsheets")
     const obj = await response.json()
-    // console.log("this is frim the dfetch all ===============>  ",obj);
     dispatch(allSongsheets(obj))
 }
 export const DeleteSongsheet = (sheetId) => async (dispatch) => {
@@ -61,29 +60,24 @@ export const DeleteSongsheet = (sheetId) => async (dispatch) => {
         headers: { "Content-Type": "application/json" }
     })
     const songDeleted = await response.json()
-    console.log(songDeleted);
     dispatch(removeSongsheet(sheetId))
 }
 export const postSongsheet = (newSongsheet) => async (dispatch) => {
-    console.log(newSongsheet);
     const response = await fetch(`/api/songsheets`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newSongsheet)
     })
     const songCreated = await response.json()
-    console.log(songCreated);
     dispatch(addSongsheet(songCreated))
 }
 export const postAssociations = (obj) => async (dispatch) => {
-    console.log(obj);
     const response = await fetch(`/api/songsheets/${obj.type}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(obj)
     })
     const AssociationCreated = await response.json()
-    console.log(AssociationCreated);
     switch (obj.type) {
         case 'Artist':
             dispatch(addArtist(AssociationCreated))
@@ -102,14 +96,12 @@ export const postAssociations = (obj) => async (dispatch) => {
     }
 }
 export const putSongsheet = (obj, id) => async (dispatch) => {
-    console.log(obj);
     const response = await fetch(`/api/songsheets/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(obj)
     })
     const songUpdated = await response.json()
-    console.log(songUpdated);
     dispatch(updateSongsheet(songUpdated))
 }
 const initialState = {}

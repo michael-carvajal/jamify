@@ -17,10 +17,9 @@ export default function UserSetlists() {
         return <div>Loading...</div>
     }
     const userSetlists = Object.values(Setlists).filter(list => list.author_id === sessionUser.id)
-    // console.log("this is the sessionUser ========> ", userSetlists);
     return (
         <div className="user-setlists">
-           
+
             <AllSetlist userSetlists={userSetlists} type="user" />
         </div>
 

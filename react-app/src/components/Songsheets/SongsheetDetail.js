@@ -38,7 +38,6 @@ export default function SongsheetDetail() {
     const authorName =
         session?.allUsers?.users.find((user) => user.id === songsheet.author_id)
             ?.username || null;
-    console.log(authorName);
     const artist = Artists[songsheet.artist_id];
     const songSetlists =
         Object.values(setlists?.Setlist_items).filter(

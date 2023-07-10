@@ -6,14 +6,9 @@ export default function DeleteSetlistModal({ listId,listName }) {
     const { closeModal } = useModal()
     const dispatch = useDispatch()
     const deleteSetlist = () => {
-        // console.log(typeof listId);
-        console.log(1);
         dispatch(DeleteSetlist(listId))
-        console.log(2);
         closeModal()
-        console.log(3);
     }
-    // console.log(listId);
     return (
         <div className="delete-songsheet">
 

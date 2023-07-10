@@ -29,19 +29,16 @@ export default function AllSetlist({ type, songId }) {
     const listItems = Object.values(Setlist_items);
 
     const setlistMapper = type === "user" || type === 'add' ? userSetlists : setlistsArray;
-    // console.log(userSetlists);
     const handleAdd = (setlist_id) => {
         const item = {
             setlist_id,
             songsheet_id: songId
         }
-        console.log(item);
         dispatch(postSetlistItem(item))
     }
     const handleRemove = (setlist_id) => {
         // const list = Setlists[setlist_id]
         const item = listItems.find(item => item.setlist_id === setlist_id && item.songsheet_id === songId)
-        // console.log(items);
         dispatch(DeleteItem(item.id))
     }
     return (
@@ -72,7 +69,6 @@ export default function AllSetlist({ type, songId }) {
                                 isInList = true
                             }
                         })
-                        console.log(isInList);
                         return (
                             <tr className="table-row" key={`setlist-list-${index}`}>
                                 <td>

@@ -45,7 +45,6 @@ const addSetlist = list => {
 export const fetchAllSetlists = () => async (dispatch) => {
     const response = await fetch("/api/setlists")
     const obj = await response.json()
-    console.log(obj);
     dispatch(allSetlists(obj))
 }
 export const DeleteSetlist = (id) => async (dispatch) => {
@@ -53,7 +52,6 @@ export const DeleteSetlist = (id) => async (dispatch) => {
         method: "DELETE",
     })
     const deletedSetlist = await response.json()
-    console.log(deletedSetlist);
     dispatch(removeSetlist(id))
 }
 export const DeleteItem = (id) => async (dispatch) => {
@@ -61,7 +59,6 @@ export const DeleteItem = (id) => async (dispatch) => {
         method: "DELETE",
     })
     const deletedItem = await response.json()
-    console.log(deletedItem);
     dispatch(removeSetlistItem(id))
 }
 export const postSetlist = (setlist) => async (dispatch) => {
@@ -71,7 +68,6 @@ export const postSetlist = (setlist) => async (dispatch) => {
         body : JSON.stringify(setlist)
     })
     const newSetlist = await response.json()
-    console.log(newSetlist);
     dispatch(addSetlist(newSetlist))
 }
 export const postSetlistItem = (item) => async (dispatch) => {
@@ -81,7 +77,6 @@ export const postSetlistItem = (item) => async (dispatch) => {
         body : JSON.stringify(item)
     })
     const newSetlistItem = await response.json()
-    console.log(newSetlistItem);
     dispatch(addSetlistItem(newSetlistItem))
 }
 
@@ -92,7 +87,6 @@ export const putSetlist = (setlist, id) => async (dispatch) => {
         body : JSON.stringify(setlist)
     })
     const updatedSetlist = await response.json()
-    console.log(updatedSetlist);
     dispatch(addSetlist(updatedSetlist))
 }
 

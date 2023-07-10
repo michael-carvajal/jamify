@@ -11,7 +11,6 @@ const Demos = () => {
     const { demos } = useSelector(state => state)
     const { session } = useSelector(state => state)
     useEffect(() => {
-        // console.log('inside use effect');
         dispatch(fetchDemos())
     }, [dispatch])
 
@@ -22,7 +21,6 @@ const Demos = () => {
         return <h2>Login to create Demos!</h2>
     }
     const userDemos = Object.values(demos).filter(demo => demo.author_id === session.user?.id)
-    // console.log(userDemos);
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -39,20 +37,15 @@ const Demos = () => {
         formData.append('author_id', session.user.id);
 
 
-        // log
-        console.log('here is the form dataaa ===================>',  formData);
         await dispatch(postDemo(formData))
     };
 
     const handleDelete = (demo) => {
-        console.log('delete beginning');
-        console.log(demo);
         dispatch(deleteDemo(demo))
         // setAudioFile(null)
         // setName('')
         // setAuthorId('')
     }
-    console.log(userDemos);
     return (
         <div>
 
