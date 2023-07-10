@@ -47,7 +47,7 @@ def delete_and_update_ratings(id):
 
     if rating is None:
         return {"error" : "Rating does not exist"}
-    if rating['author_id'] != current_user.id:
+    if rating.author_id != current_user.id:
         return {"error" : "Forbidden"}
 
     if request.method == 'DELETE':
@@ -56,4 +56,21 @@ def delete_and_update_ratings(id):
         return rating.to_dict()
 
 
-    
+    form = RatingForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print('before                      validate')
+    if form.validate_on_submit():
+        print('before                      after')
+        # Add the user to the session, we are logged in!
+        rating.author_id = form.data['author_id']
+        rating.songsheet_id = form.data['songsheet_id']
+        rating.rating = form.data['rating']
+        rating.comment = form.data['comment']
+        rating.created_at = form.data['created_at']
+        rating.updated_at = form.data['updated_at']
+
+        db.session.commit()
+        return rating.to_dict()
+    if form.errors:
+        return form.errors
