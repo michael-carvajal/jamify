@@ -10,6 +10,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.songsheet_routes import songsheet_routes
 from .api.demos_routes import demos_routes
+from .api.rating_routes import rating_routes
 from .api.aws_routes import aws_routes
 from .api.setlist_routes import setlist_routes
 from .seeds import seed_commands
@@ -36,6 +37,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(aws_routes, url_prefix='/api/aws')
 app.register_blueprint(songsheet_routes, url_prefix='/api/songsheets')
 app.register_blueprint(setlist_routes, url_prefix='/api/setlists')
+app.register_blueprint(rating_routes, url_prefix='/api/ratings')
 app.register_blueprint(demos_routes, url_prefix='/api/demos')
 db.init_app(app)
 Migrate(app, db)
