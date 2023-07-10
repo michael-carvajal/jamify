@@ -28,7 +28,7 @@ def get_and_create_ratings():
                             rating=rating,
                             comment=comment,
                             created_at=created_at,
-                            updated_at=updated_at
+                            updated_at=datetime.now()
             )
             db.session.add(new_rating)
             db.session.commit()
@@ -59,18 +59,18 @@ def delete_and_update_ratings(id):
     form = RatingForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('before                      validate')
     if form.validate_on_submit():
-        print('before                      after')
         # Add the user to the session, we are logged in!
         rating.author_id = form.data['author_id']
         rating.songsheet_id = form.data['songsheet_id']
         rating.rating = form.data['rating']
         rating.comment = form.data['comment']
         rating.created_at = form.data['created_at']
-        rating.updated_at = form.data['updated_at']
+        rating.updated_at = datetime.now()
 
         db.session.commit()
         return rating.to_dict()
     if form.errors:
         return form.errors
+
+    # raise TypeError("Unknown error occurred")
