@@ -7,7 +7,7 @@ from app.forms import RatingForm
 rating_routes = Blueprint('ratings', __name__)
 
 @rating_routes.route('', methods = ['GET', 'POST'])
-def getratings():
+def get_and_create_ratings():
 
     if request.method == 'POST':
         form = RatingForm()
@@ -39,3 +39,21 @@ def getratings():
     ratings = Rating.query.all()
     normalized_ratings = {rating.id: rating.to_dict() for rating in ratings}
     return normalized_ratings
+
+
+@rating_routes.route('/<int:id>', methods = ['DELETE', 'PUT'])
+def delete_and_update_ratings(id):
+    rating = Rating.query.get(id)
+
+    if rating is None:
+        return {"error" : "Rating does not exist"}
+    if rating['author_id'] != current_user.id:
+        return {"error" : "Forbidden"}
+
+    if request.method == 'DELETE':
+        db.session.delete(rating)
+        db.session.commit()
+        return rating.to_dict()
+
+
+    
