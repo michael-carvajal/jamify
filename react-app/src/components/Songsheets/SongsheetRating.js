@@ -24,11 +24,12 @@ export default function SongsheetRatings() {
         return <h2>Loading...</h2>;
     }
     const songsheetRatings = Object.values(ratings).filter(rating => rating.songsheet_id === parseInt(songId));
-    console.log(songsheetRatings);
+    const isReviewed = songsheetRatings.find(rating => rating.author_id === session.user?.id)
+    console.log(isReviewed);
     return (
         <>
             <h1>Songsheet Ratings</h1>
-            {session.user && <ReviewForm songsheet_id={parseInt(songId)} author_id={session.user?.id}/>}
+            {session.user && ((!isReviewed) && <ReviewForm songsheet_id={parseInt(songId)} author_id={session.user?.id}/>)}
             <div className="user-ratings">
                 {songsheetRatings.map((rating, ind) => {
                     const author = session.allUsers.users.find(user => rating.author_id === user.id)
