@@ -29,12 +29,13 @@ export default function SongsheetRatings() {
             <h1>Songsheet Ratings</h1>
             <div className="user-ratings">
                 {songsheetRatings.map((rating, ind) => {
-
+                    const author = session.allUsers.users.find(user => rating.author_id === user.id)
+                    // console.log(author);
                     return (
                         <div key={`songsheet-rating-idx-${ind}`} className="user-rate">
                             <p>{rating.comment}</p>
                             <p>{rating.rating}</p>
-                            <p>session.users</p>
+                            <p>Written by: {author.username}</p>
 
                             {session.user?.id === rating.author_id && (
                                 <div className="delete-edit">
