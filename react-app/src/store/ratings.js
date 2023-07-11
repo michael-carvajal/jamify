@@ -36,7 +36,7 @@ export const fetchRatings = () => async (dispatch) => {
 //     await dispatch(addDemo(newDemo))
 // }
 export const deleteRating = (ratingId) => async (dispatch) => {
-    const response = await fetch(`/api/raings/${ratingId}`, {
+    const response = await fetch(`/api/ratings/${ratingId}`, {
         method: "DELETE",
     })
     const deletedRating = await response.json()
