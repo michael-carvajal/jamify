@@ -4,12 +4,13 @@ import { fetchRatings } from "../../store/ratings";
 import OpenModalButton from "../OpenModalButton";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import DeleteRatingModal from "../Reviews/DeleteRatingModal";
+import ReviewForm from "../Reviews/ReviewForm";
 export default function SongsheetRatings() {
     const { session } = useSelector(state => state);
     const { ratings } = useSelector(state => state);
     // const { songsheets } = useSelector(state => state);
     const dispatch = useDispatch();
-    const {songId} = useParams()
+    const { songId } = useParams()
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         const fetchData = async () => {
@@ -27,6 +28,7 @@ export default function SongsheetRatings() {
     return (
         <>
             <h1>Songsheet Ratings</h1>
+            {session.user && <ReviewForm />}
             <div className="user-ratings">
                 {songsheetRatings.map((rating, ind) => {
                     const author = session.allUsers.users.find(user => rating.author_id === user.id)
@@ -34,17 +36,17 @@ export default function SongsheetRatings() {
                     return (
                         <div key={`songsheet-rating-idx-${ind}`} className="user-rate">
                             <p>{rating.comment}</p>
-                            <p>{rating.rating}</p>
+                            <p>{rating.rating}<i className="fa fa-star"></i></p>
                             <p>Written by: {author.username}</p>
 
                             {session.user?.id === rating.author_id && (
                                 <div className="delete-edit">
                                     <span>Edit</span>
 
-                                <OpenModalButton
-                                type="delete-rating"
-                                modalComponent={<DeleteRatingModal ratingId={rating.id} />}
-                                />
+                                    <OpenModalButton
+                                        type="delete-rating"
+                                        modalComponent={<DeleteRatingModal ratingId={rating.id} />}
+                                    />
                                 </div>
                             )}
                         </div>
