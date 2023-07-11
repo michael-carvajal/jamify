@@ -28,7 +28,7 @@ export default function SongsheetRatings() {
     return (
         <>
             <h1>Songsheet Ratings</h1>
-            {session.user && <ReviewForm />}
+            {session.user && <ReviewForm songsheet_id={parseInt(songId)} author_id={session.user?.id}/>}
             <div className="user-ratings">
                 {songsheetRatings.map((rating, ind) => {
                     const author = session.allUsers.users.find(user => rating.author_id === user.id)

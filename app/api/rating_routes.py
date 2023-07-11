@@ -21,13 +21,11 @@ def get_and_create_ratings():
             songsheet_id = form.data['songsheet_id']
             rating = form.data['rating']
             comment = form.data['comment']
-            created_at = form.data['created_at']
-            updated_at = form.data['updated_at']
             new_rating = Rating(author_id=author_id,
                             songsheet_id=songsheet_id,
                             rating=rating,
                             comment=comment,
-                            created_at=created_at,
+                            created_at=datetime.now(),
                             updated_at=datetime.now()
             )
             db.session.add(new_rating)

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { postRating } from '../../store/ratings';
 
-const ReviewForm = () => {
+const ReviewForm = ({ author_id, songsheet_id }) => {
     const [comment, setComment] = useState('');
     const [rating, setRating] = useState(1);
 
@@ -16,14 +18,22 @@ const ReviewForm = () => {
         setRating(value);
     };
 
+    const dispatch = useDispatch()
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Perform form submission logic here
-        // e.g., send comment and rating to a server or update state in parent component
-        console.log('Submitted comment:', comment);
-        console.log('Submitted rating:', rating);
-    };
 
+        const review = {
+            comment,
+            rating,
+            author_id,
+            songsheet_id
+        }
+
+        dispatch(postRating(review))
+
+    };
+    console.log(author_id,
+        songsheet_id);
     return (
         <form onSubmit={handleSubmit}>
             <div>
