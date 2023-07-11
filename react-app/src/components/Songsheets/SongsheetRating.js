@@ -42,7 +42,7 @@ export default function SongsheetRatings() {
 
                             {session.user?.id === rating.author_id && (
                                 <div className="delete-edit">
-                                    <span>Edit</span>
+                                    <button>Edit</button>
 
                                     <OpenModalButton
                                         type="delete-rating"
