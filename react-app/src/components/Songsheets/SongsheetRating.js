@@ -60,6 +60,7 @@ export default function SongsheetRatings() {
                                 <ReviewForm
                                     songsheet_id={parseInt(songId)}
                                     author_id={session.user?.id}
+                                    ratingId={rating.id}
                                     editRating={rating.rating}
                                     editComment={rating.comment}
                                     onCancel={handleCancelEdit}

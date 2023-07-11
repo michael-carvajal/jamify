@@ -39,6 +39,17 @@ export const postRating = (rating) => async (dispatch) => {
     await dispatch(addRating(newRating))
 }
 
+export const putRating = (rating) => async (dispatch) => {
+    const response = await fetch(`/api/ratings/${rating.id}`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(rating)
+    })
+
+    const newRating = await response.json()
+
+    await dispatch(addRating(newRating))
+}
 export const deleteRating = (ratingId) => async (dispatch) => {
     const response = await fetch(`/api/ratings/${ratingId}`, {
         method: "DELETE",

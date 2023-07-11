@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { postRating } from '../../store/ratings';
+import { postRating, putRating } from '../../store/ratings';
 
-const ReviewForm = ({ author_id, songsheet_id, editComment, editRating, onCancel}) => {
+const ReviewForm = ({ author_id, songsheet_id, editComment, editRating, onCancel, ratingId}) => {
     const [comment, setComment] = useState(editComment || '');
     const [rating, setRating] = useState(editRating || 0);
     const [errors, setErrors] = useState('')
@@ -48,13 +48,15 @@ const ReviewForm = ({ author_id, songsheet_id, editComment, editRating, onCancel
             comment,
             rating,
             author_id,
-            songsheet_id
+            songsheet_id,
+            id : ratingId
         }
 
-        dispatch(postRating(review))
+        dispatch(putRating(review))
         setRating(1)
         setErrors('')
         setComment('')
+        onCancel()
     };
 
     console.log(author_id,
