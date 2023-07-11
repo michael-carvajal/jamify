@@ -51,7 +51,7 @@ export default function SongsheetRatings() {
                             )}
                         </div>
                     );
-                })}
+                }).reverse()}
             </div>
         </>
     );
