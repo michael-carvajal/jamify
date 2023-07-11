@@ -5,6 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import AllSetlist from "../Tables/Setlists";
 import { useEffect, useState } from "react";
 import { fetchAllUsers } from "../../store/session";
+import SongsheetRatings from "./SongsheetRating";
 
 export default function SongsheetDetail() {
     const { songsheets } = useSelector((state) => state);
@@ -29,7 +30,7 @@ export default function SongsheetDetail() {
         return (
             <div className="loading-container">
 
-                <img src="/les-paul.svg" alt="SVG Image" id="guitar-spin" />
+                <img src="/les-paul.svg" alt="spinning guitar" id="guitar-spin" />
             </div>
         );
     }
@@ -61,6 +62,7 @@ export default function SongsheetDetail() {
             </p>
             <p>Key {songsheet.key}</p>
             <pre>{songsheet.body}</pre>
+             <SongsheetRatings />
         </div>
     );
 }
