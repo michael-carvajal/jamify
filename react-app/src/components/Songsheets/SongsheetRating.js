@@ -28,10 +28,10 @@ export default function SongsheetRatings() {
         <>
             <h1>Songsheet Ratings</h1>
             <div className="user-ratings">
-                {songsheetRatings.map(rating => {
+                {songsheetRatings.map((rating, ind) => {
 
                     return (
-                        <div className="user-rate">
+                        <div key={`songsheet-rating-idx-${ind}`} className="user-rate">
                             <p>{rating.comment}</p>
                             <p>{rating.rating}</p>
                             <p>session.users</p>
