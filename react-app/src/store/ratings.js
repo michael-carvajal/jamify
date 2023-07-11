@@ -28,11 +28,12 @@ export const fetchRatings = () => async (dispatch) => {
 }
 
 export const postRating = (rating) => async (dispatch) => {
-    const response = await fetch('/api/rating', {
+    const response = await fetch('/api/ratings', {
         method: "POST",
+        headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify(rating)
     })
-    
+
     const newRating = await response.json()
 
     await dispatch(addRating(newRating))

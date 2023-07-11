@@ -5,6 +5,7 @@ import { postRating } from '../../store/ratings';
 const ReviewForm = ({ author_id, songsheet_id }) => {
     const [comment, setComment] = useState('');
     const [rating, setRating] = useState(1);
+    const [errors, setErrors] = useState('')
 
     const handleCommentChange = (event) => {
         setComment(event.target.value);
@@ -21,7 +22,10 @@ const ReviewForm = ({ author_id, songsheet_id }) => {
     const dispatch = useDispatch()
     const handleSubmit = (event) => {
         event.preventDefault();
-
+        if (comment.length < 5) {
+            setErrors('Comment should have more than 5 characters')
+            return
+        }
         const review = {
             comment,
             rating,
@@ -30,18 +34,15 @@ const ReviewForm = ({ author_id, songsheet_id }) => {
         }
 
         dispatch(postRating(review))
-
+        setRating(1)
+        setErrors('')
+        setComment('')
     };
     console.log(author_id,
         songsheet_id);
     return (
         <form onSubmit={handleSubmit}>
-            <div>
-                <label>
-                    Comment:
-                    <input type="text" value={comment} onChange={handleCommentChange} />
-                </label>
-            </div>
+            <p className='errors'>{errors}</p>
             <div>
                 <label>Rating:</label>
                 {[1, 2, 3, 4, 5].map((value) => (
@@ -53,6 +54,12 @@ const ReviewForm = ({ author_id, songsheet_id }) => {
                         handleRatingClick={handleRatingClick}
                     />
                 ))}
+            </div>
+            <div>
+                <label>
+                    Comment:
+                    <input type="text" value={comment} onChange={handleCommentChange} />
+                </label>
             </div>
             <div>
                 <button type="submit">Submit</button>

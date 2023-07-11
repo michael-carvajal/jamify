@@ -32,7 +32,7 @@ def get_and_create_ratings():
             db.session.commit()
             return new_rating.to_dict()
         if form.errors:
-            return form.errors
+            return form.errors,400
 
     ratings = Rating.query.all()
     normalized_ratings = {rating.id: rating.to_dict() for rating in ratings}
