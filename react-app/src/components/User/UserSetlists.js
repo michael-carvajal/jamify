@@ -1,7 +1,5 @@
 import { useSelector } from "react-redux"
 import AllSetlist from "../Tables/Setlists";
-import OpenModalButton from "../OpenModalButton";
-import CreateSetlistModal from "./CreateSetlistModal";
 
 export default function UserSetlists() {
     const { setlists } = useSelector(state => state)

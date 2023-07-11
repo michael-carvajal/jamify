@@ -4,12 +4,14 @@ import session from './session'
 import songsheets from './songsheets'
 import setlists from './setlists'
 import demos from './demos'
+import ratings from './ratings'
 
 const rootReducer = combineReducers({
   session,
   songsheets,
   setlists,
-  demos
+  demos,
+  ratings
 });
 
 
