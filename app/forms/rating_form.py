@@ -8,5 +8,5 @@ class RatingForm(FlaskForm):
   songsheet_id = IntegerField("songsheet_id", validators=[DataRequired()])
   rating = FloatField("rating", validators=[DataRequired(), NumberRange(min=1, max=5, message="Rating must be between 1 and 5")])
   comment = StringField("comment", validators=[DataRequired()])
-  created_at = DateTimeField('created_at', validators=[DataRequired()])
-  updated_at = DateTimeField('updated_at', validators=[DataRequired()])
+  created_at = DateTimeField('created_at')
+  updated_at = DateTimeField('updated_at')

@@ -1,6 +1,6 @@
 // constants
 const GET_RATINGS = "ratings/GET_RATINGS";
-// const POST_DEMO = "ratings/POST_DEMO";
+const POST_RATING = "ratings/POST_RATING";
 const DELETE_RATING = "ratings/DELETE_RATING";
 
 
@@ -8,10 +8,10 @@ const getRatings = (ratings) => ({
     type: GET_RATINGS,
     ratings
 });
-// const addDemo = (demo) => ({
-//     type: POST_RATING,
-//     demo
-// });
+const addRating = (rating) => ({
+    type: POST_RATING,
+    rating
+});
 const removeRating = (ratingId) => ({
     type: DELETE_RATING,
     ratingId
@@ -26,15 +26,19 @@ export const fetchRatings = () => async (dispatch) => {
 
     dispatch(getRatings(ratings))
 }
-// export const postDemo = (demo) => async (dispatch) => {
-//     const response = await fetch('/api/aws/demo', {
-//         method: "POST",
-//         body: demo
-//     })
-//     const newDemo = await response.json()
 
-//     await dispatch(addDemo(newDemo))
-// }
+export const postRating = (rating) => async (dispatch) => {
+    const response = await fetch('/api/ratings', {
+        method: "POST",
+        headers: {'Content-Type' : 'application/json'},
+        body: JSON.stringify(rating)
+    })
+
+    const newRating = await response.json()
+
+    await dispatch(addRating(newRating))
+}
+
 export const deleteRating = (ratingId) => async (dispatch) => {
     const response = await fetch(`/api/ratings/${ratingId}`, {
         method: "DELETE",
@@ -52,9 +56,9 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_RATINGS:
             return { ...state, ...action.ratings };
-        // case POST_DEMO:
-        //     const addedDemo = { ...state, [action.demo.id]: action.demo }
-        //     return addedDemo
+        case POST_RATING:
+            const addedRating = { ...state, [action.rating.id]: action.rating }
+            return addedRating
         case DELETE_RATING:
             const { [action.ratingId]: deletedRating, ...newState } = state;
             return newState;
