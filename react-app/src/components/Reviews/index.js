@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRatings } from "../../store/ratings";
+import OpenModalButton from "../OpenModalButton";
+import DeleteRatingModal from "./DeleteRatingModal";
 
 export default function Reviews() {
     const { session } = useSelector(state => state)
@@ -19,20 +21,23 @@ export default function Reviews() {
     }
 
     const userRatings = Object.values(ratings).filter(rating => rating.author_id === session.user?.id)
-    console.log(userRatings);
+    // console.log(userRatings);
     return (
         <>
             <h1>My Ratings</h1>
             <div className="user-ratings">
                 {userRatings.map(rating => {
-                    const songRated = songsheets.Songsheets[rating.songsheet_id]
+                    const songRated = songsheets?.Songsheets[rating.songsheet_id]
                     return (
                         <div className="user-rate">
                             <p>{rating.comment}</p>
                             <p>{rating.rating}</p>
                             <p>{songRated.title}</p>
-                            <span>UPDATED</span>
-                            <span>DELETED</span>
+                            <span>Edit</span>
+                            <OpenModalButton
+                                type="delete-rating"
+                                modalComponent={<DeleteRatingModal ratingId={rating.id}/>}
+                            />
                         </div>
                     )
                 })}
