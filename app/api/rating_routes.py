@@ -63,7 +63,6 @@ def delete_and_update_ratings(id):
         rating.songsheet_id = form.data['songsheet_id']
         rating.rating = form.data['rating']
         rating.comment = form.data['comment']
-        rating.created_at = form.data['created_at']
         rating.updated_at = datetime.now()
 
         db.session.commit()

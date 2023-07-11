@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { postRating } from '../../store/ratings';
+import { postRating, putRating } from '../../store/ratings';
 
-const ReviewForm = ({ author_id, songsheet_id }) => {
-    const [comment, setComment] = useState('');
-    const [rating, setRating] = useState(1);
+const ReviewForm = ({ author_id, songsheet_id, editComment, editRating, onCancel, ratingId}) => {
+    const [comment, setComment] = useState(editComment || '');
+    const [rating, setRating] = useState(editRating || 0);
     const [errors, setErrors] = useState('')
 
     const handleCommentChange = (event) => {
@@ -38,10 +38,31 @@ const ReviewForm = ({ author_id, songsheet_id }) => {
         setErrors('')
         setComment('')
     };
+    const handleUpdate = (event) => {
+        event.preventDefault();
+        if (comment.length < 5) {
+            setErrors('Comment should have more than 5 characters')
+            return
+        }
+        const review = {
+            comment,
+            rating,
+            author_id,
+            songsheet_id,
+            id : ratingId
+        }
+
+        dispatch(putRating(review))
+        setRating(1)
+        setErrors('')
+        setComment('')
+        onCancel()
+    };
+
     console.log(author_id,
         songsheet_id);
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={editComment ? handleUpdate :  handleSubmit}>
             <p className='errors'>{errors}</p>
             <div>
                 <label>Rating:</label>
@@ -62,7 +83,8 @@ const ReviewForm = ({ author_id, songsheet_id }) => {
                 </label>
             </div>
             <div>
-                <button type="submit">Submit</button>
+                {editComment ? <button type="submit">Update</button> : <button type="submit">Submit</button>}
+                {editComment  && <button onClick={onCancel}>Cancel</button>}
             </div>
         </form>
     );
