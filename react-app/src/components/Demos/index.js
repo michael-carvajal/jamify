@@ -6,7 +6,7 @@ import './demos.css';
 const Demos = () => {
     const [audioFile, setAudioFile] = useState(null);
     const [name, setName] = useState('');
-    const [isUploading, setIsUploading] = useState(true)
+    const [isUploading, setIsUploading] = useState(false)
     const dispatch = useDispatch();
     const { demos, session } = useSelector((state) => state);
     const fileInputRef = useRef(null);
@@ -79,7 +79,7 @@ const Demos = () => {
                             ref={fileInputRef}
                             style={{ display: 'none' }} // Hide the file input
                         />
-                    <button onClick={handleRecordButtonClick} id='upload-btn'></button>
+                    <p onClick={handleRecordButtonClick} className='upload-btn' id='pre-upload'></p>
                     </div>
                     {audioFile?.name && <p>{audioFile.name} <i className='fa fa-times' onClick={() => setAudioFile(null)}></i></p>}
                 <div className="demo-inputs">
