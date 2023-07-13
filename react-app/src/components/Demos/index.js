@@ -2,15 +2,18 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteDemo, fetchDemos, postDemo } from '../../store/demos';
 import './demos.css';
+import { useModal } from '../../context/Modal';
+import DeleteDemoModal from './DeleteDemoModal';
 
 const Demos = () => {
     const [audioFile, setAudioFile] = useState(null);
     const [name, setName] = useState('');
     const [isUploading, setIsUploading] = useState(false)
     const dispatch = useDispatch();
-    const { demos, session } = useSelector((state) => state);
+    const { session } = useSelector((state) => state);
+    const { demos } = useSelector((state) => state);
     const fileInputRef = useRef(null);
-
+    const {setModalContent, closeModal} = useModal()
     useEffect(() => {
         dispatch(fetchDemos());
     }, [dispatch]);
@@ -54,13 +57,14 @@ const Demos = () => {
 
     const handleDelete = async (demo) => {
         await dispatch(deleteDemo(demo));
+        closeModal()
     };
-    console.log(audioFile?.name);
+    // console.log(audioFile?.name);
     return (
         <div className="demos-page">
 
             {isUploading ?
-                <div className='loading-btn'>
+                <div className='loading-btn demo-form'>
 
                     <button style={{ cursor: 'wait', alignSelf: 'center', marginBottom: '30px' }} className='upload-btn' id='isUploading'></button>
                     <p style={{textAlign: 'center'}}>Uploading {audioFile?.name}</p>
@@ -83,14 +87,17 @@ const Demos = () => {
                     </div>
                     {audioFile?.name && <p>{audioFile.name} <i className='fa fa-times' onClick={() => setAudioFile(null)}></i></p>}
                 <div className="demo-inputs">
-                    <div>
-                        <label htmlFor="name" className='md-font'>Name:</label>
+                    <div className='record-container'>
+                            <label htmlFor="name" className='md-font' style={{ paddingRight: '20px' }}>Name:</label>
                         <input name='name' required type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
                     </div>
                 </div>
                 <button type="submit">Submit</button>
             </form>}
-            <div className="user-demos">
+            {userDemos.length === 0 ? <div>
+                <h2>Demos are empty. Upload demos now!</h2>
+
+            </div> :<div className="user-demos">
                 {userDemos.map((demo, idx) => {
                     return (
                         <div key={`index-to-demos-${idx}`}>
@@ -98,11 +105,11 @@ const Demos = () => {
                                 <source src={demo.file_link} type="audio/mp3" />
                                 Your browser does not support the audio element.
                             </audio>
-                            <i onClick={() => handleDelete(demo)} className="fa fa-trash"></i>
+                            <i onClick={() => setModalContent(<DeleteDemoModal demo={demo} handleDelete={handleDelete} closeModal={closeModal}/>)} className="fa fa-trash"></i>
                         </div>
                     );
                 })}
-            </div>
+            </div>}
         </div>
     );
 };
