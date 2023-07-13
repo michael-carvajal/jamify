@@ -85,7 +85,7 @@ const Demos = () => {
                         />
                     <p onClick={handleRecordButtonClick} className='upload-btn' id='pre-upload'></p>
                     </div>
-                    {audioFile?.name && <p>{audioFile.name} <i className='fa fa-times' onClick={() => setAudioFile(null)}></i></p>}
+                    {audioFile?.name && <p style={{textAlign: 'center'}}>{audioFile.name} <i className='fa fa-times' onClick={() => setAudioFile(null)}></i></p>}
                 <div className="demo-inputs">
                     <div className='record-container'>
                             <label htmlFor="name" className='md-font' style={{ paddingRight: '20px' }}>Name:</label>
@@ -100,15 +100,18 @@ const Demos = () => {
             </div> :<div className="user-demos">
                 {userDemos.map((demo, idx) => {
                     return (
-                        <div key={`index-to-demos-${idx}`}>
+                        <div key={`index-to-demos-${idx}`} className='demo-item'>
                             <audio controls>
                                 <source src={demo.file_link} type="audio/mp3" />
                                 Your browser does not support the audio element.
                             </audio>
-                            <i onClick={() => setModalContent(<DeleteDemoModal demo={demo} handleDelete={handleDelete} closeModal={closeModal}/>)} className="fa fa-trash"></i>
+                            <div className='demo-details'>
+                                <p>{demo.name} <span>{demo.created_at.split(' ').splice(0,4).join(' ')}</span></p>
+                            <i  onClick={() => setModalContent(<DeleteDemoModal demo={demo} handleDelete={handleDelete} closeModal={closeModal}/>)} className="fa fa-trash"></i>
+                            </div>
                         </div>
                     );
-                })}
+                }).reverse()}
             </div>}
         </div>
     );
