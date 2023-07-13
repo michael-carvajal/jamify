@@ -54,6 +54,9 @@
     display: flex;
     align-items: center;
 }
+.record-container input {
+    border: 3px rgb(58, 58, 58) solid;
+}
 #pre-upload{
     transition: background-color 0.5s ease;
 }
@@ -106,7 +109,14 @@
     align-items: baseline;
     gap: 15px;
 }
+
+.upload-submit> * {
+    border: 3px rgb(58, 58, 58) solid;
+}
+.upload-submit>*:hover {
+    border: 3px rgb(79, 79, 79 ) double;
+}
 .upload-submit span:hover{
     cursor: pointer;
-    
+
 }

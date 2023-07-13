@@ -93,13 +93,13 @@ const Demos = () => {
                 <div className="demo-inputs">
                     <div className='record-container'>
                             <label htmlFor="name" className='md-font' style={{ paddingRight: '20px' }}>Name:</label>
-                        <input name='name' required type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+                        <input name='name' required type="text"  value={name} onChange={(e) => setName(e.target.value)} />
                     </div>
                     </div>
                     <div className='upload-submit'>
 
                     <button type="submit">Submit</button>
-                    <span id='signup-btn' style={{padding: '5px 10px', borderRadius : '5px', fontSize : '14px'}} onClick={handleDemoUpload}>Demo Upload</span>
+                    <span id='signup-btn' style={{padding: '3px 10px', borderRadius : '5px', fontSize : '14px'}} onClick={handleDemoUpload}>Demo Upload</span>
                     </div>
             </form>}
             {userDemos.length === 0 ? <div>
