@@ -16,10 +16,17 @@
         align-items: center;
         gap: 20px;
     }
-#upload-btn{
+.upload-btn{
     background-color: red;
     border-radius: 50%;
     width: 100px;
     height: 100px;
     border: rgb(58, 58, 58) 8px solid;
+}
+
+.loading-btn{
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+
 }

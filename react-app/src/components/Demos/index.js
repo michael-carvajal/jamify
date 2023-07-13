@@ -6,6 +6,7 @@ import './demos.css';
 const Demos = () => {
     const [audioFile, setAudioFile] = useState(null);
     const [name, setName] = useState('');
+    const [isUploading, setIsUploading] = useState(true)
     const dispatch = useDispatch();
     const { demos, session } = useSelector((state) => state);
     const fileInputRef = useRef(null);
@@ -36,6 +37,7 @@ const Demos = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setIsUploading(true)
 
         // Create a FormData object to send the file and form data
         const formData = new FormData();
@@ -45,15 +47,27 @@ const Demos = () => {
         formData.append('author_id', session.user.id);
 
         await dispatch(postDemo(formData));
+        setName('')
+        setAudioFile(null)
+        setIsUploading(false)
     };
 
-    const handleDelete = (demo) => {
-        dispatch(deleteDemo(demo));
+    const handleDelete = async (demo) => {
+        await dispatch(deleteDemo(demo));
     };
     console.log(audioFile?.name);
     return (
         <div className="demos-page">
-            <form onSubmit={handleSubmit} encType="multipart/form-data" className="demo-form">
+
+            {isUploading ?
+                <div className='loading-btn'>
+
+                    <button style={{ cursor: 'wait', alignSelf: 'center' }} className='upload-btn' id='isUploading'></button>
+                    <p>Uploading {audioFile?.name}</p>
+                </div>
+
+
+                : <form onSubmit={handleSubmit} encType="multipart/form-data" className="demo-form">
                     <div className="record-container">
                         <label htmlFor="audio" style={{ paddingRight: '20px' }}>Upload File:</label>
                         <input
@@ -61,6 +75,7 @@ const Demos = () => {
                             id="audio"
                             accept="audio/*"
                             onChange={handleFileChange}
+                            required
                             ref={fileInputRef}
                             style={{ display: 'none' }} // Hide the file input
                         />
@@ -70,11 +85,11 @@ const Demos = () => {
                 <div className="demo-inputs">
                     <div>
                         <label htmlFor="name">Name:</label>
-                        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+                        <input name='name' required type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
                     </div>
                 </div>
                 <button type="submit">Submit</button>
-            </form>
+            </form>}
             <div className="user-demos">
                 {userDemos.map((demo, idx) => {
                     return (
