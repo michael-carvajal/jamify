@@ -62,8 +62,8 @@ const Demos = () => {
             {isUploading ?
                 <div className='loading-btn'>
 
-                    <button style={{ cursor: 'wait', alignSelf: 'center' }} className='upload-btn' id='isUploading'></button>
-                    <p>Uploading {audioFile?.name}</p>
+                    <button style={{ cursor: 'wait', alignSelf: 'center', marginBottom: '30px' }} className='upload-btn' id='isUploading'></button>
+                    <p style={{textAlign: 'center'}}>Uploading {audioFile?.name}</p>
                 </div>
 
 

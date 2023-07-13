@@ -16,14 +16,30 @@
         align-items: center;
         gap: 20px;
     }
-.upload-btn{
+.upload-btn {
     background-color: red;
     border-radius: 50%;
     width: 100px;
     height: 100px;
     border: rgb(58, 58, 58) 8px solid;
 }
+#isUploading{
+    animation: borderAnimation 1s infinite ease-in-out;
+}
 
+@keyframes borderAnimation {
+    0% {
+        border-width: 8px;
+    }
+
+    50% {
+        border-width: 16px;
+    }
+
+    100% {
+        border-width: 8px;
+    }
+}
 .loading-btn{
     margin: 0px auto;
     display: flex;
