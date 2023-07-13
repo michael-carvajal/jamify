@@ -1,0 +1,40 @@
+
+.demos-page{
+        display: flex;
+        flex-direction: column;
+        gap: 129px;
+        padding: 20px;
+        width: 100%;
+    }
+
+    .demo-form{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin: 0px auto;
+        width: 100%;
+        align-items: center;
+        gap: 20px;
+    }
+.upload-btn{
+    background-color: red;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border: rgb(58, 58, 58) 8px solid;
+}
+
+.loading-btn{
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+
+}
+.record-container{
+    display: flex;
+    align-items: center;
+}
+
+#pre-upload:hover{
+    cursor: pointer;
+}

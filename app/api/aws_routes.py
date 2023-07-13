@@ -34,7 +34,7 @@ def upload_image():
         # if the dictionary doesn't have a url key
         # it means that there was an error when we tried to upload
         # so we send back that error message
-            return {upload}   #render_template("post_form.html", form=form, errors=[upload])
+            return {'error' : 'url is not in upload'},400   #render_template("post_form.html", form=form, errors=[upload])
         url = upload["url"]
         new_demo = Demo(file_link= url, author_id=author_id, public=public, name=name,
                         created_at=datetime.now())
