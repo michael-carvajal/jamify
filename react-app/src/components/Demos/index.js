@@ -1,31 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteDemo, fetchDemos, postDemo } from '../../store/demos';
-import './demos.css'
+import './demos.css';
 
 const Demos = () => {
     const [audioFile, setAudioFile] = useState(null);
     const [name, setName] = useState('');
-    // const [authorId, setAuthorId] = useState('');
-    const dispatch = useDispatch()
-    const { demos } = useSelector(state => state)
-    const { session } = useSelector(state => state)
+    const dispatch = useDispatch();
+    const { demos, session } = useSelector((state) => state);
+    const fileInputRef = useRef(null);
+
     useEffect(() => {
-        dispatch(fetchDemos())
-    }, [dispatch])
+        dispatch(fetchDemos());
+    }, [dispatch]);
 
     if (!demos || !session) {
-        return <h2>Loading...</h2>
+        return <h2>Loading...</h2>;
     }
+
     if (!session.user) {
-        return <h2>Login to create Demos!</h2>
+        return <h2>Login to create Demos!</h2>;
     }
-    const userDemos = Object.values(demos).filter(demo => demo.author_id === session.user?.id)
+
+    const userDemos = Object.values(demos).filter((demo) => demo.author_id === session.user?.id);
+
+    const handleRecordButtonClick = () => {
+        fileInputRef.current.click(); // Programmatically trigger the file input
+    };
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         setAudioFile(file);
     };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -36,64 +43,55 @@ const Demos = () => {
         formData.append('public', true);
         formData.append('author_id', session.user.id);
 
-
-        await dispatch(postDemo(formData))
+        await dispatch(postDemo(formData));
     };
 
     const handleDelete = (demo) => {
-        dispatch(deleteDemo(demo))
-        // setAudioFile(null)
-        // setName('')
-        // setAuthorId('')
-    }
+        dispatch(deleteDemo(demo));
+    };
+
     return (
-        <div className='demos-page'>
-
-            <form
-                onSubmit={handleSubmit}
-                encType="multipart/form-data"
-                className='demo-form'
-            >
-                <div class="record-container">
-                    <input type="checkbox" id="btn" style={{display: 'none'}} />
-                        <label for="btn"></label>
+        <div className="demos-page">
+            <form onSubmit={handleSubmit} encType="multipart/form-data" className="demo-form">
+                <div className="record-container">
+                    <span type="checkbox" id="btn" style={{ opacity: 'none' }}>
+                        <div>
+                            <label htmlFor="audio">Audio File:</label>
+                            <input
+                                type="file"
+                                id="audio"
+                                accept="audio/*"
+                                onChange={handleFileChange}
+                                ref={fileInputRef}
+                                style={{ display: 'none' }} // Hide the file input
+                            />
+                            <button onClick={handleRecordButtonClick}>Record</button>
+                        </div>
+                    </span>
                 </div>
-                <div className='demo-inputs'>
-
-                <div>
-                    <label htmlFor="audio">Audio File:</label>
-                    <input type="file" id="audio" accept="audio/*" onChange={handleFileChange} />
+                <div className="demo-inputs">
+                    <div>
+                        <label htmlFor="name">Name:</label>
+                        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
-                </div>
-                </div>
-
                 <button type="submit">Submit</button>
             </form>
-            <div className='user-demos'>
-
-            {userDemos.map((demo, idx) => {
-                return (
-                    <div key={`index-to-demos-${idx}`}>
-                        <audio controls>
-                            <source src={demo.file_link} type="audio/mp3" />
-                            Your browser does not support the audio element.
-                        </audio>
-                        <i onClick={() => handleDelete(demo)} className='fa fa-trash'></i>
-                    </div>
-                )
-            })}
+            <div className="user-demos">
+                {userDemos.map((demo, idx) => {
+                    return (
+                        <div key={`index-to-demos-${idx}`}>
+                            <audio controls>
+                                <source src={demo.file_link} type="audio/mp3" />
+                                Your browser does not support the audio element.
+                            </audio>
+                            <i onClick={() => handleDelete(demo)} className="fa fa-trash"></i>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );
 };
 
 export default Demos;
-
-
-/* <div>
-    <label htmlFor="authorId">Author ID:</label>
-    <input type="text" id="authorId" value={authorId} onChange={(e) => setAuthorId(e.target.value)} />
-</div> */
