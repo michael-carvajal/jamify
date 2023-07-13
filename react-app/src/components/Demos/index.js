@@ -69,7 +69,7 @@ const Demos = () => {
 
                 : <form onSubmit={handleSubmit} encType="multipart/form-data" className="demo-form">
                     <div className="record-container">
-                        <label htmlFor="audio" style={{ paddingRight: '20px' }}>Upload File:</label>
+                        <label htmlFor="audio" style={{ paddingRight: '20px' }} className='md-font'>Upload File:</label>
                         <input
                             type="file"
                             id="audio"
@@ -84,7 +84,7 @@ const Demos = () => {
                     {audioFile?.name && <p>{audioFile.name} <i className='fa fa-times' onClick={() => setAudioFile(null)}></i></p>}
                 <div className="demo-inputs">
                     <div>
-                        <label htmlFor="name">Name:</label>
+                        <label htmlFor="name" className='md-font'>Name:</label>
                         <input name='name' required type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
                     </div>
                 </div>
