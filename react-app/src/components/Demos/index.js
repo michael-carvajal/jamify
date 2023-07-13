@@ -4,7 +4,8 @@ import { deleteDemo, fetchDemos, postDemo } from '../../store/demos';
 import './demos.css';
 import { useModal } from '../../context/Modal';
 import DeleteDemoModal from './DeleteDemoModal';
-
+import jammin from '../../assets/jammin.mp3'
+console.log(typeof jammin);
 const Demos = () => {
     const [audioFile, setAudioFile] = useState(null);
     const [name, setName] = useState('');
@@ -37,7 +38,10 @@ const Demos = () => {
         console.log(file);
         setAudioFile(file);
     };
-
+    const handleDemoUpload = () => {
+        setAudioFile(jammin)
+        console.log(audioFile);
+    }
     const handleSubmit = async (event) => {
         event.preventDefault();
         setIsUploading(true)
@@ -91,8 +95,12 @@ const Demos = () => {
                             <label htmlFor="name" className='md-font' style={{ paddingRight: '20px' }}>Name:</label>
                         <input name='name' required type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
                     </div>
-                </div>
-                <button type="submit">Submit</button>
+                    </div>
+                    <div className='upload-submit'>
+
+                    <button type="submit">Submit</button>
+                    <span id='signup-btn' style={{padding: '5px 10px', borderRadius : '5px', fontSize : '14px'}} onClick={handleDemoUpload}>Demo Upload</span>
+                    </div>
             </form>}
             {userDemos.length === 0 ? <div>
                 <h2>Demos are empty. Upload demos now!</h2>
