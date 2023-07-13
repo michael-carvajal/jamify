@@ -30,6 +30,7 @@ const Demos = () => {
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
+        console.log(file);
         setAudioFile(file);
     };
 
@@ -49,7 +50,7 @@ const Demos = () => {
     const handleDelete = (demo) => {
         dispatch(deleteDemo(demo));
     };
-
+    console.log(audioFile?.name);
     return (
         <div className="demos-page">
             <form onSubmit={handleSubmit} encType="multipart/form-data" className="demo-form">
@@ -63,8 +64,9 @@ const Demos = () => {
                             ref={fileInputRef}
                             style={{ display: 'none' }} // Hide the file input
                         />
-                        <button onClick={handleRecordButtonClick} id='upload-btn'></button>
+                    <button onClick={handleRecordButtonClick} id='upload-btn'></button>
                     </div>
+                    {audioFile?.name && <p>{audioFile.name} <i className='fa fa-times' onClick={() => setAudioFile(null)}></i></p>}
                 <div className="demo-inputs">
                     <div>
                         <label htmlFor="name">Name:</label>
