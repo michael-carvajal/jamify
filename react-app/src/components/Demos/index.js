@@ -53,22 +53,18 @@ const Demos = () => {
     return (
         <div className="demos-page">
             <form onSubmit={handleSubmit} encType="multipart/form-data" className="demo-form">
-                <div className="record-container">
-                    <span type="checkbox" id="btn" style={{ opacity: 'none' }}>
-                        <div>
-                            <label htmlFor="audio">Audio File:</label>
-                            <input
-                                type="file"
-                                id="audio"
-                                accept="audio/*"
-                                onChange={handleFileChange}
-                                ref={fileInputRef}
-                                style={{ display: 'none' }} // Hide the file input
-                            />
-                            <button onClick={handleRecordButtonClick}>Record</button>
-                        </div>
-                    </span>
-                </div>
+                    <div className="record-container">
+                        <label htmlFor="audio" style={{ paddingRight: '20px' }}>Upload File:</label>
+                        <input
+                            type="file"
+                            id="audio"
+                            accept="audio/*"
+                            onChange={handleFileChange}
+                            ref={fileInputRef}
+                            style={{ display: 'none' }} // Hide the file input
+                        />
+                        <button onClick={handleRecordButtonClick} id='upload-btn'></button>
+                    </div>
                 <div className="demo-inputs">
                     <div>
                         <label htmlFor="name">Name:</label>
