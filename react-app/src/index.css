@@ -126,3 +126,7 @@ fill: var(--modal-background);
     color: var(--ug-red);
     font-size: 12px;
 }
+
+.md-font{
+    font-size: 20px;
+}
