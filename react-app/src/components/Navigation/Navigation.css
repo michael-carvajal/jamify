@@ -54,3 +54,10 @@ button:hover{
       cursor: pointer;
       background-color: var(--modal-background);
 }
+.search-container{
+  position: relative;
+}
+.results-container{
+  position: absolute;
+  left: 0;
+}
