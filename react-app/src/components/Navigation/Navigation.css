@@ -58,10 +58,19 @@ button:hover{
   position: relative;
 }
 .results-container{
-  background-color: #858585;
-  padding: 10px;
+  background-color: var(--modal-background);
+  padding: 12px;
+  border-radius: 5px;
   z-index: 100;
+
   top: 40px;
   position: absolute;
   left: 0;
+}
+
+.list-link a {
+  color: var(--ug-grey);
+}
+.list-link a:hover {
+  color: var(--border-text-color);
 }
