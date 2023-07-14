@@ -47,13 +47,37 @@
 .search-container button{
       padding: 0px 10px;
 }
- button{
-      padding: 0px 10px !important;
+
+
+
+.search-container button:hover {
+  cursor: default;
 }
-button:hover{
-      cursor: pointer;
-      background-color: var(--modal-background);
+
+button {
+  padding: 0px 10px !important;
 }
+
+button:hover {
+  cursor: pointer;
+  background-color: var(--modal-background);
+}
+
+.search-container {
+  position: relative;
+  background-color: var(--background-color);
+  border: 1px solid var(--ug-grey);
+  border-radius: 6px;
+}
+
+.search-container input,
+.search-container button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  /* Optional: Remove outline when focused */
+}
+
 .search-container{
   position: relative;
 }

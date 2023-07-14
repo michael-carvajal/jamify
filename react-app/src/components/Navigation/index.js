@@ -100,7 +100,7 @@ function Navigation() {
 				<input
 					value={search}
 					onChange={(e) => setSearch(e.target.value)}
-					placeholder='Enter artist name or song title'
+					placeholder='Enter a song title'
 				></input>
 				<button onClick={searchFeature}>
 					<i className='fa fa-search'></i>
