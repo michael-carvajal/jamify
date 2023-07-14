@@ -6,6 +6,19 @@ Hello, thanks for checking out my capstone project! This project is a clone of U
 
 Currently the app has functionality to authenticate users, create and edit Songsheets, create and edit lists of Songsheets, create and delete audio files called demos. I included a piano keyboard so users can play along to a songsheet.
 
+## Index
+
+[MVP Feature List](https://github.com/michael-carvajal/jamify/wiki/Feature-List) |
+[Database Scheme](https://github.com/michael-carvajal/jamify/wiki/Database-Schema) |
+[User Stories](https://github.com/michael-carvajal/jamify/wiki/User-Stories) |
+[Wire Frames](https://github.com/michael-carvajal/jamify/wiki/Wireframes) |
+
+## Technologies Used
+
+<img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" /><img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" /><img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" /><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" /><img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" /><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" /><img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white" /><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /><img src='https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54'/><img src='https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white'/>
+
+
+
 ## Frontend Screenshots
 
 The search bar dynamically renders results matching the user input, giving suggestions for a Songsheets based off the title.
