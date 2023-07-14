@@ -58,6 +58,10 @@ button:hover{
   position: relative;
 }
 .results-container{
+  background-color: #858585;
+  padding: 10px;
+  z-index: 100;
+  top: 40px;
   position: absolute;
   left: 0;
 }

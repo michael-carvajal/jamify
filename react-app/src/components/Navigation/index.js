@@ -27,7 +27,10 @@ function Navigation() {
 	}
 
 	const searchFeature = () => {
-
+		if (search.length === 0) {
+			setFilteredSongsheets([])
+			return
+		}
 		const filtered = Object.values(songsheets.Songsheets).filter(
 			(songsheet) =>
 				songsheet.title.toLowerCase().includes(search.toLowerCase())
@@ -71,9 +74,9 @@ function Navigation() {
 					placeholder='Enter artists name or song title'
 				></input>
 				<button onClick={searchFeature}><i className='fa fa-search'></i></button>
+			{filteredSongsheets.length > 0 && (
 			<div className='results-container'>
 
-			{filteredSongsheets.length > 0 && (
 				<div className='search-results'>
 					<h3>Search Results:</h3>
 					<ul>
@@ -82,8 +85,8 @@ function Navigation() {
 							))}
 					</ul>
 				</div>
-			)}
 			</div>
+			)}
 			</div>
 			<Keyboard displayPiano={displayPiano} />
 		</ul>
