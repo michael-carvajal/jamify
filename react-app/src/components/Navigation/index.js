@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './Navigation.css';
@@ -9,14 +9,30 @@ import Keyboard from '../Keyboard';
 function Navigation() {
 	const [search, setSearch] = useState('');
 	const [displayPiano, setDisplayPiano] = useState('');
+	const [filteredSongsheets, setFilteredSongsheets] = useState([]);
 	const dispatch = useDispatch();
 	const songsheets = useSelector((state) => state.songsheets);
-	const [filteredSongsheets, setFilteredSongsheets] = useState([]);
+	const resultsRef = useRef(null);
 
 	useEffect(() => {
 		dispatch(fetchAllSongsheets());
 		dispatch(fetchAllSetlists());
 	}, [dispatch]);
+
+	useEffect(() => {
+		const handleOutsideClick = (event) => {
+			if (resultsRef.current && !resultsRef.current.contains(event.target)) {
+				setSearch('');
+				setFilteredSongsheets([]);
+			}
+		};
+
+		window.addEventListener('click', handleOutsideClick);
+
+		return () => {
+			window.removeEventListener('click', handleOutsideClick);
+		};
+	}, []);
 
 	useEffect(() => {
 		const debounceTimeout = setTimeout(() => {
@@ -31,9 +47,9 @@ function Navigation() {
 	const pianoFeature = () => {
 		if (!displayPiano) {
 			setDisplayPiano('display');
-			return;
+		} else {
+			setDisplayPiano('');
 		}
-		setDisplayPiano('');
 	};
 
 	const searchFeature = () => {
@@ -48,7 +64,12 @@ function Navigation() {
 		).splice(0, 6);
 		setFilteredSongsheets(filtered);
 	};
-	console.log(filteredSongsheets);
+
+	const handleLinkClick = () => {
+		setSearch('');
+		setFilteredSongsheets([]);
+	};
+
 	return (
 		<ul className='nav-bar'>
 			<li>
@@ -85,22 +106,25 @@ function Navigation() {
 					<i className='fa fa-search'></i>
 				</button>
 
-			{filteredSongsheets.length > 0 && (
-				<div className='results-container'>
-					<div className='search-results'>
-						<h3>Search Results:</h3>
-						<ul>
-							{filteredSongsheets.map((songsheet) => (
-								<li key={songsheet.id} className='list-link'>
-									<NavLink to={`/songsheet-detail/${songsheet.id}`}>
-										{songsheet.title}
-									</NavLink>
-								</li>
-							))}
-						</ul>
+				{filteredSongsheets.length > 0 && (
+					<div className='results-container' ref={resultsRef}>
+						<div className='search-results'>
+							<h3>Search Results:</h3>
+							<ul>
+								{filteredSongsheets.map((songsheet) => (
+									<li key={songsheet.id} className='list-link'>
+										<NavLink
+											to={`/songsheet-detail/${songsheet.id}`}
+											onClick={handleLinkClick}
+										>
+											{songsheet.title}
+										</NavLink>
+									</li>
+								))}
+							</ul>
+						</div>
 					</div>
-				</div>
-			)}
+				)}
 			</div>
 
 			<Keyboard displayPiano={displayPiano} />

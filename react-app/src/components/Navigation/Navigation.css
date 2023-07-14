@@ -57,11 +57,20 @@ button:hover{
 .search-container{
   position: relative;
 }
+.search-results h3 {
+  margin-bottom: 10px;
+}
+.search-results ul{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 .results-container{
   background-color: var(--modal-background);
   padding: 12px;
   border-radius: 5px;
   z-index: 100;
+
 
   top: 40px;
   position: absolute;
