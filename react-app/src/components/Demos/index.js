@@ -36,7 +36,7 @@ const Demos = () => {
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
-        console.log(file);
+        // console.log(file);
         setAudioFile(file);
     };
 
@@ -60,7 +60,7 @@ const Demos = () => {
             setName("");
             setIsUploading(false);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     };
 
@@ -86,7 +86,7 @@ const Demos = () => {
         await dispatch(deleteDemo(demo));
         closeModal();
     };
-    console.log(audioFile, name);
+    // console.log(audioFile, name);
     return (
         <div className="demos-page">
             {isUploading ? (

@@ -108,7 +108,7 @@
 .upload-submit{
     display: flex;
     align-items: baseline;
-    gap: 95px;
+    gap: 103px;
     z-index: 10;
 }
 
