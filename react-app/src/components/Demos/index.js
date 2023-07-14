@@ -4,17 +4,18 @@ import { deleteDemo, fetchDemos, postDemo } from '../../store/demos';
 import './demos.css';
 import { useModal } from '../../context/Modal';
 import DeleteDemoModal from './DeleteDemoModal';
-import jammin from '../../assets/jammin.mp3'
-console.log(typeof jammin);
+import jammin from '../../assets/jammin.mp3';
+
 const Demos = () => {
     const [audioFile, setAudioFile] = useState(null);
     const [name, setName] = useState('');
-    const [isUploading, setIsUploading] = useState(false)
+    const [isUploading, setIsUploading] = useState(false);
     const dispatch = useDispatch();
     const { session } = useSelector((state) => state);
     const { demos } = useSelector((state) => state);
     const fileInputRef = useRef(null);
-    const {setModalContent, closeModal} = useModal()
+    const { setModalContent, closeModal } = useModal();
+
     useEffect(() => {
         dispatch(fetchDemos());
     }, [dispatch]);
@@ -38,13 +39,35 @@ const Demos = () => {
         console.log(file);
         setAudioFile(file);
     };
-    const handleDemoUpload = () => {
-        setAudioFile(jammin)
-        console.log(audioFile);
-    }
+
+    const handleDemoUpload = async () => {
+        try {
+            const response = await fetch(jammin);
+            const blob = await response.blob();
+            const file = new File([blob], "jammin.mp3", { type: "audio/mp3" });
+            setAudioFile(file);
+            const demoName = "Jammin by Bob Marley";
+
+            const formData = new FormData();
+            formData.append("demo", file);
+            formData.append("name", demoName);
+            formData.append("public", true);
+            formData.append("author_id", session.user.id);
+
+            setIsUploading(true);
+            await dispatch(postDemo(formData));
+            setAudioFile(null);
+            setName("");
+            setIsUploading(false);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setIsUploading(true)
+        setIsUploading(true);
 
         // Create a FormData object to send the file and form data
         const formData = new FormData();
@@ -54,23 +77,25 @@ const Demos = () => {
         formData.append('author_id', session.user.id);
 
         await dispatch(postDemo(formData));
-        setName('')
-        setAudioFile(null)
-        setIsUploading(false)
+        setName('');
+        setAudioFile(null);
+        setIsUploading(false);
     };
 
     const handleDelete = async (demo) => {
         await dispatch(deleteDemo(demo));
-        closeModal()
+        closeModal();
     };
-    // console.log(audioFile?.name);
+    console.log(audioFile, name);
     return (
         <div className="demos-page">
-
-            {isUploading ?
-                <div className='loading-btn demo-form'>
-
-                    <button style={{ cursor: 'wait', alignSelf: 'center', marginBottom: '30px' }} className='upload-btn' id='isUploading'></button>
+            {isUploading ? (
+                <div className="loading-btn demo-form">
+                    <button
+                        style={{ cursor: 'wait', alignSelf: 'center', marginBottom: '30px' }}
+                        className="upload-btn"
+                        id="isUploading"
+                    ></button>
                     <p style={{ textAlign: 'center', color: 'rgb(58, 58, 58)', zIndex: '10', fontWeight: '500' }}>Uploading {audioFile?.name}</p>
                     <div class="custom-shape-divider-bottom-1689291612">
                         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -80,11 +105,12 @@ const Demos = () => {
                         </svg>
                     </div>
                 </div>
-
-
-                : <form onSubmit={handleSubmit} encType="multipart/form-data" className="demo-form">
+            ) : (
+                <form onSubmit={handleSubmit} encType="multipart/form-data" className="demo-form">
                     <div className="record-container">
-                        <label htmlFor="audio" style={{ paddingRight: '20px' }} className='md-font'>Upload File:</label>
+                        <label htmlFor="audio" style={{ paddingRight: '20px' }} className="md-font">
+                            Upload File:
+                        </label>
                         <input
                             type="file"
                             id="audio"
@@ -94,19 +120,26 @@ const Demos = () => {
                             ref={fileInputRef}
                             style={{ display: 'none' }} // Hide the file input
                         />
-                    <p onClick={handleRecordButtonClick} className='upload-btn' id='pre-upload'></p>
+                        <p onClick={handleRecordButtonClick} className="upload-btn" id="pre-upload"></p>
                     </div>
-                    {audioFile?.name && <p style={{textAlign: 'center'}}>{audioFile.name} <i className='fa fa-times' onClick={() => setAudioFile(null)}></i></p>}
-                <div className="demo-inputs">
-                    <div className='record-container'>
-                            <label htmlFor="name" className='md-font' style={{ paddingRight: '20px' }}>Name:</label>
-                        <input name='name' required type="text"  value={name} onChange={(e) => setName(e.target.value)} />
+                    {audioFile?.name && <p style={{ textAlign: 'center' }}>{audioFile.name} <i onClick={() => setAudioFile(null)} className='fa fa-times'></i></p>}
+                    <div className="demo-inputs">
+                        <div className="record-container">
+                            <label htmlFor="name" className="md-font" style={{ paddingRight: '20px' }}>
+                                Name:
+                            </label>
+                            <input name="name" required type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                        </div>
                     </div>
-                    </div>
-                    <div className='upload-submit'>
-
-                    <button type="submit">Submit</button>
-                    <span id='signup-btn' style={{padding: '4px 10px', borderRadius : '5px', fontSize : '13px'}} onClick={handleDemoUpload}>Demo Upload</span>
+                    <div className="upload-submit">
+                        <button type="submit">Submit</button>
+                        <span
+                            id="signup-btn"
+                            style={{ padding: '4px 10px', borderRadius: '5px', fontSize: '13px' }}
+                            onClick={handleDemoUpload}
+                        >
+                            Demo Upload
+                        </span>
                     </div>
                     <div class="custom-shape-divider-bottom-1689291612">
                         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -115,26 +148,36 @@ const Demos = () => {
                             <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
                         </svg>
                     </div>
-            </form>}
-            {userDemos.length === 0 ? <div>
-                <h2>Demos are empty. Upload demos now!</h2>
-
-            </div> :<div className="user-demos">
-                {userDemos.map((demo, idx) => {
-                    return (
-                        <div key={`index-to-demos-${idx}`} className='demo-item'>
-                            <audio controls>
-                                <source src={demo.file_link} type="audio/mp3" />
-                                Your browser does not support the audio element.
-                            </audio>
-                            <div className='demo-details'>
-                                <p>{demo.name} <span>{demo.created_at.split(' ').splice(0,4).join(' ')}</span></p>
-                            <i  onClick={() => setModalContent(<DeleteDemoModal demo={demo} handleDelete={handleDelete} closeModal={closeModal}/>)} className="fa fa-trash"></i>
+                </form>
+            )}
+            {userDemos.length === 0 ? (
+                <div className='empty-demos'>
+                    <h2>Demos are empty. Upload demos now!</h2>
+                    <img src='/ag.png'  alt='acoustic guitar'></img>
+                </div>
+            ) : (
+                <div className="user-demos">
+                    {userDemos.map((demo, idx) => {
+                        return (
+                            <div key={`index-to-demos-${idx}`} className="demo-item">
+                                <audio controls>
+                                    <source src={demo.file_link} type="audio/mp3" />
+                                    Your browser does not support the audio element.
+                                </audio>
+                                <div className="demo-details">
+                                    <p>
+                                        {demo.name} <span>{demo.created_at.split(' ').splice(0, 4).join(' ')}</span>
+                                    </p>
+                                    <i
+                                        onClick={() => setModalContent(<DeleteDemoModal demo={demo} handleDelete={handleDelete} closeModal={closeModal} />)}
+                                        className="fa fa-trash"
+                                    ></i>
+                                </div>
                             </div>
-                        </div>
-                    );
-                }).reverse()}
-            </div>}
+                        );
+                    }).reverse()}
+                </div>
+            )}
         </div>
     );
 };
