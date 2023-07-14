@@ -6,6 +6,7 @@ Hello, thanks for checking out my capstone project! This project is a clone of U
 
 Currently the app has functionality to authenticate users, create and edit Songsheets, create and edit lists of Songsheets, create and delete audio files called demos. I included a piano keyboard so users can play along to a songsheet.
 
+This site is currently live here: https://jamify-dhs9.onrender.com. You can also clone the repo and run locally by following the instructions below.
 ## Index
 
 [MVP Feature List](https://github.com/michael-carvajal/jamify/wiki/Feature-List) |
@@ -21,18 +22,17 @@ Currently the app has functionality to authenticate users, create and edit Songs
 
 ## Frontend Screenshots
 
-The search bar dynamically renders results matching the user input, giving suggestions for a Songsheets based off the title.
+### The search bar dynamically renders results matching the user input, giving suggestions for a Songsheets based off the title.
 ![Landing Page](https://i.imgur.com/GVtcJI2.png)
-To upload a songsheet a user must input The Artist, Album, Genre, Title, key, and body. They can also update it using the same interface.
+### To upload a songsheet a user must input The Artist, Album, Genre, Title, key, and body. They can also update it using the same interface.
 ![Create Songsheet](https://i.imgur.com/h1kCy17.png)
-Users can upload audio files with the correct extensions. There is also s demo button if they do not have a file to upload.
+### Users can upload audio files with the correct extensions. There is also s demo button if they do not have a file to upload.
 ![Upload Demo](https://i.imgur.com/yigxfGX.png)
-This page displays the details of the Songsheet and can add current Songsheet to a Setlist
+### This page displays the details of the Songsheet and can add current Songsheet to a Setlist
 ![Songsheet Detail](https://i.imgur.com/Orp5sSc.png)
-Users organize desired Songsheets into a setlist
+### Users organize desired Songsheets into a setlist
 ![Setlist Detail](https://i.imgur.com/PS3qwh6.png)
 
-This site is currently live here: https://jamify-dhs9.onrender.com. You can also clone the repo and run locally by following the instructions below.
 
 ## Getting started
 1. Clone this repository (only this branch)
