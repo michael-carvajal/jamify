@@ -145,14 +145,18 @@
 .custom-shape-divider-bottom-1689291612 .shape-fill {
     fill: #B3B3B3;
 }
-
+.empty-demos{
+    position: relative;
+    height: 400px;
+}
 
 .empty-demos img {
-    width: 400px;
+    width: 300px;
     transition: rotate 1.0s ease;
-    animation: rotateGuitar 4.1s infinite;
+    animation: rotateGuitar 2.7s infinite;
     rotate: -107deg;
     padding: 30px;
+    position: relative;
 }
 
 
