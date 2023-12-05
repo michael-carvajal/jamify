@@ -5,6 +5,7 @@ import './Navigation.css';
 import { fetchAllSongsheets } from '../../store/songsheets';
 import { fetchAllSetlists } from '../../store/setlists';
 import Keyboard from '../Keyboard';
+import DropdownMenu from './DropdownMenu';
 
 function Navigation() {
 	const [search, setSearch] = useState('');
@@ -13,7 +14,11 @@ function Navigation() {
 	const dispatch = useDispatch();
 	const songsheets = useSelector((state) => state.songsheets);
 	const resultsRef = useRef(null);
+	const [isDropdownOpen, setDropdownOpen] = useState(false);
 
+	const toggleDropdown = () => {
+		setDropdownOpen(!isDropdownOpen);
+	};
 	useEffect(() => {
 		dispatch(fetchAllSongsheets());
 		dispatch(fetchAllSetlists());
@@ -24,6 +29,7 @@ function Navigation() {
 			if (resultsRef.current && !resultsRef.current.contains(event.target)) {
 				setSearch('');
 				setFilteredSongsheets([]);
+				setDropdownOpen(false)
 			}
 		};
 
@@ -79,7 +85,16 @@ function Navigation() {
 					</div>
 				</NavLink>
 			</li>
-			<div className='nav-links'>
+
+			{/* Hamburger Icon for Small Screens */}
+			<li className='md:hidden relative'>
+				<button onClick={toggleDropdown}>
+					<i className='fa fa-bars'></i>
+				</button>
+			{/* Dropdown Menu for Small Screens */}
+			<DropdownMenu isOpen={isDropdownOpen} onClose={toggleDropdown} pianoFeature={pianoFeature} />
+			</li>
+			<div className='hidden md:flex'>
 				<li>
 					<NavLink to='/songsheets'>Songsheets</NavLink>
 				</li>
