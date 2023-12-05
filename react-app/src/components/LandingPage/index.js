@@ -19,7 +19,7 @@ export default function LandingPage() {
     const decades = ["1960's", "1970's", "1980's", "2000's", "2010's"]
     return (
         <div className="landing-page">
-            <h1>Welcome to Jamify</h1>
+            <h1 className="border-8 border-indigo-600 text-yellow-300 ">Welcome to Jamify</h1>
             <div className="top-hits">
                 <h3>Top Hits</h3>
                 <div className="top-hits-body">
@@ -35,7 +35,7 @@ export default function LandingPage() {
                                 }
                                 const artistName = Artists[song.artist_id].name
                                 return (
-                                    <tr>
+                                    <tr key={`tophits-key${index}`}>
                                         <th>{artistName}</th>
                                         <th><NavLink to={`/songsheet-detail/${song.id}`} className="songsheet-link">{song.title}</NavLink></th>
                                         <th><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i></th>
@@ -63,7 +63,7 @@ export default function LandingPage() {
                             {decades.map((decade, index) => {
                                 const dataKey = index + 1
                                 return (
-                                    <tr>
+                                    <tr key={`decades-${index}`}>
                                         <th>{Genres[dataKey].name}</th>
                                         <th>{decade}</th>
                                         <th>{Artists[dataKey]?.name || ""}</th>
@@ -80,10 +80,10 @@ export default function LandingPage() {
 
                         </thead>
                         <tbody>
-                            {recentPublish.reverse().map(song => {
+                            {recentPublish.reverse().map((song, index) => {
                                 const artistName = Artists[song.artist_id].name
                                 return (
-                                    <tr>
+                                    <tr key={`recently-published-${index}`}>
                                         <th>{artistName}</th>
                                         <th><NavLink to={`/songsheet-detail/${song.id}`} className="songsheet-link">{song.title}</NavLink></th>
                                         <th>{Math.floor(Math.random() * 1000)} Likes</th>
