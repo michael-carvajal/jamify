@@ -14,6 +14,9 @@ function Navigation() {
 	const dispatch = useDispatch();
 	const songsheets = useSelector((state) => state.songsheets);
 	const resultsRef = useRef(null);
+	const dropdownRef = useRef(null);
+	const buttonRef = useRef(null);
+
 	const [isDropdownOpen, setDropdownOpen] = useState(false);
 
 	const toggleDropdown = () => {
@@ -29,7 +32,9 @@ function Navigation() {
 			if (resultsRef.current && !resultsRef.current.contains(event.target)) {
 				setSearch('');
 				setFilteredSongsheets([]);
-				setDropdownOpen(false)
+			}
+			if (dropdownRef.current && !dropdownRef.current.contains(event.target) && !buttonRef.current.contains(event.target)) {
+				setDropdownOpen(false);
 			}
 		};
 
@@ -88,11 +93,11 @@ function Navigation() {
 
 			{/* Hamburger Icon for Small Screens */}
 			<li className='md:hidden relative'>
-				<button onClick={toggleDropdown}>
+				<button ref={buttonRef} onClick={toggleDropdown}>
 					<i className='fa fa-bars'></i>
 				</button>
 			{/* Dropdown Menu for Small Screens */}
-			<DropdownMenu isOpen={isDropdownOpen} onClose={toggleDropdown} pianoFeature={pianoFeature} />
+			<DropdownMenu isOpen={isDropdownOpen} onClose={toggleDropdown} pianoFeature={pianoFeature} dropdownRef={dropdownRef} />
 			</li>
 			<div className='hidden md:flex'>
 				<li>
