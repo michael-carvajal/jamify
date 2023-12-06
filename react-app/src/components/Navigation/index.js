@@ -5,6 +5,7 @@ import './Navigation.css';
 import { fetchAllSongsheets } from '../../store/songsheets';
 import { fetchAllSetlists } from '../../store/setlists';
 import Keyboard from '../Keyboard';
+import DropdownMenu from './DropdownMenu';
 
 function Navigation() {
 	const [search, setSearch] = useState('');
@@ -13,7 +14,14 @@ function Navigation() {
 	const dispatch = useDispatch();
 	const songsheets = useSelector((state) => state.songsheets);
 	const resultsRef = useRef(null);
+	const dropdownRef = useRef(null);
+	const buttonRef = useRef(null);
 
+	const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+	const toggleDropdown = () => {
+		setDropdownOpen(!isDropdownOpen);
+	};
 	useEffect(() => {
 		dispatch(fetchAllSongsheets());
 		dispatch(fetchAllSetlists());
@@ -24,6 +32,9 @@ function Navigation() {
 			if (resultsRef.current && !resultsRef.current.contains(event.target)) {
 				setSearch('');
 				setFilteredSongsheets([]);
+			}
+			if (dropdownRef.current && !dropdownRef.current.contains(event.target) && !buttonRef.current.contains(event.target)) {
+				setDropdownOpen(false);
 			}
 		};
 
@@ -75,25 +86,26 @@ function Navigation() {
 			<li>
 				<NavLink exact to='/'>
 					<div className='logo-container'>
-						<img src='/logo2.png' alt='logo' id='logo' />
+						<img src='/logo2.png' alt='logo' className='w-full h-full object-contain' />
 					</div>
 				</NavLink>
 			</li>
-			<div className='nav-links'>
-				<li>
-					<NavLink to='/songsheets'>Songsheets</NavLink>
-				</li>
-				<li>
-					<NavLink to='/publish'>
-						<i className='fa fa-plus'></i>Publish
-					</NavLink>
-				</li>
-				<li>
-					<NavLink to='/setlists'>Setlists</NavLink>
-				</li>
-				<li>
-					<p onClick={pianoFeature}>Piano</p>
-				</li>
+
+			{/* Hamburger Icon for Small Screens */}
+			<li className='md:hidden relative'>
+				<button ref={buttonRef} onClick={toggleDropdown}>
+					<i className='fa fa-bars'></i>
+				</button>
+				{/* Dropdown Menu for Small Screens */}
+				<DropdownMenu isOpen={isDropdownOpen} onClose={toggleDropdown} pianoFeature={pianoFeature} dropdownRef={dropdownRef} />
+			</li>
+			<div className='hidden md:flex justify-between w-80'>
+				<NavLink to='/songsheets'>Songsheets</NavLink>
+				<NavLink to='/publish'>
+					<i className='fa fa-plus'></i>Publish
+				</NavLink>
+				<NavLink to='/setlists'>Setlists</NavLink>
+				<p onClick={pianoFeature}>Piano</p>
 			</div>
 
 			<div className='search-container'>
@@ -101,6 +113,7 @@ function Navigation() {
 					value={search}
 					onChange={(e) => setSearch(e.target.value)}
 					placeholder='Enter a song title'
+					className='text-xs md:text-[14px] pl-3'
 				></input>
 				<button onClick={searchFeature}>
 					<i className='fa fa-search'></i>

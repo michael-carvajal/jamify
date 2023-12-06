@@ -35,10 +35,10 @@ export default function Sidebar({ isLoaded }) {
                     <OpenModalButton type="login" modalComponent={<LoginFormModal />} />
                 </div>
             )}
-            <NavLink to="/user/songsheets">My Songsheets</NavLink>
-            <NavLink to="/user/setlists">My Setlists</NavLink>
-            <NavLink to="/user/demos">My Demos</NavLink>
-            <NavLink to="/user/reviews">My Reviews</NavLink>
+            <NavLink className="text-xs md:text-base" to="/user/songsheets">My Songsheets</NavLink>
+            <NavLink className="text-xs md:text-base" to="/user/setlists">My Setlists</NavLink>
+            <NavLink className="text-xs md:text-base" to="/user/demos">My Demos</NavLink>
+            <NavLink className="text-xs md:text-base" to="/user/reviews">My Reviews</NavLink>
 
             {isLoaded && (
                 <li>
