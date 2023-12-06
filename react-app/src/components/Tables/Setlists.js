@@ -42,16 +42,17 @@ export default function AllSetlist({ type, songId }) {
         dispatch(DeleteItem(item.id))
     }
     return (
-        <div >
-            {type === 'user' || type === "add" ? <div className="user-setlists-header">
-                <h1>My Setlists</h1>
+        <div className="p-2">
+            {type === 'user' || type === "add" ? <div className="">
+                <div className="mb-10  flex flex-col justify-center items-end">
+
+                <h1 className="text-xl md:text-3xl font-bold">My Setlists</h1>
                 <OpenModalButton modalComponent={<CreateSetlistModal songId={songId} type="create" addToSetlist={type === "add" ? true : false} />} type="create-setlist" />
-            </div> :
-                <h1>All Public Setlists</h1>}
-            <div className="grid grid-cols-4">
-                <div className="col-span-4">
-                    <h1>{type === "add" ? "Add to Setlist" : "My Setlists"}</h1>
                 </div>
+            </div> :
+                <h1 className="text-xl md:text-3xl mb-10 font-bold text-right">All Public Setlists</h1>}
+            <div className="grid grid-cols-4">
+
                 <div className="col-span-1">
                     <h2 className="text-xs md:text-base">TITLE</h2>
                     {setlistMapper.map((setlist, index) => (
