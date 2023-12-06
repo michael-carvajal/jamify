@@ -19,7 +19,7 @@ export default function LandingPage() {
     const decades = ["1960's", "1970's", "1980's", "2000's", "2010's"]
     return (
         <div className="landing-page">
-            <h1 className="border-8 border-indigo-600 text-yellow-300 ">Welcome to Jamify</h1>
+            <h1 className="text-xl md:text-3xl font-bold text-center">Welcome To Jamify</h1>
             <div className="top-hits">
                 <h3>Top Hits</h3>
                 <div className="top-hits-body">
