@@ -9,7 +9,7 @@ import { useModal } from "../../context/Modal";
 export default function AllSetlist({ type, songId }) {
     const { setlists } = useSelector(state => state)
     const { Setlists, Setlist_items } = setlists;
-    const {closeModal} = useModal()
+    const { closeModal } = useModal()
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user);
     if (!sessionUser && type === "add") {
@@ -42,58 +42,102 @@ export default function AllSetlist({ type, songId }) {
         dispatch(DeleteItem(item.id))
     }
     return (
-        <div id="table-container" className="all-setlists">
-            <table className="table">
-                <thead>
-                    {type === 'user' || type === "add" ? <div className="user-setlists-header">
-                        <h1>My Setlists</h1>
-                        <OpenModalButton modalComponent={<CreateSetlistModal songId={songId} type="create" addToSetlist={type === "add" ? true : false} />} type="create-setlist" />
-                    </div> :
-                    <h1>All Public Setlists</h1>}
-                    <tr>
-                        <th>TITLE</th>
-                        <th>DESCRIPTION</th>
-                        {type === "add" ? null : <th>DATE</th>}
-                        <th>SONGSHEETS</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <div >
+            {type === 'user' || type === "add" ? <div className="user-setlists-header">
+                <h1>My Setlists</h1>
+                <OpenModalButton modalComponent={<CreateSetlistModal songId={songId} type="create" addToSetlist={type === "add" ? true : false} />} type="create-setlist" />
+            </div> :
+                <h1>All Public Setlists</h1>}
+            <div className="grid grid-cols-4">
+                <div className="col-span-4">
+                    <h1>{type === "add" ? "Add to Setlist" : "My Setlists"}</h1>
+                </div>
+                <div className="col-span-1">
+                    <h2 className="text-xs md:text-base">TITLE</h2>
+                    {setlistMapper.map((setlist, index) => (
+                        <div className="border-t text-xs md:text-base p-2 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`setlist-title-${index}`}>
+                            <NavLink to={`/setlist-detail/${setlist.id}`} className="select-link">
+                                {setlist.name}
+                            </NavLink>
+                        </div>
+                    ))}
+                </div>
+                <div className="col-span-1">
+                    <h2 className="text-xs md:text-base">DESCRIPTION</h2>
+                    {setlistMapper.map((setlist, index) => (
+                        <div className="border-t text-xs md:text-base p-2 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`setlist-description-${index}`}>
+                            {setlist.description}
+                        </div>
+                    ))}
+                </div>
+                {type !== "add" && (
+                    <div className="col-span-1">
+                        <h2 className="text-xs md:text-base">DATE</h2>
+                        {setlistMapper.map((setlist, index) => {
+                            const dateSplit = setlist.created_at.split(" ");
+                            return (
+                                <div className="border-t text-xs md:text-base p-2" key={`setlist-date-${index}`}>
+                                    {`${dateSplit[1]} ${dateSplit[2]} ${dateSplit[3]}`}
+                                </div>
+                            );
+                        })}
+                    </div>
+                )}
+                <div className="col-span-1">
+                    <h2 className="text-xs md:text-base">SONGSHEETS</h2>
                     {setlistMapper.map((setlist, index) => {
-                        // const artistId = setlist.artist_id;
-                        const lists = listItems.filter(list => list.setlist_id === setlist.id)
-                        const listLength = lists.length
-                        const dateSplit = setlist.created_at.split(" ")
-                        let isInList = false;
-                        lists.forEach(list => {
-                            if (list.songsheet_id === songId) {
-                                isInList = true
-                            }
-                        })
+                        const lists = listItems.filter((list) => list.setlist_id === setlist.id);
+                        const listLength = lists.length;
                         return (
-                            <tr className="table-row" key={`setlist-list-${index}`}>
-                                <td>
-                                    <NavLink to={`/setlist-detail/${setlist.id}`} className="select-link">{setlist.name}</NavLink>
-                                </td>
-                                <td>{setlist.description}</td>
-                                {type === "add" ? null : <td>{`${dateSplit[1]} ${dateSplit[2]} ${dateSplit[3]}`}</td>}
-                                <td>{listLength}</td>
-                                {type === "user" ? (
-                                    <td className="delete-stock">
-                                        <OpenModalButton
-                                            type="delete-setlist"
-                                            modalComponent={<DeleteSetlistModal listId={setlist.id} listName={setlist.name}/>}
-                                        />
-                                        <OpenModalButton type="edit-setlist" modalComponent={<CreateSetlistModal type="edit" setlist={setlist} id={setlist.id} />} />
-                                    </td>
-                                ) : null}
-                                {type === "add" && <td>{isInList ? <i className="fa fa-check" onClick={() => handleRemove(setlist.id)}></i> : <i className="fa fa-plus" onClick={() => handleAdd(setlist.id)}></i>}
-                                </td>}
-                            </tr>
+                            <div className="border-t text-xs md:text-base p-2" key={`setlist-songsheets-${index}`}>
+                                {listLength}
+                            </div>
                         );
                     })}
-                </tbody>
-            {type === "add" && (<p onClick={closeModal} id="signup-btn" className="setlist-done" style={{width: "fit-content", padding: "5px 10px", textAlign: "right"}}>DONE</p>)}
-            </table>
+                </div>
+                {type === "user" && (
+                    <div className="col-span-1">
+                        <h2 className="text-xs md:text-base">Action</h2>
+                        {setlistMapper.map((setlist, index) => (
+                            <div className="border-t text-xs md:text-base p-2" key={`setlist-action-${index}`}>
+                                <div className="flex items-center">
+                                    <OpenModalButton
+                                        type="delete-setlist"
+                                        modalComponent={<DeleteSetlistModal listId={setlist.id} listName={setlist.name} />}
+                                    />
+                                    <OpenModalButton type="edit-setlist" modalComponent={<CreateSetlistModal type="edit" setlist={setlist} id={setlist.id} />} />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+                {type === "add" && (
+                    <div className="col-span-1">
+                        <h2 className="text-xs md:text-base">Action</h2>
+                        {setlistMapper.map((setlist, index) => {
+                            const isInList = listItems.some((list) => list.songsheet_id === songId && list.setlist_id === setlist.id);
+                            return (
+                                <div className="border-t text-xs md:text-base p-2" key={`setlist-action-${index}`}>
+                                    {isInList ? (
+                                        <i className="fa fa-check" onClick={() => handleRemove(setlist.id)}></i>
+                                    ) : (
+                                        <i className="fa fa-plus" onClick={() => handleAdd(setlist.id)}></i>
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </div>
+                )}
+                {type === "add" && (
+                    <div className="col-span-4">
+                        <p onClick={closeModal} id="signup-btn" className="setlist-done" style={{ width: "fit-content", padding: "5px 10px", textAlign: "right" }}>
+                            DONE
+                        </p>
+                    </div>
+                )}
+            </div>
+
+
         </div>
     );
 }
