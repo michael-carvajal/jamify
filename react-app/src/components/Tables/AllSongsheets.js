@@ -16,10 +16,10 @@ export default function AllSongsheets({ type, userSongsheets }) {
 
     const songMapper = type === "user" ? userSongsheets : songsheetsArray;
     return (
-        <div  className="">
+        <div>
             <div className="grid grid-cols-4 p-2">
                 <div className="col-span-4">
-                    <h1>{type === "user" ? "My Songsheets" : "Explore our Catalog"}</h1>
+                    <h1 className="text-xl md:text-3xl mb-10 font-bold text-right">{type === "user" ? "My Songsheets" : "Explore our Catalog"}</h1>
                 </div>
                 <div className="col-span-1">
                     <h2 className="text-xs md:text-base">ARTISTS</h2>
