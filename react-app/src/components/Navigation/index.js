@@ -86,7 +86,7 @@ function Navigation() {
 			<li>
 				<NavLink exact to='/'>
 					<div className='logo-container'>
-						<img src='/logo2.png' alt='logo' id='logo' />
+						<img src='/logo2.png' alt='logo' className='w-full h-full object-contain' />
 					</div>
 				</NavLink>
 			</li>
@@ -96,24 +96,16 @@ function Navigation() {
 				<button ref={buttonRef} onClick={toggleDropdown}>
 					<i className='fa fa-bars'></i>
 				</button>
-			{/* Dropdown Menu for Small Screens */}
-			<DropdownMenu isOpen={isDropdownOpen} onClose={toggleDropdown} pianoFeature={pianoFeature} dropdownRef={dropdownRef} />
+				{/* Dropdown Menu for Small Screens */}
+				<DropdownMenu isOpen={isDropdownOpen} onClose={toggleDropdown} pianoFeature={pianoFeature} dropdownRef={dropdownRef} />
 			</li>
-			<div className='hidden md:flex'>
-				<li>
-					<NavLink to='/songsheets'>Songsheets</NavLink>
-				</li>
-				<li>
-					<NavLink to='/publish'>
-						<i className='fa fa-plus'></i>Publish
-					</NavLink>
-				</li>
-				<li>
-					<NavLink to='/setlists'>Setlists</NavLink>
-				</li>
-				<li>
-					<p onClick={pianoFeature}>Piano</p>
-				</li>
+			<div className='hidden md:flex justify-between w-80'>
+				<NavLink to='/songsheets'>Songsheets</NavLink>
+				<NavLink to='/publish'>
+					<i className='fa fa-plus'></i>Publish
+				</NavLink>
+				<NavLink to='/setlists'>Setlists</NavLink>
+				<p onClick={pianoFeature}>Piano</p>
 			</div>
 
 			<div className='search-container'>
@@ -121,6 +113,7 @@ function Navigation() {
 					value={search}
 					onChange={(e) => setSearch(e.target.value)}
 					placeholder='Enter a song title'
+					className='text-xs md:text-lg'
 				></input>
 				<button onClick={searchFeature}>
 					<i className='fa fa-search'></i>

@@ -31,7 +31,8 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle lift */
 }
 
-.dropdown a,p {
+.dropdown a,
+.dropdown p {
   display: block;
   padding: 8px 16px;
   color: #2d3748; /* Text color */
@@ -54,17 +55,12 @@
 
 .logo-container{
   background-color: var(--ug-yellow) !important;
-  width: fit-content;
-  height: 73px;
-  padding: 6px 15px ;
+  height: 50px;
+  width: 60px;
   border-radius: 5px;
 }
 
-#logo{
-  align-items: center;
-  width: 40px;
-  background-color: none;
-}
+
 .search-container button{
       padding: 0px 10px;
 }
