@@ -61,3 +61,8 @@
 .fa-pencil:hover{
     color: var(--ug-yellow);
 }
+
+.table-head-color{
+    color:#898989;
+}
+

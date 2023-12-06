@@ -26,9 +26,9 @@ export default function LandingPage() {
                 <div className="top-hits-body my-5">
                     <img style={{ width: "30%" }} className="hidden md:block" id="top-hits-img" src="https://jamify-aa.s3.us-east-2.amazonaws.com/Artists/ABBA.jpg" alt="band"></img>
                     <div className="grid grid-cols-3  p-2">
-                        <div className="font-bold text-xs md:text-base">Artist</div>
-                        <div className="font-bold text-xs md:text-base">Title</div>
-                        <div className="font-bold text-xs md:text-base">Rating</div>
+                        <div className="table-head-color font-bold text-xs md:text-base">Artist</div>
+                        <div className="table-head-color font-bold text-xs md:text-base">Title</div>
+                        <div className="table-head-color font-bold text-xs md:text-base">Rating</div>
                         {topHits.map((song, index) => {
                             if (index > 3) {
                                 return null;
