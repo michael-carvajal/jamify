@@ -113,7 +113,7 @@ function Navigation() {
 					value={search}
 					onChange={(e) => setSearch(e.target.value)}
 					placeholder='Enter a song title'
-					className='text-xs md:text-lg'
+					className='text-xs md:text-[14px] pl-3'
 				></input>
 				<button onClick={searchFeature}>
 					<i className='fa fa-search'></i>

@@ -36,13 +36,13 @@ export default function LandingPage() {
                             const artistName = Artists[song.artist_id].name;
                             return (
                                 <React.Fragment key={`tophits-key${index}`}>
-                                    <div className="border-t p-2 text-xs md:text-base">{artistName}</div>
-                                    <div className="border-t p-2 text-xs md:text-base">
+                                    <div className="border-t py-2 text-xs md:text-base">{artistName}</div>
+                                    <div className="border-t py-2 text-xs md:text-base">
                                         <NavLink to={`/songsheet-detail/${song.id}`} className="songsheet-link">
                                             {song.title}
                                         </NavLink>
                                     </div>
-                                    <div className="border-t p-2">
+                                    <div className="border-t py-2">
                                         <i className="fa fa-star"></i>
                                         <i className="fa fa-star"></i>
                                         <i className="fa fa-star"></i>
@@ -68,13 +68,13 @@ export default function LandingPage() {
                             const artistName = Artists[song.artist_id].name;
                             return (
                                 <React.Fragment key={`recently-published-${index}`}>
-                                    <div className="border-t p-2">{artistName}</div>
-                                    <div className="border-t p-2">
+                                    <div className="border-t py-2">{artistName}</div>
+                                    <div className="border-t py-2">
                                         <NavLink to={`/songsheet-detail/${song.id}`} className="songsheet-link">
                                             {song.title}
                                         </NavLink>
                                     </div>
-                                    <div className="border-t p-2">{Math.floor(Math.random() * 1000)} Likes</div>
+                                    <div className="border-t py-2">{Math.floor(Math.random() * 1000)} Likes</div>
                                 </React.Fragment>
                             );
                         })}
@@ -83,16 +83,16 @@ export default function LandingPage() {
                 <div className="categories">
                     <h3>Explore our Songsheet Catalog</h3>
                     <div className="grid grid-cols-3 p-2">
-                        <div>GENRE</div>
-                        <div>DECADE</div>
-                        <div>ARTISTS</div>
+                        <div>Genre</div>
+                        <div>Decade</div>
+                        <div>Artists</div>
                         {decades.map((decade, index) => {
                             const dataKey = index + 1;
                             return (
                                 <React.Fragment key={`decades-${index}`}>
-                                    <div className="border-t p-2">{Genres[dataKey].name}</div>
-                                    <div className="border-t p-2">{decade}</div>
-                                    <div className="border-t p-2">{Artists[dataKey]?.name || ""}</div>
+                                    <div className="border-t py-2">{Genres[dataKey].name}</div>
+                                    <div className="border-t py-2">{decade}</div>
+                                    <div className="border-t py-2">{Artists[dataKey]?.name || ""}</div>
                                 </React.Fragment>
                             );
                         })}
