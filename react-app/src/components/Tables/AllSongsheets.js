@@ -52,8 +52,8 @@ export default function AllSongsheets({ type, userSongsheets }) {
                         </div>
                     ))}
                 </div>
-                <div className="col-span-1">
-                    <h2 className="text-xs md:text-base">LIKES</h2>
+                <div className={`col-span-1 ${type === "user" && "hidden"}`}>
+                    <h2 className="text-xs md:text-base ">LIKES</h2>
                     {songMapper.map((_, index) => (
                         <div className="border-t text-xs md:text-base p-2" key={`likes-${index}`}>
                             50
