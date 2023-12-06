@@ -54,7 +54,7 @@ export default function AllSetlist({ type, songId }) {
             <div className="grid grid-cols-4">
 
                 <div className="col-span-1">
-                    <h2 className="text-xs md:text-base">TITLE</h2>
+                    <h2 className="table-head-color font-bold text-xs md:text-base">TITLE</h2>
                     {setlistMapper.map((setlist, index) => (
                         <div className="border-t text-xs md:text-base p-2 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`setlist-title-${index}`}>
                             <NavLink to={`/setlist-detail/${setlist.id}`} className="select-link">
@@ -63,8 +63,8 @@ export default function AllSetlist({ type, songId }) {
                         </div>
                     ))}
                 </div>
-                <div className="col-span-1">
-                    <h2 className="text-xs md:text-base">DESCRIPTION</h2>
+                <div className={`col-span-1 ${type === "user" && "hidden"}`}>
+                    <h2 className="table-head-color font-bold text-xs md:text-base">DESCRIPTION</h2>
                     {setlistMapper.map((setlist, index) => (
                         <div className="border-t text-xs md:text-base p-2 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`setlist-description-${index}`}>
                             {setlist.description}
@@ -73,7 +73,7 @@ export default function AllSetlist({ type, songId }) {
                 </div>
                 {type !== "add" && (
                     <div className="col-span-1">
-                        <h2 className="text-xs md:text-base">DATE</h2>
+                        <h2 className="table-head-color font-bold text-xs md:text-base">DATE</h2>
                         {setlistMapper.map((setlist, index) => {
                             const dateSplit = setlist.created_at.split(" ");
                             return (
@@ -85,7 +85,7 @@ export default function AllSetlist({ type, songId }) {
                     </div>
                 )}
                 <div className="col-span-1">
-                    <h2 className="text-xs md:text-base">SONGSHEETS</h2>
+                    <h2 className="table-head-color font-bold text-xs md:text-base">SONGSHEETS</h2>
                     {setlistMapper.map((setlist, index) => {
                         const lists = listItems.filter((list) => list.setlist_id === setlist.id);
                         const listLength = lists.length;
@@ -98,7 +98,7 @@ export default function AllSetlist({ type, songId }) {
                 </div>
                 {type === "user" && (
                     <div className="col-span-1">
-                        <h2 className="text-xs md:text-base">Action</h2>
+                        <h2 className="table-head-color font-bold text-xs md:text-base">ACTION</h2>
                         {setlistMapper.map((setlist, index) => (
                             <div className="border-t text-xs md:text-base p-2" key={`setlist-action-${index}`}>
                                 <div className="flex items-center">
@@ -114,7 +114,7 @@ export default function AllSetlist({ type, songId }) {
                 )}
                 {type === "add" && (
                     <div className="col-span-1">
-                        <h2 className="text-xs md:text-base">Action</h2>
+                        <h2 className="table-head-color font-bold text-xs md:text-base">Action</h2>
                         {setlistMapper.map((setlist, index) => {
                             const isInList = listItems.some((list) => list.songsheet_id === songId && list.setlist_id === setlist.id);
                             return (
