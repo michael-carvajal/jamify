@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import React from "react";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import "./landingpage.css"
 export default function LandingPage() {
@@ -15,35 +16,44 @@ export default function LandingPage() {
 
     const topHits = songsheetsArray.filter(song => song.id % 2 !== 0 || song.id === 2)
     const recentPublish = songsheetsArray.slice(songsheetsArray.length - 4);
-    const imgUrl = ["https://jamify-aa.s3.us-east-2.amazonaws.com/Artists/jb.jpg","https://jamify-aa.s3.us-east-2.amazonaws.com/Artists/the_beatles.jpg", "https://jamify-aa.s3.us-east-2.amazonaws.com/Artists/ABBA.jpg",]
+    const imgUrls = ["https://jamify-aa.s3.us-east-2.amazonaws.com/Artists/jb.jpg","https://jamify-aa.s3.us-east-2.amazonaws.com/Artists/the_beatles.jpg", "https://jamify-aa.s3.us-east-2.amazonaws.com/Artists/ABBA.jpg",]
     const decades = ["1960's", "1970's", "1980's", "2000's", "2010's"]
     return (
-        <div className="landing-page">
+        <div className="landing-page overflow-hidden">
             <h1 className="text-xl md:text-3xl font-bold text-center">Welcome To Jamify</h1>
-            <div className="top-hits">
+            <div className=" ">
                 <h3>Top Hits</h3>
-                <div className="top-hits-body">
-                    <img style={{ width: "30%" }} id="top-hits-img" src="https://jamify-aa.s3.us-east-2.amazonaws.com/Artists/ABBA.jpg" alt="band"></img>
-                    <table>
-                        <thead>
+                <div className="top-hits-body my-5">
+                    <img style={{ width: "30%" }} className="hidden md:block" id="top-hits-img" src="https://jamify-aa.s3.us-east-2.amazonaws.com/Artists/ABBA.jpg" alt="band"></img>
+                    <div className="grid grid-cols-3  p-2">
+                        <div className="font-bold">Artist</div>
+                        <div className="font-bold">Title</div>
+                        <div className="font-bold">Rating</div>
+                        {topHits.map((song, index) => {
+                            if (index > 3) {
+                                return null;
+                            }
+                            const artistName = Artists[song.artist_id].name;
+                            return (
+                                <React.Fragment key={`tophits-key${index}`}>
+                                    <div className="border-t p-2 text-xs md:text-base">{artistName}</div>
+                                    <div className="border-t p-2 text-xs md:text-base">
+                                        <NavLink to={`/songsheet-detail/${song.id}`} className="songsheet-link">
+                                            {song.title}
+                                        </NavLink>
+                                    </div>
+                                    <div className="border-t p-2">
+                                        <i className="fa fa-star"></i>
+                                        <i className="fa fa-star"></i>
+                                        <i className="fa fa-star"></i>
+                                        <i className="fa fa-star"></i>
+                                    </div>
+                                </React.Fragment>
+                            );
+                        })}
+                    </div>
 
-                        </thead>
-                        <tbody>
-                            {topHits.map((song, index) => {
-                                if (index > 3) {
-                                    return
-                                }
-                                const artistName = Artists[song.artist_id].name
-                                return (
-                                    <tr key={`tophits-key${index}`}>
-                                        <th>{artistName}</th>
-                                        <th><NavLink to={`/songsheet-detail/${song.id}`} className="songsheet-link">{song.title}</NavLink></th>
-                                        <th><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i></th>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
-                    </table>
+
                 </div>
 
             </div>
