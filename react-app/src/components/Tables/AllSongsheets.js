@@ -16,46 +16,71 @@ export default function AllSongsheets({ type, userSongsheets }) {
 
     const songMapper = type === "user" ? userSongsheets : songsheetsArray;
     return (
-        <div id="table-container" className="">
-            <table className="table">
-                <thead>
-                    {type === "user" ? <h1>My Songsheets</h1> : <h1>Explore our Catalog</h1>}
-                    <tr>
-                        <th>ARTISTS</th>
-                        <th>SONG</th>
-                        <th>RATING</th>
-                        <th>LIKES</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <div  className="">
+            <div className="grid grid-cols-4 p-2">
+                <div className="col-span-4">
+                    <h1>{type === "user" ? "My Songsheets" : "Explore our Catalog"}</h1>
+                </div>
+                <div className="col-span-1">
+                    <h2 className="text-xs md:text-base">ARTISTS</h2>
                     {songMapper.map((song, index) => {
                         const artistId = song.artist_id;
                         return (
-                            <tr className="table-row" key={`song-list-${index}`}>
-                                <td>{Artists[artistId].name}</td>
-                                <td>
-                                    <NavLink to={`/songsheet-detail/${song.id}`} className="select-link">{song.title}</NavLink>
-                                </td>
-                                <td>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                </td>
-                                <td>50</td>
-                                {type === "user" ? (
-                                    <td className="delete-stock">
-                                        <OpenModalButton
-                                            type="delete-songsheet"
-                                            modalComponent={<DeleteSongsheetModal sheetId={song.id} songName={song.title}/>}
-                                        />
-                                        <NavLink to={`/publish/${song.id}`}><i className="fa fa-pencil"></i></NavLink>
-                                    </td>
-                                ) : null}
-                            </tr>
+                            <div className="border-t text-xs md:text-base p-2 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`artist-${index}`}>
+                                {Artists[artistId].name}
+                            </div>
                         );
                     })}
-                </tbody>
-            </table>
+                </div>
+                <div className="col-span-1 flex-grow">
+                    <h2 className="text-xs md:text-base">SONG</h2>
+                    {songMapper.map((song, index) => (
+                        <div className="border-t text-xs md:text-base p-2 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`song-${index}`}>
+                            <NavLink to={`/songsheet-detail/${song.id}`} className="select-link">
+                                {song.title}
+                            </NavLink>
+                        </div>
+                    ))}
+                </div>
+                <div className="col-span-1">
+                    <h2 className="text-xs md:text-base">RATING</h2>
+                    {songMapper.map((_, index) => (
+                        <div className="border-t text-xs md:text-base p-2" key={`rating-${index}`}>
+                            <i className="fa fa-star"></i>
+                            <i className="fa fa-star"></i>
+                            <i className="fa fa-star"></i>
+                        </div>
+                    ))}
+                </div>
+                <div className="col-span-1">
+                    <h2 className="text-xs md:text-base">LIKES</h2>
+                    {songMapper.map((_, index) => (
+                        <div className="border-t text-xs md:text-base p-2" key={`likes-${index}`}>
+                            50
+                        </div>
+                    ))}
+                </div>
+                {type === "user" && (
+                    <div className="col-span-1">
+                        <h2 className="text-xs md:text-base">Action</h2>
+                        {songMapper.map((song, index) => (
+                            <div className="border-t text-xs md:text-base p-2" key={`action-${index}`}>
+                                <div className="flex items-center">
+                                    <OpenModalButton
+                                        type="delete-songsheet"
+                                        modalComponent={<DeleteSongsheetModal sheetId={song.id} songName={song.title} />}
+                                    />
+                                    <NavLink to={`/publish/${song.id}`} className="ml-2">
+                                        <i className="fa fa-pencil"></i>
+                                    </NavLink>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+
+
         </div>
     );
 }
