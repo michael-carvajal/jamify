@@ -22,7 +22,7 @@ export default function AllSongsheets({ type, userSongsheets }) {
                     <h1 className="text-xl md:text-3xl mb-10 font-bold text-right">{type === "user" ? "My Songsheets" : "Explore our Catalog"}</h1>
                 </div>
                 <div className="col-span-1">
-                    <h2 className="text-xs md:text-base">ARTISTS</h2>
+                    <h2 className="table-head-color font-bold text-xs md:text-base">ARTISTS</h2>
                     {songMapper.map((song, index) => {
                         const artistId = song.artist_id;
                         return (
@@ -33,7 +33,7 @@ export default function AllSongsheets({ type, userSongsheets }) {
                     })}
                 </div>
                 <div className="col-span-1 flex-grow">
-                    <h2 className="text-xs md:text-base">SONG</h2>
+                    <h2 className="table-head-color font-bold text-xs md:text-base">SONG</h2>
                     {songMapper.map((song, index) => (
                         <div className="border-t text-xs md:text-base p-2 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`song-${index}`}>
                             <NavLink to={`/songsheet-detail/${song.id}`} className="select-link">
@@ -43,7 +43,7 @@ export default function AllSongsheets({ type, userSongsheets }) {
                     ))}
                 </div>
                 <div className="col-span-1">
-                    <h2 className="text-xs md:text-base">RATING</h2>
+                    <h2 className="table-head-color font-bold text-xs md:text-base">RATING</h2>
                     {songMapper.map((_, index) => (
                         <div className="border-t text-xs md:text-base p-2" key={`rating-${index}`}>
                             <i className="fa fa-star"></i>
@@ -53,7 +53,7 @@ export default function AllSongsheets({ type, userSongsheets }) {
                     ))}
                 </div>
                 <div className={`col-span-1 ${type === "user" && "hidden"}`}>
-                    <h2 className="text-xs md:text-base ">LIKES</h2>
+                    <h2 className="table-head-color font-bold text-xs md:text-base ">LIKES</h2>
                     {songMapper.map((_, index) => (
                         <div className="border-t text-xs md:text-base p-2" key={`likes-${index}`}>
                             50
@@ -62,7 +62,7 @@ export default function AllSongsheets({ type, userSongsheets }) {
                 </div>
                 {type === "user" && (
                     <div className="col-span-1">
-                        <h2 className="text-xs md:text-base">Action</h2>
+                        <h2 className="table-head-color font-bold text-xs md:text-base">ACTION</h2>
                         {songMapper.map((song, index) => (
                             <div className="border-t text-xs md:text-base p-2" key={`action-${index}`}>
                                 <div className="flex items-center">
