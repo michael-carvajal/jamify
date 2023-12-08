@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom/cjs/react-router-dom.min";
-
+import React from "react";
 export default function SetlistItems() {
     const { listId } = useParams()
     const { setlists } = useSelector(state => state)
@@ -26,29 +26,25 @@ export default function SetlistItems() {
     })
 
     return (
-        <div id="table-container" className="all-setlists">
-            <table className="table">
-                <thead>
+        <div >
                     <h1 >{setlist.name} Setlist Detials</h1>
-                    <tr>
-                        <th>SONG</th>
-                        <th>ARTIST</th>
-                        <th>GENRE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {songs.map((song, index) => {
-                        return (
-                            <tr key={`list-item-list-${index}`}>
-                                <td><NavLink to={`/songsheet-detail/${song.song.id}`} className="select-link">{song.song.title}</NavLink></td>
-                                <td>{song.artist.name}</td>
+            <div className="grid grid-cols-3  p-2">
+                <div>SONG</div>
+                <div>ARTIST</div>
+                <div>GENRE</div>
+                {songs.map((song, index) => (
+                    <React.Fragment key={`list-item-list-${index}`}>
+                        <div className="border-t p-2 pl-0 overflow-hidden overflow-ellipsis whitespace-nowrap">
+                            <NavLink to={`/songsheet-detail/${song.song.id}`} className="select-link">
+                                {song.song.title}
+                            </NavLink>
+                        </div>
+                        <div className="border-t p-2 pl-0 overflow-hidden overflow-ellipsis whitespace-nowrap">{song.artist.name}</div>
+                        <div className="border-t p-2 pl-0 overflow-hidden overflow-ellipsis whitespace-nowrap">{song.genre.name}</div>
+                    </React.Fragment>
+                ))}
+            </div>
 
-                                <td>{song.genre.name}</td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
         </div>
     );
 

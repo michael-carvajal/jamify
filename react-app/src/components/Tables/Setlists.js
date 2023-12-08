@@ -56,7 +56,7 @@ export default function AllSetlist({ type, songId }) {
                 <div className="col-span-1">
                     <h2 className="table-head-color font-bold text-xs md:text-base">TITLE</h2>
                     {setlistMapper.map((setlist, index) => (
-                        <div className="border-t text-xs md:text-base p-2 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`setlist-title-${index}`}>
+                        <div className="border-t text-xs md:text-base p-2 pl-0 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`setlist-title-${index}`}>
                             <NavLink to={`/setlist-detail/${setlist.id}`} className="select-link">
                                 {setlist.name}
                             </NavLink>
@@ -66,7 +66,7 @@ export default function AllSetlist({ type, songId }) {
                 <div className={`col-span-1 ${type === "user" && "hidden"}`}>
                     <h2 className="table-head-color font-bold text-xs md:text-base">DESCRIPTION</h2>
                     {setlistMapper.map((setlist, index) => (
-                        <div className="border-t text-xs md:text-base p-2 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`setlist-description-${index}`}>
+                        <div className="border-t text-xs md:text-base p-2 pl-0 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`setlist-description-${index}`}>
                             {setlist.description}
                         </div>
                     ))}
@@ -77,7 +77,7 @@ export default function AllSetlist({ type, songId }) {
                         {setlistMapper.map((setlist, index) => {
                             const dateSplit = setlist.created_at.split(" ");
                             return (
-                                <div className="border-t text-xs md:text-base p-2 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`setlist-date-${index}`}>
+                                <div className="border-t text-xs md:text-base p-2 pl-0 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`setlist-date-${index}`}>
                                     {`${dateSplit[1]} ${dateSplit[2]} ${dateSplit[3]}`}
                                 </div>
                             );
@@ -90,7 +90,7 @@ export default function AllSetlist({ type, songId }) {
                         const lists = listItems.filter((list) => list.setlist_id === setlist.id);
                         const listLength = lists.length;
                         return (
-                            <div className="border-t text-xs md:text-base p-2" key={`setlist-songsheets-${index}`}>
+                            <div className="border-t text-xs md:text-base p-2 pl-0" key={`setlist-songsheets-${index}`}>
                                 {listLength}
                             </div>
                         );
@@ -100,7 +100,7 @@ export default function AllSetlist({ type, songId }) {
                     <div className="col-span-1">
                         <h2 className="table-head-color font-bold text-xs md:text-base">ACTION</h2>
                         {setlistMapper.map((setlist, index) => (
-                            <div className="border-t text-xs md:text-base p-[10px] md:p-[12px]" key={`setlist-action-${index}`}>
+                            <div className="border-t text-xs md:text-base p-[10px] md:p-[12px] " key={`setlist-action-${index}`}>
                                 <div className="flex items-center h-full">
                                     <OpenModalButton
                                         type="delete-setlist"

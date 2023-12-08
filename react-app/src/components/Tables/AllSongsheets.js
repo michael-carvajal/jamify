@@ -26,7 +26,7 @@ export default function AllSongsheets({ type, userSongsheets }) {
                     {songMapper.map((song, index) => {
                         const artistId = song.artist_id;
                         return (
-                            <div className="border-t text-xs md:text-base p-2 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`artist-${index}`}>
+                            <div className="border-t text-xs md:text-base p-2 pl-0 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`artist-${index}`}>
                                 {Artists[artistId].name}
                             </div>
                         );
@@ -35,7 +35,7 @@ export default function AllSongsheets({ type, userSongsheets }) {
                 <div className="col-span-1 flex-grow">
                     <h2 className="table-head-color font-bold text-xs md:text-base">SONG</h2>
                     {songMapper.map((song, index) => (
-                        <div className="border-t text-xs md:text-base p-2 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`song-${index}`}>
+                        <div className="border-t text-xs md:text-base p-2 pl-0 overflow-hidden overflow-ellipsis whitespace-nowrap" key={`song-${index}`}>
                             <NavLink to={`/songsheet-detail/${song.id}`} className="select-link">
                                 {song.title}
                             </NavLink>
@@ -45,7 +45,7 @@ export default function AllSongsheets({ type, userSongsheets }) {
                 <div className="col-span-1">
                     <h2 className="table-head-color font-bold text-xs md:text-base">RATING</h2>
                     {songMapper.map((_, index) => (
-                        <div className="border-t text-xs md:text-base p-2" key={`rating-${index}`}>
+                        <div className="border-t text-xs md:text-base p-2 pl-0" key={`rating-${index}`}>
                             <i className="fa fa-star"></i>
                             <i className="fa fa-star"></i>
                             <i className="fa fa-star"></i>
@@ -55,7 +55,7 @@ export default function AllSongsheets({ type, userSongsheets }) {
                 <div className={`col-span-1 ${type === "user" && "hidden"}`}>
                     <h2 className="table-head-color font-bold text-xs md:text-base ">LIKES</h2>
                     {songMapper.map((_, index) => (
-                        <div className="border-t text-xs md:text-base p-2" key={`likes-${index}`}>
+                        <div className="border-t text-xs md:text-base p-2 pl-0" key={`likes-${index}`}>
                             50
                         </div>
                     ))}
@@ -64,7 +64,7 @@ export default function AllSongsheets({ type, userSongsheets }) {
                     <div className="col-span-1">
                         <h2 className="table-head-color font-bold text-xs md:text-base">ACTION</h2>
                         {songMapper.map((song, index) => (
-                            <div className="border-t text-xs md:text-base p-2" key={`action-${index}`}>
+                            <div className="border-t text-xs md:text-base p-2 pl-0" key={`action-${index}`}>
                                 <div className="flex items-center">
                                     <OpenModalButton
                                         type="delete-songsheet"
