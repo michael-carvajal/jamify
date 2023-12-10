@@ -45,9 +45,9 @@ export default function AddAssociations({ type, artistArr }) {
         }
     }
     return (
-        <div className="signup-modal">
-            <form onSubmit={handleSubmit}>
-                <h1>Add {type}</h1>
+        < >
+            <form onSubmit={handleSubmit} className="flex flex-col  gap-5">
+                <h1 className="text-xl md:text-3xl font-bold self-center">Add {type}</h1>
                 <input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} type="text" className="input-shape"></input>
                 {type === "Album" && <input placeholder="Year" value={year_released} className="input-shape" onChange={(e) => setYear_released(e.target.value)} type="number"
                     max={2050}
@@ -64,6 +64,6 @@ export default function AddAssociations({ type, artistArr }) {
                 </select>}
                 <button type="submit" id="signup-btn">Add</button>
             </form>
-        </div>
+        </>
     )
 }
