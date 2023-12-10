@@ -108,7 +108,8 @@ export default function PublishSongsheet({ type }) {
             <label>
                 <p>Album <OpenModalButton modalComponent={<AddAssociations type={"Album"} artistArr={artistArr} />} type={"Album"}/></p>
 
-                <select value={album_id} onChange={(e) => setAlbum_id(e.target.value)}>
+                <select value={album_id} onChange={(e) => setAlbum_id(e.target.value)}
+                className="w-full md:w-fit">
                     <option disabled selected value="">Choose Album</option>
                     {AlbumsArr.map((album, index) => (
                         <option value={album.name} key={`album-index-${index}`}>
