@@ -20,9 +20,9 @@ export default function PublishSongsheet({ type }) {
     const dispatch = useDispatch();
 
     const { sheetId } = useParams();
-    const artistArr = Artists ? Object.values(Artists) : [];
+    const artistArr = Artists ? Object.values(Artists).sort((a, b) => a.name.localeCompare(b.name)) : [];
     const genreArr = Genres ? Object.values(Genres) : [];
-    const AlbumsArr = Albums ? Object.values(Albums) : [];
+    const AlbumsArr = Albums ? Object.values(Albums).sort((a, b) => a.name.localeCompare(b.name)) : [];
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true); // Set loading to true before fetching data
