@@ -41,7 +41,7 @@ export default function Sidebar({ isLoaded }) {
             <NavLink className="text-xs md:text-base" to="/user/reviews">My Reviews</NavLink>
 
             {sessionUser && (
-                <li className="self-center my-8">
+                <li className="self-center my-8 relative">
                     <ProfileButton user={sessionUser} />
                 </li>
             )}
