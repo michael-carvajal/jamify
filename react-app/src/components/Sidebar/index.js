@@ -40,16 +40,16 @@ export default function Sidebar({ isLoaded }) {
             <NavLink className="text-xs md:text-base" to="/user/demos">My Demos</NavLink>
             <NavLink className="text-xs md:text-base" to="/user/reviews">My Reviews</NavLink>
 
-            {isLoaded && (
-                <li>
+            {sessionUser && (
+                <li className="self-center my-8">
                     <ProfileButton user={sessionUser} />
                 </li>
             )}
-            <div className="about">
-                <a href="https://github.com/michael-carvajal">
+            <div className="text-2xl md:text-5xl flex justify-between mt-auto">
+                <a target= "_blank" href="https://github.com/michael-carvajal">
                     <i className="fa fa-github"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/michael-carvajal-326683203/">
+                <a target= "_blank" href="https://www.linkedin.com/in/michael-carvajal-326683203/">
                     <i className="fa fa-linkedin"></i>
                 </a>
             </div>
