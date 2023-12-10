@@ -91,7 +91,7 @@ export default function PublishSongsheet({ type }) {
 
     }
     return (
-        <form onSubmit={type === "update" ? handleUpdate : handleSubmit} className="publish-songsheet">
+        <form onSubmit={type === "update" ? handleUpdate : handleSubmit} className="publish-songsheet p-2 text-xs md:text-base">
             <label>
                 <p>Artist <OpenModalButton modalComponent={<AddAssociations type={"Artist"} />} type={"Artist"} /></p>
 
@@ -130,7 +130,7 @@ export default function PublishSongsheet({ type }) {
                     ))}
                 </select>
             </label>
-            <label className="key-title">
+            <label className="flex flex-col md:flex-row gap-5">
                 <label style={{ width: "60%" }}>
                 <p>Title</p>
                     <input placeholder="Title" style={{ width: "100%" }}  required value={title} onChange={(e) => setTitle(e.target.value)} />
