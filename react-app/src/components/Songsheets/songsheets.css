@@ -87,21 +87,3 @@ select {
     cursor: pointer;
 }
 
-.songsheet-header {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#title-artist {
-    font-size: 24px;
-}
-
-#songsheet-detail {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 90%;
-    padding: 10px 15px 15px 15px;
-}

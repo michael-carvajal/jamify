@@ -46,23 +46,23 @@ export default function SongsheetDetail() {
         ) || [];
 
     return (
-        <div id="songsheet-detail">
-            <div className="songsheet-header">
-                <p id="title-artist">
+        <div className="flex flex-col gap-5 p-2 w-full">
+            <div className="flex flex-col items-end gap-3 text-base md:text-2xl w-full">
+                <p>
                     {songsheet.title} by <span style={{ fontWeight: "600" }}>{artist.name}</span>
                 </p>
-                <p>Added to {songSetlists.length} { songSetlists.length === 1 ? "Setlist" : "Setlists"}</p>
-            </div>
+                <p>Added to {songSetlists.length} {songSetlists.length === 1 ? "Setlist" : "Setlists"}</p>
             <OpenModalButton
                 type="add-to-setlist"
                 modalComponent={<AllSetlist type="add" songId={songsheet.id} />}
             />
-            <p>
+            </div>
+            <p className="text-xs md:text-base">
                 Created by {authorName}, last edited on {songsheet.updated_at.split(" ").slice(0, 3).join(" ")}
             </p>
             <p>Key {songsheet.key}</p>
-            <pre>{songsheet.body}</pre>
-             <SongsheetRatings />
+            <pre className="text-xs md:text-base">{songsheet.body}</pre>
+            <SongsheetRatings />
         </div>
     );
 }
