@@ -58,7 +58,7 @@ export default function SongsheetDetail() {
             />
             </div>
             <p className="text-xs md:text-base">
-                Created by {authorName}, last edited on {songsheet.updated_at.split(" ").slice(0, 3).join(" ")}
+                Published by <em>{authorName}</em>, last edited on {songsheet.updated_at.split(" ").slice(0, 3).join(" ")}
             </p>
             <p>Key {songsheet.key}</p>
             <pre className="text-xs md:text-base">{songsheet.body}</pre>

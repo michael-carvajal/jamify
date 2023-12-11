@@ -42,7 +42,7 @@ export default function AllSetlist({ type, songId }) {
         dispatch(DeleteItem(item.id))
     }
     return (
-        <div className="p-2">
+        <div className={`p-2 ${type === 'add' && 'w-4/5  mx-auto'}`}>
             {type === 'user' || type === "add" ? <div className="">
                 <div className="mb-10  flex flex-col justify-center items-end">
 
@@ -129,14 +129,14 @@ export default function AllSetlist({ type, songId }) {
                         })}
                     </div>
                 )}
+            </div>
                 {type === "add" && (
-                    <div className="col-span-4">
-                        <p onClick={closeModal} id="signup-btn" className="setlist-done" style={{ width: "fit-content", padding: "5px 10px", textAlign: "right" }}>
+                <div className=" w-full flex justify-end">
+                        <p onClick={closeModal} id="signup-btn"  style={{ width: "fit-content", padding: "5px 10px"}}>
                             DONE
                         </p>
                     </div>
                 )}
-            </div>
 
 
         </div>
