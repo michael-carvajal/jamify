@@ -2,7 +2,6 @@
     display: flex;
     gap: 20px;
     flex-direction: column;
-    width: 500px;
     margin: 15px auto;
 }
 
@@ -40,21 +39,16 @@
     display: none;
 }
 .songsheet-textarea {
-    width: 500px;
-    height: 800px;
+    min-height: 500px;
     padding: 9px;
-    font-size: 18px;
     background-color: var(--background-color);
     color: var(--border-text-color);
     overflow: hidden;
+    border: 1px solid var(--ug-grey);
     overflow-y: scroll;
 }
 
-.key-title {
-    display: flex;
-    width: 100%;
-    gap: 20px;
-}
+
 
 .user-songsheets {
     width: 100%;
@@ -93,21 +87,3 @@ select {
     cursor: pointer;
 }
 
-.songsheet-header {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#title-artist {
-    font-size: 24px;
-}
-
-#songsheet-detail {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 90%;
-    padding: 10px 15px 15px 15px;
-}

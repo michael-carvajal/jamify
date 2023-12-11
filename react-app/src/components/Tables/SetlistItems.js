@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom/cjs/react-router-dom.min";
-
+import React from "react";
 export default function SetlistItems() {
     const { listId } = useParams()
     const { setlists } = useSelector(state => state)
@@ -24,31 +24,31 @@ export default function SetlistItems() {
             genre: Genres[Songsheets[item.songsheet_id].genre_id],
         }
     })
-
     return (
-        <div id="table-container" className="all-setlists">
-            <table className="table">
-                <thead>
-                    <h1 >{setlist.name} Setlist Detials</h1>
-                    <tr>
-                        <th>SONG</th>
-                        <th>ARTIST</th>
-                        <th>GENRE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {songs.map((song, index) => {
-                        return (
-                            <tr key={`list-item-list-${index}`}>
-                                <td><NavLink to={`/songsheet-detail/${song.song.id}`} className="select-link">{song.song.title}</NavLink></td>
-                                <td>{song.artist.name}</td>
+        <div className="w-full p-2">
+            <h1 className="text-xl md:text-3xl mb-10 font-bold text-right" >"{setlist.name}" Setlist Detials</h1>
+            <div className="grid grid-cols-3  p-2 relative">
+                <div className="table-head-color font-bold text-xs md:text-base">SONG</div>
+                <div className="table-head-color font-bold text-xs md:text-base">ARTIST</div>
+                <div className="table-head-color font-bold text-xs md:text-base">GENRE</div>
+                {songs.length === 0 && (
+                    <NavLink to='/songsheets'>
+                        <h3 className="absolute">Click here to add songs to this set list!</h3>
+                    </NavLink>
+                )}
+                {songs.map((song, index) => (
+                    <React.Fragment key={`list-item-list-${index}`}>
+                        <div className="border-t text-xs md:text-base p-2 pl-0 overflow-hidden overflow-ellipsis whitespace-nowrap">
+                            <NavLink to={`/songsheet-detail/${song.song.id}`} className="select-link">
+                                {song.song.title}
+                            </NavLink>
+                        </div>
+                        <div className="border-t text-xs md:text-base p-2 pl-0 overflow-hidden overflow-ellipsis whitespace-nowrap">{song.artist.name}</div>
+                        <div className="border-t text-xs md:text-base p-2 pl-0 overflow-hidden overflow-ellipsis whitespace-nowrap">{song.genre.name}</div>
+                    </React.Fragment>
+                ))}
+            </div>
 
-                                <td>{song.genre.name}</td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
         </div>
     );
 

@@ -32,10 +32,7 @@
     border: 1px solid var(--ug-grey);
 }
 
-.fa-github, .fa-linkedin {
-    font-size: 60px;
-    padding-right: 15px;
-}
+
 .fa-github:hover, .fa-linkedin:hover {
     color: var(--ug-yellow);
 }
@@ -49,6 +46,9 @@
     justify-content: space-between;
     position: absolute;
     bottom: 0;
+}
+.side-bar a {
+    transition: color 0.3s ease; /* Specify the transition property and duration */
 }
 .side-bar a:hover {
     color: white;
