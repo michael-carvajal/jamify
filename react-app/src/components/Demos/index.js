@@ -132,14 +132,13 @@ const Demos = () => {
                         </div>
                     </div>
                     <div className="upload-submit">
-                        <button type="submit">Submit</button>
-                        <span
-                            id="signup-btn"
-                            style={{ padding: '4px 10px', borderRadius: '5px', fontSize: '13px' }}
-                            onClick={handleDemoUpload}
-                        >
+                            <button type='submit' className="bg-ug-yellow hover:bg-ug-red text-white font-bold py-2 px-4 border-b-4 border-ug-red hover:border-ug-yellow rounded">
+                            Submit
+                        </button>
+
+                            <button type='submit' onClick={handleDemoUpload} className="bg-ug-red hover:bg-ug-yellow text-white font-bold py-2 px-4 border-b-4 border-ug-yellow hover:border-ug-red rounded">
                             Demo Upload
-                        </span>
+                        </button>
                     </div>
                     <div class="custom-shape-divider-bottom-1689291612">
                         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -153,7 +152,7 @@ const Demos = () => {
             {userDemos.length === 0 ? (
                 <div className='empty-demos'>
                     <h2>Demos are empty. Upload demos now!</h2>
-                    <img src='/ag.png'  alt='acoustic guitar'></img>
+                    <img src='/ag.png' alt='acoustic guitar'></img>
                 </div>
             ) : (
                 <div className="user-demos">

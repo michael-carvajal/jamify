@@ -112,16 +112,7 @@
     z-index: 10;
 }
 
-.upload-submit> * {
-    border: 3px rgb(58, 58, 58) solid;
-}
-.upload-submit>*:hover {
-    border: 3px rgb(79, 79, 79 ) double;
-}
-.upload-submit span:hover{
-    cursor: pointer;
 
-}
 .custom-shape-divider-bottom-1689291612 {
     position: absolute;
     bottom: 0;
