@@ -50,6 +50,12 @@ function OpenModalButton({
       <div className='add-to-setlist' onClick={onClick}><i className='fa fa-plus' ></i><span>Add to Setlist</span></div>
     )
   }
+  if (type === "no-account-yet") {
+    return(
+    <>
+        <p className="text-xs">Don't have an account yet? <span id="login-demo" className="font-bold" onClick={onClick}>Sign up</span></p>
+    </>)
+  }
   switch (type) {
     case 'Artist':
 

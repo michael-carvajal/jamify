@@ -3,6 +3,8 @@ import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
+import OpenModalButton from "../OpenModalButton";
+import SignupFormModal from "../SignupFormModal";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -20,6 +22,7 @@ function LoginFormModal() {
     }
     const data = await dispatch(login(email, password));
     if (data) {
+      console.log(data);
       setErrors(data);
     } else {
         closeModal()
@@ -29,10 +32,10 @@ function LoginFormModal() {
   return (
     <div className="signup-modal">
       <div className="signup-header">
-        <h1>Log in</h1>
+        <h1 className="text-white">Log in to Jamify</h1>
         <i className="fa fa-times" onClick={closeModal}></i>
       </div>
-      <form onSubmit={handleSubmit} className="signup-form">
+      <form onSubmit={handleSubmit} className="signup-form [&>input]:p-1 [&>input]:text-xs  [&>input]:md:text-base">
 
         <ul>
           {errors.map((error, idx) => (
@@ -53,8 +56,9 @@ function LoginFormModal() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        <button type="submit" id="signup-btn" style={{ padding: "10px 0px" }}>LOG IN</button>
+        <button type="submit" id="signup-btn" className="text-base md:text-lg">LOG IN</button>
         <p id="login-demo" onClick={(e) => handleSubmit(e, true)}>Log in as Demo User</p>
+        <OpenModalButton type="no-account-yet" modalComponent={<SignupFormModal />}/>
       </form>
     </div>
   );
