@@ -37,7 +37,7 @@ function SignupFormModal() {
 			<h1>Sign Up</h1>
 			<i className="fa fa-times" onClick={closeModal}></i>
 			</div>
-			<form onSubmit={handleSubmit} className="signup-form">
+			<form onSubmit={handleSubmit} className="signup-form [&>input]:pl-2">
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
