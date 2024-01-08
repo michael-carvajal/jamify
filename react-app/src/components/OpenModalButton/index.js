@@ -37,14 +37,14 @@ function OpenModalButton({
   }
   if (type === "login") {
     return (
-      <button type='submit' onClick={onClick} className="bg-ug-red w-full hover:bg-ug-yellow text-white font-bold py-2 px-4 border-b-4 border-ug-yellow hover:border-ug-red rounded">
+      <button type='submit' onClick={onClick} className="bg-ug-red w-full hover:bg-ug-yellow text-white font-bold py-2 px-4 border-b-4 border-ug-yellow hover:border-ug-red rounded text-sm md:text-base">
         Login
       </button>
     )
   }
   if (type === "signup") {
     return (
-      <button type='submit' onClick={onClick} className="bg-ug-yellow  w-full hover:bg-ug-red text-white font-bold py-2 px-4 border-b-4 border-ug-red hover:border-ug-yellow rounded">
+      <button type='submit' onClick={onClick} className="bg-ug-yellow  w-full hover:bg-ug-red text-white font-bold py-2 px-4 border-b-4 border-ug-red hover:border-ug-yellow rounded text-sm md:text-base">
         Sign Up
       </button>
     )
