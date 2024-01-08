@@ -15,10 +15,12 @@ function SignupFormModal() {
 	const [last_name, setLast_name] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
+	const [isLoading, setIsLoading] = useState(false)
 	const { closeModal } = useModal();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setIsLoading(true)
 		if (password === confirmPassword) {
 			const data = await dispatch(signUp(username, email, password, first_name, last_name));
 			if (data) {
@@ -31,6 +33,7 @@ function SignupFormModal() {
 				"Confirm Password field must be the same as the Password field",
 			]);
 		}
+		setIsLoading(false)
 	};
 
 	return (
@@ -87,7 +90,7 @@ function SignupFormModal() {
 					onChange={(e) => setConfirmPassword(e.target.value)}
 					required
 				/>
-				<button type='submit' className="bg-ug-yellow  w-full hover:bg-ug-red text-white font-bold py-2 px-4 border-b-4 border-ug-red hover:border-ug-yellow rounded">
+				<button type='submit' className={`w-full ${isLoading ? "text-gray-400 hover:cursor-wait" : "bg-ug-yellow hover:bg-ug-red text-white font-bold border-ug-red hover:border-ug-yellow "}  py-2 px-4 border-b-4 rounded`}>
 					Sign Up
 				</button>
 				<OpenModalButton type="has-account-login" modalComponent={<LoginFormModal />} />

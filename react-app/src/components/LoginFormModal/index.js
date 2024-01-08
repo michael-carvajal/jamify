@@ -12,9 +12,11 @@ function LoginFormModal() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (e, demo) => {
     e.preventDefault();
+    setIsLoading(true)
     if (demo) {
       const data = await dispatch(login("demo@aa.io", "password"));
       closeModal()
@@ -27,6 +29,7 @@ function LoginFormModal() {
     } else {
         closeModal()
     }
+    setIsLoading(false)
   };
 
   return (
@@ -56,7 +59,7 @@ function LoginFormModal() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        <button type='submit'  className="bg-ug-yellow  w-full hover:bg-ug-red text-white font-bold py-2 px-4 border-b-4 border-ug-red hover:border-ug-yellow rounded">
+        <button type='submit' className={`text-white font-bold py-2 px-4 border-b-4 rounded ${isLoading ? "text-gray-400 hover:cursor-wait" : "bg-ug-yellow  w-full hover:bg-ug-red  border-ug-red hover:border-ug-yellow"} `}>
           Login
         </button>
         <p id="login-demo" onClick={(e) => handleSubmit(e, true)}>Log in as Demo User</p>
