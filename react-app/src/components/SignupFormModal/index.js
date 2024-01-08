@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
+import LoginFormModal from "../LoginFormModal";
+import OpenModalButton from "../OpenModalButton";
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
@@ -37,7 +39,7 @@ function SignupFormModal() {
 				<h1>Sign up to rock out!</h1>
 				<i className="fa fa-times hover:text-gray-400" onClick={closeModal}></i>
 			</div>
-			<form onSubmit={handleSubmit} className="signup-form [&>input]:pl-2">
+			<form onSubmit={handleSubmit} className="signup-form [&>input]:p-1 [&>input]:text-xs  [&>input]:md:text-base">
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
@@ -87,7 +89,9 @@ function SignupFormModal() {
 				/>
 				<button type='submit' className="bg-ug-yellow  w-full hover:bg-ug-red text-white font-bold py-2 px-4 border-b-4 border-ug-red hover:border-ug-yellow rounded">
 					Sign Up
-				</button>			</form>
+				</button>
+				<OpenModalButton type="has-account-login" modalComponent={<LoginFormModal />} />
+			</form>
 		</div>
 	);
 }

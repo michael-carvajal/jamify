@@ -59,6 +59,11 @@ function OpenModalButton({
     <>
         <p className="text-xs">Don't have an account yet? <span id="login-demo" className="font-bold" onClick={onClick}>Sign up</span></p>
     </>)
+  } else if (type === "has-account-login") {
+    return (
+      <>
+        <p className="text-xs">Already have an account? <span id="login-demo" className="font-bold" onClick={onClick}>Login</span></p>
+      </>)
   }
   switch (type) {
     case 'Artist':
