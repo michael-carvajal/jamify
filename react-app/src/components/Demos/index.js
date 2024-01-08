@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteDemo, fetchDemos, postDemo } from '../../store/demos';
+import {  fetchDemos, postDemo } from '../../store/demos';
 import './demos.css';
-import { useModal } from '../../context/Modal';
-import DeleteDemoModal from './DeleteDemoModal';
-import jammin from '../../assets/jammin.mp3';
+import { handleDemoUpload} from './utils'
+import DisplayDemos from './DisplayDemos';
 
 const Demos = () => {
     const [audioFile, setAudioFile] = useState(null);
@@ -14,7 +13,6 @@ const Demos = () => {
     const { session } = useSelector((state) => state);
     const { demos } = useSelector((state) => state);
     const fileInputRef = useRef(null);
-    const { setModalContent, closeModal } = useModal();
 
     useEffect(() => {
         dispatch(fetchDemos());
@@ -40,30 +38,6 @@ const Demos = () => {
         setAudioFile(file);
     };
 
-    const handleDemoUpload = async () => {
-        try {
-            const response = await fetch(jammin);
-            const blob = await response.blob();
-            const file = new File([blob], "jammin.mp3", { type: "audio/mp3" });
-            setAudioFile(file);
-            const demoName = "Jammin by Bob Marley";
-
-            const formData = new FormData();
-            formData.append("demo", file);
-            formData.append("name", demoName);
-            formData.append("public", true);
-            formData.append("author_id", session.user.id);
-
-            setIsUploading(true);
-            await dispatch(postDemo(formData));
-            setAudioFile(null);
-            setName("");
-            setIsUploading(false);
-        } catch (error) {
-            // console.log(error);
-        }
-    };
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -82,10 +56,7 @@ const Demos = () => {
         setIsUploading(false);
     };
 
-    const handleDelete = async (demo) => {
-        await dispatch(deleteDemo(demo));
-        closeModal();
-    };
+
     // console.log(audioFile, name);
     return (
         <div className="demos-page p-2">
@@ -134,7 +105,7 @@ const Demos = () => {
                             Submit
                         </button>
 
-                            <button type='submit' onClick={handleDemoUpload} className="bg-ug-red hover:bg-ug-yellow text-white font-bold py-2 px-4 border-b-4 border-ug-yellow hover:border-ug-red rounded">
+                            <button  onClick={() => handleDemoUpload(setAudioFile,session, setIsUploading, dispatch, postDemo, setName)} className="bg-ug-red hover:bg-ug-yellow text-white font-bold py-2 px-4 border-b-4 border-ug-yellow hover:border-ug-red rounded">
                             Demo Upload
                         </button>
                     </div>
@@ -152,33 +123,7 @@ const Demos = () => {
                     <h2>Demos are empty. Upload demos now!</h2>
                     <img src='/ag.png' alt='acoustic guitar'></img>
                 </div>
-            ) : (
-                <div className='flex flex-col gap-5 '>
-                    {userDemos.map((demo, idx) => {
-                        return (
-                            <div key={`index-to-demos-${idx}`} className="flex w-full items-center justify-between flex-col md:flex-row border-ug-grey border-2  p-2 rounded">
-                                <audio controls>
-                                    <source src={demo.file_link} type="audio/mp3" />
-                                    Your browser does not support the audio element.
-                                </audio>
-                                <div className="demo-details">
-                                    <div className='flex flex-col md:flex-row items-center gap-5'>
-                                        <p className='text-xs md:text-base'>
-                                            {demo.name}
-                                        </p>
-                                        <span className='text-[10px] text-ug-grey'>{demo.created_at.split(' ').splice(0, 4).join(' ')}</span>
-                                    </div>
-
-                                    <i
-                                        onClick={() => setModalContent(<DeleteDemoModal demo={demo} handleDelete={handleDelete} closeModal={closeModal} />)}
-                                        className="fa fa-trash self-center md:self-end"
-                                    ></i>
-                                </div>
-                            </div>
-                        );
-                    }).reverse()}
-                </div>
-            )}
+            ) : <DisplayDemos userDemos={userDemos} dispatch={dispatch} /> }
         </div>
     );
 };
