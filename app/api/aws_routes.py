@@ -11,22 +11,15 @@ aws_routes = Blueprint("aws", __name__)
 @aws_routes.route("/demo", methods=["POST"])
 @login_required
 def upload_image():
-    print("inside post demo form!!!!!!!!!!!!!!!!!!!!!!!")
     # data = request.get_json()
 
-    print("here is the data ========================>",request)
     form = DemoForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
-        (print("Form has validatrd =================================================>"))
         demo = form.data["demo"]
-        print(1111111111111111)
         demo.filename = get_unique_filename(demo.filename)
-        print(222222222222222)
-        print(demo.filename)
         upload = upload_file_to_s3(demo)
-        print(333333333333333)
-        print(upload)
+        # print(upload)
         name = form.data['name']
         author_id = form.data['author_id']
         public = form.data['public']
@@ -43,8 +36,7 @@ def upload_image():
         return new_demo.to_dict()
 
     if form.errors:
-        print("errors in the form ++++++++++>")
-        print(form.errors)
+        # print(form.errors)
         return form.errors
 
     return {"error"}
