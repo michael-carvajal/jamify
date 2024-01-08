@@ -37,12 +37,16 @@ function OpenModalButton({
   }
   if (type === "login") {
     return (
-      <p onClick={onClick} id="login-btn">LOGIN</p>
+      <button type='submit' onClick={onClick} className="bg-ug-red w-full hover:bg-ug-yellow text-white font-bold py-2 px-4 border-b-4 border-ug-yellow hover:border-ug-red rounded">
+        Login
+      </button>
     )
   }
   if (type === "signup") {
     return (
-      <p onClick={onClick} id="signup-btn">SIGN UP</p>
+      <button type='submit' onClick={onClick} className="bg-ug-yellow  w-full hover:bg-ug-red text-white font-bold py-2 px-4 border-b-4 border-ug-red hover:border-ug-yellow rounded">
+        Sign Up
+      </button>
     )
   }
   if (type === "add-to-setlist") {

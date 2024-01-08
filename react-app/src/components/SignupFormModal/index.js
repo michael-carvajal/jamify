@@ -34,8 +34,8 @@ function SignupFormModal() {
 	return (
 		<div className="signup-modal">
 			<div className="signup-header">
-			<h1>Sign Up</h1>
-			<i className="fa fa-times" onClick={closeModal}></i>
+				<h1>Sign up to rock out!</h1>
+				<i className="fa fa-times hover:text-gray-400" onClick={closeModal}></i>
 			</div>
 			<form onSubmit={handleSubmit} className="signup-form [&>input]:pl-2">
 				<ul>
@@ -43,50 +43,51 @@ function SignupFormModal() {
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-					<input
-						placeholder="Email"
-						type="email"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						required
-					/>
-					<input
-						placeholder="Username"
-						type="text"
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
-						required
-					/>
-					<input
-						placeholder="First Name"
-						type="text"
-						value={first_name}
-						onChange={(e) => setFirst_name(e.target.value)}
-						required
-					/>
-					<input
-						placeholder="Last Name"
-						type="text"
-						value={last_name}
-						onChange={(e) => setLast_name(e.target.value)}
-						required
-					/>
-					<input
-						placeholder="Password"
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-					<input
-						placeholder="Confirm Password"
-						type="password"
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-						required
-					/>
-				<button type="submit" id="signup-btn" style={{padding: "10px 0px"}}>SIGN UP</button>
-			</form>
+				<input
+					placeholder="Email"
+					type="email"
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+					required
+				/>
+				<input
+					placeholder="Username"
+					type="text"
+					value={username}
+					onChange={(e) => setUsername(e.target.value)}
+					required
+				/>
+				<input
+					placeholder="First Name"
+					type="text"
+					value={first_name}
+					onChange={(e) => setFirst_name(e.target.value)}
+					required
+				/>
+				<input
+					placeholder="Last Name"
+					type="text"
+					value={last_name}
+					onChange={(e) => setLast_name(e.target.value)}
+					required
+				/>
+				<input
+					placeholder="Password"
+					type="password"
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+					required
+				/>
+				<input
+					placeholder="Confirm Password"
+					type="password"
+					value={confirmPassword}
+					onChange={(e) => setConfirmPassword(e.target.value)}
+					required
+				/>
+				<button type='submit' className="bg-ug-yellow  w-full hover:bg-ug-red text-white font-bold py-2 px-4 border-b-4 border-ug-red hover:border-ug-yellow rounded">
+					Sign Up
+				</button>			</form>
 		</div>
 	);
 }

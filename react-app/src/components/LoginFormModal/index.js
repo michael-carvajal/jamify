@@ -33,7 +33,7 @@ function LoginFormModal() {
     <div className="signup-modal">
       <div className="signup-header">
         <h1 className="text-white">Log in to Jamify</h1>
-        <i className="fa fa-times" onClick={closeModal}></i>
+        <i className="fa fa-times hover:text-gray-400" onClick={closeModal}></i>
       </div>
       <form onSubmit={handleSubmit} className="signup-form [&>input]:p-1 [&>input]:text-xs  [&>input]:md:text-base">
 
@@ -56,7 +56,9 @@ function LoginFormModal() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        <button type="submit" id="signup-btn" className="text-base md:text-lg">LOG IN</button>
+        <button type='submit'  className="bg-ug-yellow  w-full hover:bg-ug-red text-white font-bold py-2 px-4 border-b-4 border-ug-red hover:border-ug-yellow rounded">
+          Login
+        </button>
         <p id="login-demo" onClick={(e) => handleSubmit(e, true)}>Log in as Demo User</p>
         <OpenModalButton type="no-account-yet" modalComponent={<SignupFormModal />}/>
       </form>
