@@ -12,9 +12,11 @@ function LoginFormModal() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (e, demo) => {
     e.preventDefault();
+    setIsLoading(true)
     if (demo) {
       const data = await dispatch(login("demo@aa.io", "password"));
       closeModal()
@@ -27,13 +29,14 @@ function LoginFormModal() {
     } else {
         closeModal()
     }
+    setIsLoading(false)
   };
 
   return (
     <div className="signup-modal">
       <div className="signup-header">
         <h1 className="text-white">Log in to Jamify</h1>
-        <i className="fa fa-times" onClick={closeModal}></i>
+        <i className="fa fa-times hover:text-gray-400" onClick={closeModal}></i>
       </div>
       <form onSubmit={handleSubmit} className="signup-form [&>input]:p-1 [&>input]:text-xs  [&>input]:md:text-base">
 
@@ -56,7 +59,9 @@ function LoginFormModal() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        <button type="submit" id="signup-btn" className="text-base md:text-lg">LOG IN</button>
+        <button type='submit' className={`text-white font-bold py-2 px-4 border-b-4 rounded ${isLoading ? "text-gray-400 hover:cursor-wait" : "bg-ug-yellow  w-full hover:bg-ug-red  border-ug-red hover:border-ug-yellow"} `}>
+          Login
+        </button>
         <p id="login-demo" onClick={(e) => handleSubmit(e, true)}>Log in as Demo User</p>
         <OpenModalButton type="no-account-yet" modalComponent={<SignupFormModal />}/>
       </form>

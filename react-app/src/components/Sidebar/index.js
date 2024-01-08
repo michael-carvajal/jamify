@@ -30,9 +30,9 @@ export default function Sidebar({ isLoaded }) {
     return (
         <div className="side-bar">
             {!sessionUser && (
-                <div className="user-login-signup">
-                    <OpenModalButton type="signup" modalComponent={<SignupFormModal />} />
+                <div className="flex flex-col gap-2">
                     <OpenModalButton type="login" modalComponent={<LoginFormModal />} />
+                    <OpenModalButton type="signup" modalComponent={<SignupFormModal />} />
                 </div>
             )}
             <NavLink className="text-xs md:text-base" to="/user/songsheets">My Songsheets</NavLink>
