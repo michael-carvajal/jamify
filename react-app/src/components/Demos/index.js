@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {  fetchDemos, postDemo } from '../../store/demos';
+import { fetchDemos, postDemo } from '../../store/demos';
 import './demos.css';
-import { handleDemoUpload} from './utils'
+import { handleDemoUpload } from './utils'
 import DisplayDemos from './DisplayDemos';
 import DemoUploading from './DemoUploading';
 
@@ -62,40 +62,44 @@ const Demos = () => {
     return (
         <div className="demos-page p-2">
             {isUploading ? (
-                <DemoUploading audioFile={audioFile}/>
+                <DemoUploading audioFile={audioFile} />
             ) : (
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="demo-form text-xs md:text-base">
-                        <div className="record-container flex items-center justify-around w-full">
-                        <label htmlFor="audio" className='text-base'>
-                            Upload File:
-                        </label>
-                        <input
-                            type="file"
-                            id="audio"
-                            accept="audio/*"
-                            onChange={handleFileChange}
-                            required
-                            ref={fileInputRef}
-                            style={{ display: 'none' }} // Hide the file input
-                        />
-                        <p onClick={handleRecordButtonClick} className="upload-btn w-12 md:w-20 h-12 md:h-20" id="pre-upload"></p>
-                    </div>
-                    {audioFile?.name && <p style={{ textAlign: 'center' }}>{audioFile.name} <i onClick={() => setAudioFile(null)} className='fa fa-times'></i></p>}
-                        <div className="record-container flex items-center justify-around w-full px-4">
+                    <div className='flex flex-col justify-between w-3/4 h-full'>
+
+                        <div className="record-container flex items-center justify-between w-full">
+                            <label htmlFor="audio" className='text-base'>
+                                Upload File:
+                            </label>
+                            <input
+                                type="file"
+                                id="audio"
+                                accept="audio/*"
+                                onChange={handleFileChange}
+                                required
+                                ref={fileInputRef}
+                                style={{ display: 'none' }} // Hide the file input
+                            />
+                            <p onClick={handleRecordButtonClick} className="upload-btn w-12 md:w-[70px] h-12 md:h-[70px]" id="pre-upload"></p>
+                        </div>
+                        {/* {audioFile?.name && <p style={{ textAlign: 'center' }}>{audioFile.name} <i onClick={() => setAudioFile(null)} className='fa fa-times'></i></p>} */}
+                            <div className="record-container flex items-center justify-between w-full ">
                             <label htmlFor="name" className="text-base" >
                                 Name:
                             </label>
                             <input name="name" required type="text" placeholder="name your demo" value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
-                        <div className="flex items-baseline z-10 justify-around w-full ">
+                            <div className="flex items-baseline z-10 justify-between w-full ">
                             <button type='submit' className="bg-ug-yellow hover:bg-ug-red text-white font-bold py-2 px-4 border-b-4 border-ug-red hover:border-ug-yellow rounded">
-                            Submit
-                        </button>
+                                Submit
+                            </button>
 
-                            <button  onClick={() => handleDemoUpload(setAudioFile,session, setIsUploading, dispatch, postDemo, setName)} className="bg-ug-red hover:bg-ug-yellow text-white font-bold py-2 px-4 border-b-4 border-ug-yellow hover:border-ug-red rounded">
-                            Demo Upload
-                        </button>
+                            <button onClick={() => handleDemoUpload(setAudioFile, session, setIsUploading, dispatch, postDemo, setName)} className="bg-ug-red hover:bg-ug-yellow text-white font-bold py-2 px-4 border-b-4 border-ug-yellow hover:border-ug-red rounded">
+                                Demo Upload
+                            </button>
+                        </div>
                     </div>
+
                     <div className="custom-shape-divider-bottom-1689291612">
                         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                             <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" className="shape-fill"></path>
@@ -110,7 +114,7 @@ const Demos = () => {
                     <h2>Demos are empty. Upload demos now!</h2>
                     <img src='/ag.png' alt='acoustic guitar'></img>
                 </div>
-            ) : <DisplayDemos userDemos={userDemos} dispatch={dispatch} /> }
+            ) : <DisplayDemos userDemos={userDemos} dispatch={dispatch} />}
         </div>
     );
 };
