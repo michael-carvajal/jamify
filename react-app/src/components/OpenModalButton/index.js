@@ -19,7 +19,7 @@ function OpenModalButton({
     return (<i className="fa fa-trash" onClick={onClick}></i>)
   }
   if (type === "delete-setlist" || type === "delete-rating")  {
-    return (<i className="fa fa-trash" onClick={onClick}></i>)
+    return (<i className="fa fa-trash p-0" onClick={onClick}></i>)
   }
   if (type === "create-setlist") {
     return (

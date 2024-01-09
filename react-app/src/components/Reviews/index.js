@@ -26,27 +26,29 @@ export default function Reviews() {
     const userRatings = Object.values(ratings).filter(rating => rating.author_id === session.user?.id);
 
     return (
-        <div>
+        <div className="flex flex-col w-full p-2">
 
-            <h1>My Ratings</h1>
-            <div className="user-ratings">
+            <h1 className="self-end text-xl md:text-2xl font-bold">My Ratings</h1>
+            <div className="flex flex-col gap-10">
                 {userRatings.map((rating, index) => {
                     const songRated = songsheets?.Songsheets[rating.songsheet_id];
                     const wholeRating = Math.floor(rating.rating)
 
                     return (
-                        <div className="user-rate" key={`ratings-key-${index}`}>
+                        <div className="bg-ug-grey p-2 rounded text-white flex flex-col w-full" key={`ratings-key-${index}`}>
                             <p>{rating.comment}</p>
                             <p>{rating.rating}</p>
                             <p>{songRated.title}</p>
                             <div className="flex items-center">
                                 {generateStars(wholeRating)}
                             </div>
-                            <span>Edit</span>
-                            <OpenModalButton
-                                type="delete-rating"
-                                modalComponent={<DeleteRatingModal ratingId={rating.id} />}
-                            />
+                            <div className="self-end flex gap-8 items-baseline">
+                                <span>Edit</span>
+                                <OpenModalButton
+                                    type="delete-rating"
+                                    modalComponent={<DeleteRatingModal ratingId={rating.id} />}
+                                />
+                            </div>
                         </div>
                     );
                 })}
