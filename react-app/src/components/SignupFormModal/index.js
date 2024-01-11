@@ -90,7 +90,7 @@ function SignupFormModal() {
 					onChange={(e) => setConfirmPassword(e.target.value)}
 					required
 				/>
-				<button type='submit' className={`w-full ${isLoading ? "text-gray-400 hover:cursor-wait" : "bg-ug-yellow hover:bg-ug-red text-white font-bold border-ug-red hover:border-ug-yellow "}  py-2 px-4 border-b-4 rounded`}>
+				<button type='submit' className={`w-full ${isLoading ? "text-gray-400 hover:cursor-wait" : " text-white font-bold bg-ug-red  hover:bg-yellow-600 border-yellow-600 hover:border-ug-red "}  py-2 px-4 border-b-4 rounded`}>
 					Sign Up
 				</button>
 				<OpenModalButton type="has-account-login" modalComponent={<LoginFormModal />} />

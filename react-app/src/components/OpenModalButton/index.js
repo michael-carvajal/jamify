@@ -51,14 +51,16 @@ function OpenModalButton({
   }
   if (type === "login") {
     return (
-      <button type='submit' onClick={onClick} className="bg-ug-red w-full hover:bg-ug-yellow text-white font-bold py-2 px-4 border-b-4 border-ug-yellow hover:border-ug-red rounded text-sm md:text-base">
+      <button type='submit' onClick={onClick} className="text-white font-bold py-2 px-4 border-b-4 rounded text-sm md:text-base
+      bg-ug-yellow w-full hover:bg-yellow-600
+            border-yellow-600 hover:border-ug-yellow ">
         Login
       </button>
     )
   }
   if (type === "signup") {
     return (
-      <button type='submit' onClick={onClick} className="bg-ug-yellow  w-full hover:bg-ug-red text-white font-bold py-2 px-4 border-b-4 border-ug-red hover:border-ug-yellow rounded text-sm md:text-base">
+        <button type='submit' onClick={onClick} className="bg-ug-red  hover:bg-yellow-600 border-yellow-600  hover:border-ug-red text-white font-bold py-2 px-4 border-b-4 w-full rounded text-sm md:text-base">
         Sign Up
       </button>
     )

@@ -59,7 +59,7 @@ function LoginFormModal() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        <button type='submit' className={`text-white font-bold py-2 px-4 border-b-4 rounded ${isLoading ? "text-gray-400 hover:cursor-wait" : "bg-ug-yellow  w-full hover:bg-ug-red  border-ug-red hover:border-ug-yellow"} `}>
+        <button type='submit' className={`text-white font-bold py-2 px-4 border-b-4 rounded ${isLoading ? "text-gray-400 hover:cursor-wait" : "bg-ug-yellow w-full hover:bg-yellow-600 border-yellow-600 hover:border-ug-yellow"} `}>
           Login
         </button>
         <p id="login-demo" onClick={(e) => handleSubmit(e, true)}>Log in as Demo User</p>
