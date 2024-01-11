@@ -48,15 +48,17 @@ export default function CreateSetlistModal({ type, id, addToSetlist, songId, set
         <form onSubmit={handleSubmit} className='create-setlist-form'>
             <div className="signup-header">
                 <h1>{type === "create" ? "Create" : "Update" } Setlist</h1>
-                <i className="fa fa-times" onClick={closeModal}></i>
+                <i className="fa fa-times hover:text-gray-500" onClick={closeModal}></i>
             </div>
             {errors.name && <p className='errors'>{ errors.name}</p>}
             <input placeholder='Name' required type="text" value={name} onChange={(e) => setName(e.target.value)} />
             {errors.description && <p className='errors'>{ errors.description}</p>}
             <input placeholder='Description' required value={description} onChange={(e) => setDescription(e.target.value)} />
 
-            <button type="submit" id='signup-btn' className='create-setlist-btn'
-            style={{width: 'fit-content', padding : "10px 15px", alignSelf: "flex-end"}}>{type === "edit" ? "UPDATE" : "CREATE"}</button>
+            <button type="submit" className='bg-ug-yellow w-full hover:bg-yellow-600
+            border-yellow-600 text-white font-bold py-2 px-4 border-b-4 border-red- hover:border-ug-yellow rounded text-sm md:text-base'>{type === "edit" ? "UPDATE" : "CREATE"}</button>
+
+
         </form>
     );
 }

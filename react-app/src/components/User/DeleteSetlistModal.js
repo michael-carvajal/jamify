@@ -13,9 +13,13 @@ export default function DeleteSetlistModal({ listId,listName }) {
         <div className="delete-songsheet">
 
             <h2>Are you sure you want to delete "{ listName}"?</h2>
-            <div className="user-login-signup">
-                <p onClick={deleteSetlist} id="signup-btn" style={{backgroundColor: "var(--ug-red)"}}>Yes (Delete Setlist)</p>
-                <p onClick={closeModal} id="login-btn">No (Keep Setlist)</p>
+            <div className="flex flex-col gap-4">
+                <button onClick={deleteSetlist} className="bg-ug-red w-full hover:bg-red-800 text-white font-bold py-2 px-4 border-b-4  hover:border-ug-red rounded text-sm md:text-base">
+                    Yes (Delete Setlist)
+                </button>
+                <button onClick={closeModal} className="bg-none w-full hover:bg-gray-800 text-white font-bold py-2 px-4 border-b-4  hover:border-gray-600 rounded text-sm md:text-base">
+                    No (Keep Setlist)
+                </button>
             </div>
         </div>
     )

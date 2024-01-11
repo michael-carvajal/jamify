@@ -87,7 +87,7 @@ const Demos = () => {
                             <label htmlFor="name" className="text-base" >
                                 Name:
                             </label>
-                            <input name="name" required type="text" placeholder="name your demo" value={name} onChange={(e) => setName(e.target.value)} />
+                            <input name="name" required type="text" placeholder="name your demo" className='text-sm' value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
                             <div className="flex items-baseline z-10 justify-between w-full ">
                             <button type='submit' className="bg-ug-yellow hover:bg-ug-red text-white font-bold py-2 px-4 border-b-4 border-ug-red hover:border-ug-yellow rounded">
