@@ -100,8 +100,8 @@ export default function AllSetlist({ type, songId }) {
                     <div className="col-span-1">
                         <h2 className="table-head-color font-bold text-xs md:text-base">ACTION</h2>
                         {setlistMapper.map((setlist, index) => (
-                            <div className="border-t text-xs md:text-base p-[10px] md:p-[12px] " key={`setlist-action-${index}`}>
-                                <div className="flex items-center h-full">
+                            <div className="border-t text-xs md:text-base p-2 pl-0" key={`setlist-action-${index}`}>
+                                <div className="flex items-center gap-5 h-full">
                                     <OpenModalButton
                                         type="delete-setlist"
                                         modalComponent={<DeleteSetlistModal listId={setlist.id} listName={setlist.name} />}
